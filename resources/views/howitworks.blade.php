@@ -24,8 +24,8 @@
 	            <div class="row justify-content-center">
 	                <div class="col-xl-6 col-lg-6 centered wow fadeInUp" data-wow-delay="0.3s">
 	                    <div class="section-title">
-	                        <h4>Business Statics</h4>
-	                        <h2>Growth is Important In Business</h2>
+	                        <!-- <h4>Business Statics</h4> -->
+	                        <h2>How to get paper writing help from us.</h2>
 	                    </div>
 	                </div>
 	            </div>
@@ -35,7 +35,7 @@
 	                </div>
 	                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
 	                    <div class="growth-content">
-	                        <h3>Compound Growth Rates</h3>
+	                        <h3>Register - Create an account</h3>
 	                        <p>Excited him now natural saw passage offices you minuter. At by asked being court hopes. Farther so friends am to detract. Forbade concern do private be. Offending residence but men engrossed shy. Pretend am earnest offered arrived company so on.</p>
 	                        <a href="#" class="bttn-small btn-fill">Read More</a>
 	                    </div>
@@ -44,7 +44,7 @@
 	            <div class="row">
 	                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-2 order-xl-1 order-lg-1 order-md-1 order-sm-2 wow fadeInUp" data-wow-delay="0.4s">
 	                    <div class="growth-content">
-	                        <h3>Complex Statics Rates</h3>
+	                        <h3>Fill & Submit Order Information form</h3>
 	                        <p>Excited him now natural saw passage offices you minuter. At by asked being court hopes. Farther so friends am to detract. Forbade concern do private be. Offending residence but men engrossed shy. Pretend am earnest offered arrived company so on.</p>
 	                        <a href="#" class="bttn-small btn-fill">Read More</a>
 	                    </div>
@@ -59,7 +59,7 @@
 	                </div>
 	                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
 	                    <div class="growth-content">
-	                        <h3>Compound Growth Rates</h3>
+	                        <h3>Make Payments</h3>
 	                        <p>Excited him now natural saw passage offices you minuter. At by asked being court hopes. Farther so friends am to detract. Forbade concern do private be. Offending residence but men engrossed shy. Pretend am earnest offered arrived company so on.</p>
 	                        <a href="#" class="bttn-small btn-fill">Read More</a>
 	                    </div>
@@ -68,7 +68,7 @@
 	            <div class="row">
 	                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-2 order-xl-1 order-lg-1 order-md-1 order-sm-2 wow fadeInUp" data-wow-delay="0.4s">
 	                    <div class="growth-content">
-	                        <h3>Complex Statics Rates</h3>
+	                        <h3>Get notified when your order is done</h3>
 	                        <p>Excited him now natural saw passage offices you minuter. At by asked being court hopes. Farther so friends am to detract. Forbade concern do private be. Offending residence but men engrossed shy. Pretend am earnest offered arrived company so on.</p>
 	                        <a href="#" class="bttn-small btn-fill">Read More</a>
 	                    </div>

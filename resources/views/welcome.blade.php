@@ -14,8 +14,8 @@
                                 <div class="table-cell">
                                     <div class="hero-left">
                                         <h4>Creative</h4>
-                                        <h1>Branding Agency</h1>
-                                        <p>Eat imagine you chiefly few end ferrars compass. Be visitor females am ferrars inquiryremark thrown.</p>
+                                        <h2>In need of professional paper help?</h2>
+                                        <p>Our company provides customized paper writing help that will enable you to get the paper according to your needs. The customized papers will be written professionally and will be quality as well as affordable. </p>
                                         <a href="contact.html" class="bttn-mid btn-fill radius-50">Get free consultation</a>
                                     </div>
                                 </div>
@@ -39,9 +39,10 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <div class="single-about">
                         <div class="section-title mb-10">
-                            <h4>About us</h4>
-                            <h2>We Started Our <br> Business in 2009</h2>
-                            <p>Considered discovered ye sentiments projecting entreaties of melancholy is. In expression an solicitude principles in do. Hard do me sigh with west same lady. Their saved linen downs tears son add music. Expression alteration entreaties mrs can terminated estimating.</p>
+                            <!-- <h4>About us</h4> -->
+                            <h2>Customer-centered paper writing help</h2>
+                            <p>Our able team is available all-round the clock with the sole objective of helping our clients in all their needs. It only takes an average of 5 minutes for our support team to respond to your queries. In case you have a question about a particular order, you can ask your question on the Order page, and support will get back to you as soon as possible. <br><br>
+                            We love hearing from our customers. In case of any inquiries or clarification on any order, do not hesitate to contact us. Our replies are usually within minutes. Our platform consists of a one-stop solution for all students who need our paper writing services. Our wide range of paper help services will always come to your rescue when you are in need. So, be sure to reach us, we are looking forward to hearing from you.</p>
                         </div>
                         <div class="counting">
                             <b><span class="count">4054</span>Services Sales</b>
@@ -60,7 +61,7 @@
              <div class="row justify-content-center">
                  <div class="col-xl-6 centered">
                     <div class="section-title mb-10 cl-white">
-                        <h2>Growth is Important  In Business</h2>
+                        <h2>Customer-centered paper writing help</h2>
                     </div>
                     <a href="#" class="bttn-mid btn-fill">Get Started</a>
                  </div>
@@ -75,22 +76,43 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="single-feature">
                         <i class="fas fa-user-friends cl-primary"></i>
-                        <h4>Business Consulting</h4>
-                        <p>Lose away off why half led have near bed. At engage simple father of period others except giving do summer</p>
+                        <h4>Money-back guarantee</h4>
+                        <p>Obtain a refund when the delivered paper does not either meet the requirements or is canceled by the school.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="single-feature">
                         <i class="fas fa-chart-pie cl-mint"></i>
-                        <h4>Market Research</h4>
-                        <p>Lose away off why half led have near bed. At engage simple father of period others except giving do summer</p>
+                        <h4>Quality Guarantee</h4>
+                        <p>All papers are assessed and evaluated by the quality assurance department before delivery.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="single-feature">
                         <i class="fas fa-trophy cl-yellow"></i>
-                        <h4>Become Successful</h4>
-                        <p>Lose away off why half led have near bed. At engage simple father of period others except giving do summer</p>
+                        <h4>Privacy and Confidentiality</h4>
+                        <p>When you request to write my thesis statement service, we neither share nor disclose clients’ data.</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="single-feature">
+                        <i class="fas fa-user-friends cl-primary"></i>
+                        <h4>Free Revision Guarantee</h4>
+                        <p>The quality assurance department might request writers to undertake revisions to correct flaws in the paper’s format and content before submission.</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="single-feature">
+                        <i class="fas fa-chart-pie cl-mint"></i>
+                        <h4>Originality</h4>
+                        <p>We deliver 100% original papers with 0% plagiarism.</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="single-feature">
+                        <i class="fas fa-trophy cl-yellow"></i>
+                        <h4>Compliance</h4>
+                        <p>We follow customers’ instructions to the latter. Writers’ suggested proofing language, format, content, and vocabulary level are prioritized.</p>
                     </div>
                 </div>
             </div>

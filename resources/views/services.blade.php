@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
                     <div class="banner-title">
-                        <h2>Services 2</h2>
+                        <h2>Services</h2>
                     </div>
                     <ul>
                         <li><a href="#">Home</a></li>
@@ -36,7 +36,7 @@
                             <i class="flaticon-file-2"></i>
                         </div>
                         <div class="service-content">
-                            <h4><a href="#">Content Marketing</a></h4>
+                            <h4><a href="#">Academic paper writing help</a></h4>
                             <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             <i class="flaticon-credit-card"></i>
                         </div>
                         <div class="service-content">
-                            <h4><a href="#">Saving Investment</a></h4>
+                            <h4><a href="#">Term paper writing help</a></h4>
                             <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                             <i class="flaticon-megaphone"></i>
                         </div>
                         <div class="service-content">
-                            <h4><a href="#">Media Marketing</a></h4>
+                            <h4><a href="#">Help with Thesis papers</a></h4>
                             <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                             <i class="flaticon-book"></i>
                         </div>
                         <div class="service-content">
-                            <h4><a href="#">Detail Report</a></h4>
+                            <h4><a href="#">Technical assignments</a></h4>
                             <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                             <i class="flaticon-inbox"></i>
                         </div>
                         <div class="service-content">
-                            <h4><a href="#">Finance Analysis</a></h4>
+                            <h4><a href="#">Coursework</a></h4>
                             <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                             <i class="flaticon-flag"></i>
                         </div>
                         <div class="service-content">
-                            <h4><a href="#">Investment Plan</a></h4>
+                            <h4><a href="#">Professional paper writing help</a></h4>
                             <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
                         </div>
                     </div>
