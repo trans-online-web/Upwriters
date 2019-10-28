@@ -37,7 +37,7 @@
                         </div>
                         <div class="service-content">
                             <h4><a href="#">Academic paper writing help</a></h4>
-                            <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
+                            <p>We specialize in custom academic papers for all levels of students.</p>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="service-content">
                             <h4><a href="#">Term paper writing help</a></h4>
-                            <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
+                            <p>Get an excellent grade on any custom term paper writing service. </p>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="service-content">
                             <h4><a href="#">Help with Thesis papers</a></h4>
-                            <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
+                            <p>We offer a full service package which involves our experts writing your full thesis.</p>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="service-content">
                             <h4><a href="#">Technical assignments</a></h4>
-                            <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
+                            <p>We understand the importance and standard of knowledge required to write assignments on different technical areas.</p>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                         </div>
                         <div class="service-content">
                             <h4><a href="#">Coursework</a></h4>
-                            <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
+                            <p>Upwriters is here to do your coursework for you. Fill and submit the order form and wait.</p>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="service-content">
                             <h4><a href="#">Professional paper writing help</a></h4>
-                            <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
+                            <p>At Upwriters, you get 24-hour help with proffesional paper writing on any subject and any level.</p>
                         </div>
                     </div>
                 </div>

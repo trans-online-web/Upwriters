@@ -36,8 +36,9 @@
 	                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
 	                    <div class="growth-content">
 	                        <h3>Register - Create an account</h3>
-	                        <p>Excited him now natural saw passage offices you minuter. At by asked being court hopes. Farther so friends am to detract. Forbade concern do private be. Offending residence but men engrossed shy. Pretend am earnest offered arrived company so on.</p>
-	                        <a href="#" class="bttn-small btn-fill">Read More</a>
+	                        <p>You can create an account with us by clicking on the Register button. This will open a simple form that you will fill few required details and click on Sign Up button. </p>
+	                        <p>The account created will assist you in submiting and managing your orders. You can always sign in and check the progress of your order or submit a new one.</p>
+	                        <p>After creating an account you now sign in to submit or check your order.</p>
 	                    </div>
 	                </div>
 	            </div>
@@ -45,8 +46,8 @@
 	                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-2 order-xl-1 order-lg-1 order-md-1 order-sm-2 wow fadeInUp" data-wow-delay="0.4s">
 	                    <div class="growth-content">
 	                        <h3>Fill & Submit Order Information form</h3>
-	                        <p>Excited him now natural saw passage offices you minuter. At by asked being court hopes. Farther so friends am to detract. Forbade concern do private be. Offending residence but men engrossed shy. Pretend am earnest offered arrived company so on.</p>
-	                        <a href="#" class="bttn-small btn-fill">Read More</a>
+	                        <p>After creating an account with Upwriters, you can proceed to submit your order. Submit the assignment details such as topic, the number of pages, different sources needed, formatting style, and order deadline.</p>
+	                        <p>You can also attach files that will further help the writer with the task and submit together with the order.</p>
 	                    </div>
 	                </div>
 	                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-1 order-xl-2 order-lg-2 order-md-2 order-sm-1 wow fadeInUp" data-wow-delay="0.4s">
@@ -60,8 +61,8 @@
 	                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
 	                    <div class="growth-content">
 	                        <h3>Make Payments</h3>
-	                        <p>Excited him now natural saw passage offices you minuter. At by asked being court hopes. Farther so friends am to detract. Forbade concern do private be. Offending residence but men engrossed shy. Pretend am earnest offered arrived company so on.</p>
-	                        <a href="#" class="bttn-small btn-fill">Read More</a>
+	                        <p>Once you submit the order, you will receive a price quotation for your assignment. You can choose your preffered payment method to payment i.e. via PayPal, debit/credit cards or net banking. Following the completion of the payment, you will get an email that will confirm your order.</p>
+	                        <p>A writer will be assigned your order and work will begin immediately.</p>
 	                    </div>
 	                </div>
 	            </div>
@@ -69,8 +70,8 @@
 	                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-2 order-xl-1 order-lg-1 order-md-1 order-sm-2 wow fadeInUp" data-wow-delay="0.4s">
 	                    <div class="growth-content">
 	                        <h3>Get notified when your order is done</h3>
-	                        <p>Excited him now natural saw passage offices you minuter. At by asked being court hopes. Farther so friends am to detract. Forbade concern do private be. Offending residence but men engrossed shy. Pretend am earnest offered arrived company so on.</p>
-	                        <a href="#" class="bttn-small btn-fill">Read More</a>
+	                        <p>When your order is finished you will get notified via the email. You can download your orde and make sure you are completely satisfied with the paper and check all the content.</p>
+	                        <p></p>
 	                    </div>
 	                </div>
 	                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-1 order-xl-2 order-lg-2 order-md-2 order-sm-1 wow fadeInUp" data-wow-delay="0.4s">
