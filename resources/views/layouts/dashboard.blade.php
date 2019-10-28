@@ -188,14 +188,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/chat" class="nav-link text-dark">
-                            <i class="fas fa-comment-alt yellow"></i>
-                            <p>
-                                Chat
-                            </p>
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
                         <router-link to="/subject" class="nav-link text-dark">
                             <i class="nav-icon fas fa-book-open green"></i>
                             <p>
