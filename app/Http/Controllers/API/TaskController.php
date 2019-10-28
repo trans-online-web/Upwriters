@@ -98,6 +98,30 @@ class TaskController extends Controller
     {
         return Files::where('task_id', $orderId)->get();
     }
+    public function user($orderId)
+    {
+        return Task::where('id', $orderId)->value('user_id');
+    }
+    public function ThisUser($orderId)
+    {
+        $id = Task::where('id', $orderId)->value('user_id');
+        $user = User::where('id',$id)->first();
+        return $user;
+    }
+    public function admin()
+    {
+        return User::where('role','admin')->value('id');
+    }
+    public function addPrice(Request $request, $orderId)
+    {
+        $request->validate([
+            'price' => 'required',
+        ]);
+
+        $task = Task::findOrFail($orderId);
+        $task->price = $request->price;
+        $task->update();
+    }
 
     public function addFiles(Request $request, $orderId)
     {
@@ -123,7 +147,7 @@ class TaskController extends Controller
     {
         // echo $path;
         $path = Files::where('id', $id)->value('path');
-        
+
         return response()->download(storage_path('app/' . $path));
     }
 

@@ -34,5 +34,5 @@ Route::get('/markasread', function (){
     auth()->user()->unreadNotifications->markAsRead();
 });
 Route::get('/task', 'HomeController@task');
-
+Route::get('/order', 'HomeController@order')->name('order');
 Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-/_.]+)?' );

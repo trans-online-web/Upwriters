@@ -31,7 +31,10 @@ Route::apiResources(['level' => 'API\LevelController']);
 Route::get('ifFiles/{orderId}','API\TaskController@ifFiles');
 Route::get('getFiles/{orderId}','API\TaskController@getFiles');
 Route::post('addFiles/{orderId}','API\TaskController@addFiles');
-
+Route::post('price/{orderId}','API\TaskController@addPrice');
+Route::get('getUser/{orderId}','API\TaskController@user');
+Route::get('getAdmin','API\TaskController@admin');
+Route::get('getThisUser/{orderId}','API\TaskController@ThisUser');
 Route::get('download/{id}','API\TaskController@downloadFile');
 
 Route::post('completed/{orderId}','API\CompletedController@store');
@@ -42,3 +45,9 @@ Route::get('contacts','API\ContactsController@index');
 Route::get('student','API\ContactsController@student');
 Route::get('conversation/{id}','API\ContactsController@getMessagesFor');
 Route::post('conversation/send','API\ContactsController@send');
+
+Route::apiResources(['messenger'=>'API\MessangerController']);
+Route::post('messenger/send','API\MessangerController@send');
+Route::get('receiver','API\MessangerController@index');
+Route::get('send','API\MessangerController@send');
+Route::get('getMessage/{orderId}','API\MessangerController@getMessagesFor');

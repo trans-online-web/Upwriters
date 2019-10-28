@@ -17,10 +17,45 @@
                     <li class="nav-item"><a class="nav-link" href="about">About</a></li>
                 </ul>
                 <div class="justify-content-end">
-                    <ul class="navbar-nav ml-auto">
-                      <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-                      <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                    </ul>
+                    @if (Route::has('login'))
+                        <div class="mr-sm-2">
+                            <ul class="navbar-nav ml-auto">
+                                <!-- Authentication Links -->
+                                @guest
+                                    <li class="nav-item">
+                                        <a href="/login" class="nav-link">{{ __('Login') }}</a>
+                                    </li>
+                                    @if (Route::has('register'))
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/register">Sign Up</a>
+                                        </li>
+                                    @endif
+                                @else
+                                    <li>
+                                        <a href="/task" class="btn  btn-danger">Submit An Order</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            {{ Auth::user()->name }} <span class="caret"></span>
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="/order">My Orders</a>
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </li>
+                                @endguest
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
