@@ -86392,7 +86392,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "card-tools" }, [
         _c("button", { staticClass: "btn btn-success pull-left" }, [
-          _vm._v("Add"),
+          _vm._v("Add new order"),
           _c("i", { staticClass: "fa fa-user-plus fa-fw" })
         ])
       ])
@@ -104341,6 +104341,7 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 Vue.component('chat', __webpack_require__(/*! ./components/Chat.vue */ "./resources/js/components/Chat.vue"));
 Vue.component('notification', __webpack_require__(/*! ./components/Notification.vue */ "./resources/js/components/Notification.vue")["default"]);
 Vue.component('Order', __webpack_require__(/*! ./components/Order.vue */ "./resources/js/components/Order.vue")["default"]);
+Vue.component('myorders', __webpack_require__(/*! ./components/Myoders.vue */ "./resources/js/components/Myoders.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
