@@ -3166,6 +3166,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -86732,7 +86749,12 @@ var render = function() {
                                     key: level["name"],
                                     domProps: { value: level["name"] }
                                   },
-                                  [_vm._v(_vm._s(level.name))]
+                                  [
+                                    _vm._v(
+                                      _vm._s(level.name) +
+                                        "\n                                            "
+                                    )
+                                  ]
                                 )
                               })
                             ],
@@ -86809,7 +86831,12 @@ var render = function() {
                                     key: subject["name"],
                                     domProps: { value: subject["name"] }
                                   },
-                                  [_vm._v(_vm._s(subject.name))]
+                                  [
+                                    _vm._v(
+                                      _vm._s(subject.name) +
+                                        "\n                                            "
+                                    )
+                                  ]
                                 )
                               })
                             ],
@@ -86884,7 +86911,12 @@ var render = function() {
                                     key: document["name"],
                                     domProps: { value: document["name"] }
                                   },
-                                  [_vm._v(_vm._s(document.name))]
+                                  [
+                                    _vm._v(
+                                      _vm._s(document.name) +
+                                        "\n                                            "
+                                    )
+                                  ]
                                 )
                               })
                             ],
@@ -86945,12 +86977,16 @@ var render = function() {
                           _c("datetime", {
                             staticClass:
                               "{ 'is-invalid': form.errors.has('date') }",
+                            staticStyle: {
+                              border: "1px solid rgba(0,0,0,0.35)"
+                            },
                             attrs: {
                               type: "datetime",
                               auto: true,
                               "min-datetime": this.now,
                               zone: "local",
-                              "value-zone": "UTC+3"
+                              "value-zone": "UTC+3",
+                              placeholder: "Click to Select"
                             },
                             model: {
                               value: _vm.form.date,
@@ -87149,7 +87185,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Compute")]
+                      [_vm._v("Compute\n                                ")]
                     ),
                     _vm._v(" "),
                     _c("p", [_vm._v("$" + _vm._s(this.suggestion))])
@@ -87223,7 +87259,7 @@ var render = function() {
                         [
                           _c("i", { staticClass: "fa fa-send" }),
                           _vm._v(
-                            "\n                            Submit\n                        "
+                            "\n                                Submit\n                            "
                           )
                         ]
                       )
@@ -104421,8 +104457,8 @@ if (token) {
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "13fbb2237f308a46b5e2",
-  cluster: "ap2",
+  key: "",
+  cluster: "mt1",
   encrypted: true
 });
 
@@ -105814,8 +105850,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Upwriters\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Upwriters\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /opt/lampp/htdocs/Transonline/Upwriters/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/Transonline/Upwriters/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
