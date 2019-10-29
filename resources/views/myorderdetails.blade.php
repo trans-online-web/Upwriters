@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container-fluid" style="margin-top: 100px;">
-        <myorders></myorders>
+        <myorderdetails></myorderdetails>
     </div>
 @endsection

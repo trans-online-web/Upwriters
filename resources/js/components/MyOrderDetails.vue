@@ -5,6 +5,14 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Order Details</h3>
+                        <div class="card-tools">
+                            <a href="/myorder">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fa fa-hand-point-left"></i>
+                                    Back
+                                </button>
+                            </a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row">

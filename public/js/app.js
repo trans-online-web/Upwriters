@@ -2582,6 +2582,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2814,9 +2822,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
 //
 //
 //
@@ -86044,7 +86049,22 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Order Details")])
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Order Details")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" }, [
+        _c("a", { attrs: { href: "/myorder" } }, [
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", attrs: { type: "button" } },
+            [
+              _c("i", { staticClass: "fa fa-hand-point-left" }),
+              _vm._v(
+                "\n                                Back\n                            "
+              )
+            ]
+          )
+        ])
+      ])
     ])
   },
   function() {
@@ -86237,23 +86257,19 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn btn-primary btn-sm",
-                              attrs: {
-                                to: { path: "/MyOrderDetails/" + order.id },
-                                type: "button"
-                              }
-                            },
-                            [_vm._v("More")]
-                          )
-                        ],
-                        1
-                      ),
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-primary btn-sm",
+                            attrs: {
+                              href: "/myorderdetails/" + order.id,
+                              type: "button"
+                            }
+                          },
+                          [_vm._v("More")]
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("td", [
                         _c(
@@ -86405,14 +86421,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("My Orders")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-tools" }, [
-        _c("button", { staticClass: "btn btn-success pull-left" }, [
-          _vm._v("Add new order"),
-          _c("i", { staticClass: "fa fa-user-plus fa-fw" })
-        ])
-      ])
+      _c("h3", { staticClass: "card-title" }, [_vm._v("My Orders")])
     ])
   },
   function() {
@@ -104378,6 +104387,7 @@ Vue.component('chat', __webpack_require__(/*! ./components/Chat.vue */ "./resour
 Vue.component('notification', __webpack_require__(/*! ./components/Notification.vue */ "./resources/js/components/Notification.vue")["default"]);
 Vue.component('Order', __webpack_require__(/*! ./components/Order.vue */ "./resources/js/components/Order.vue")["default"]);
 Vue.component('myorders', __webpack_require__(/*! ./components/Myoders.vue */ "./resources/js/components/Myoders.vue")["default"]);
+Vue.component('myorderdetails', __webpack_require__(/*! ./components/MyOrderDetails.vue */ "./resources/js/components/MyOrderDetails.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

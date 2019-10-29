@@ -5,9 +5,6 @@
                 <div class="card mt-4">
                     <div class="card-header">
                         <h3 class="card-title">My Orders</h3>
-                        <div class="card-tools">
-                            <button class="btn btn-success pull-left">Add new order<i class="fa fa-user-plus fa-fw"></i></button>
-                        </div>
                     </div>
 
                     <div class="card-body">
@@ -33,7 +30,7 @@
                                     <td>{{order.subject_name}}</td>
                                     <td><i class="fa fa-clock-o mr-1"></i>{{order.deadline_datetime | myDate}}</td>
                                     <td>
-                                        <router-link :to="{path:'/MyOrderDetails/'+ order.id}" type="button" class="btn btn-primary btn-sm">More</router-link>
+                                        <a :href="'/myorderdetails/'+ order.id" type="button" class="btn btn-primary btn-sm">More</a>
                                     </td>
                                     <td>
                                         <a href="#" @click="deleteorder(order.id)">

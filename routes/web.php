@@ -35,4 +35,5 @@ Route::get('/markasread', function (){
 });
 Route::get('/task', 'HomeController@task')->name('task');
 Route::get('/myorder', 'HomeController@myorder')->name('myorder');
+Route::get('/myorderdetails/{id}', 'HomeController@myorderdetails');
 Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-/_.]+)?' );

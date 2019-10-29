@@ -19,20 +19,21 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         
     {{-- <link href="css/font-awesome.min.css" rel="stylesheet"> --}}
-    <link href="css/magnific-popup.css" rel="stylesheet">
-    <link href="css/jquery-ui.css" rel="stylesheet">
 
+    <link href="{{ asset('css/magnific-popup.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
 
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/owl.carousel.min.css" rel="stylesheet">
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
 
 
     <!-- Main css -->
-    <link href="css/main.css" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -97,6 +98,7 @@
         @include('includes.nav')
         
         @yield('content')
+        @include('includes.footer')
     </div>
 
     <script src="js/jquery-3.2.1.min.js"></script>

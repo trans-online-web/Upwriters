@@ -96,6 +96,7 @@ Vue.component('chat', require('./components/Chat.vue'));
 Vue.component('notification', require('./components/Notification.vue').default);
 Vue.component('Order', require('./components/Order.vue').default);
 Vue.component('myorders', require('./components/Myoders.vue').default);
+Vue.component('myorderdetails', require('./components/MyOrderDetails.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
