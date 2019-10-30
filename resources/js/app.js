@@ -67,6 +67,7 @@ let routes = [
     { path: '/MyOrder', component: require('./components/Myoders.vue').default },
     { path: '/chat', component: require('./components/Chat.vue').default },
     {path: '/blog-categories', component: require('./components/BlogCategories.vue').default},
+    {path: '/blog-admin', component: require('./components/Blog.vue').default},
 ]
 const router = new VueRouter({
   mode:'history',
