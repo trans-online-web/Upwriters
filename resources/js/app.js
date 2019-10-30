@@ -68,6 +68,7 @@ let routes = [
     { path: '/chat', component: require('./components/Chat.vue').default },
     {path: '/blog-categories', component: require('./components/BlogCategories.vue').default},
     {path: '/blog-admin', component: require('./components/Blog.vue').default},
+    {path: '/readmore/:blogId', component: require('./components/Readmore.vue').default},
 ]
 const router = new VueRouter({
   mode:'history',
