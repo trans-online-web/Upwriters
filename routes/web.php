@@ -24,6 +24,14 @@ Route::get('/about', function () {
     return view('about');
 });
 
+Route::get('/blog', function () {
+    return view('blog');
+});
+
+Route::get('/blogcontent/{blogId}', function () {
+    return view('blogcontent');
+});
+
 // Route::get('/task', function () {
 //     return view('order');
 // });
