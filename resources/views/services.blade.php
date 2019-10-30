@@ -129,5 +129,4 @@
             </div>
         </div>
     </section><!-- /Review Area -->
-    @include('includes.footer')
 @endsection

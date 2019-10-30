@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid" v-if="$gate.isAdmin()">
         <div class="col-lg-9 ml-auto mr-auto mt-5">
             <div class="col-sm-12">
                 <p class="lead3">

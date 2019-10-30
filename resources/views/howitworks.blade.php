@@ -80,5 +80,4 @@
 	            </div>
 	        </div>
 	    </section><!-- /Growth Area -->
-	@include('includes.footer')
 @endsection

@@ -64,6 +64,4 @@
         </div>
     </div>
 </section><!--/Mission Vission Area-->
-
-@include('includes.footer')
 @endsection

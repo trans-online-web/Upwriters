@@ -118,7 +118,6 @@
             </div>
         </div>
     </section><!--/feature Area-->
-     @include('includes.footer')
 </div>
 
 @endsection
