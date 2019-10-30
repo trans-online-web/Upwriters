@@ -220,20 +220,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/MyOrder" class="nav-link text-dark">
-                           <i class="fas fa-folder blue"></i>
-                            <p>
-                                MyOrders
-                            </p>
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
                         <router-link to="/user" class="nav-link text-dark">
                             <i class=" nav-icon fas fa-users-cog indigo"></i>
                             <p>
                                User Management
                             </p>
                         </router-link>
+                    </li>
+                    <li class="nav-item has-treeview menu ">
+                        <a href="#" class="nav-link ">
+                            <i class="fa fa-calendar-week teal"></i>
+                            <p style="color: rgba(0,0,0,0.8);">
+                                Blog
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <router-link to="/blog-admin" class="nav-link">
+                                    <i class="fa fa-calendar-week teal"></i>
+                                    <p style="color: rgba(0,0,0,0.8);">
+                                        Create Story
+                                    </p>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/blog-categories" class="nav-link">
+                                    <i class="fa fa-calendar-week teal"></i>
+                                    <p style="color: rgba(0,0,0,0.8);">
+                                        Blog Categories
+                                    </p>
+                                </router-link>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link text-dark" href="{{ route('logout') }}"
