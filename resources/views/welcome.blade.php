@@ -8,7 +8,7 @@
         <div class="hero-area-1">
             <div class="single-hero" style="background: url('images/hero-5.jpg') no-repeat center / cover;">
                 <div class="container">
-                    <div class="row justify-content-center">
+                    <div class="row ml-3 pl-5 justify-content-center">
                         <div class="col-xl-7 centered">
                             <div class="hero-sub">
                                 <div class="table-cell">
@@ -75,7 +75,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="single-feature">
-                        <i class="fas fa-user-friends cl-primary"></i>
+                        <i class="fas fa-money-check cl-primary"></i>
                         <h4>Money-back guarantee</h4>
                         <p>Obtain a refund when the delivered paper does not either meet the requirements or is canceled by the school.</p>
                     </div>
@@ -89,21 +89,21 @@
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="single-feature">
-                        <i class="fas fa-trophy cl-yellow"></i>
+                        <i class="fas fa-key cl-green"></i>
                         <h4>Privacy and Confidentiality</h4>
                         <p>When you request to write my thesis statement service, we neither share nor disclose clients’ data.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="single-feature">
-                        <i class="fas fa-user-friends cl-primary"></i>
+                        <i class="fas fa-file-word cl-blue"></i>
                         <h4>Free Revision Guarantee</h4>
                         <p>The quality assurance department might request writers to undertake revisions to correct flaws in the paper’s format and content before submission.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="single-feature">
-                        <i class="fas fa-chart-pie cl-mint"></i>
+                        <i class="fas fa-align-center cl-instagram"></i>
                         <h4>Originality</h4>
                         <p>We deliver 100% original papers with 0% plagiarism.</p>
                     </div>

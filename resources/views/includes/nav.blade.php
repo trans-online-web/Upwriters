@@ -35,7 +35,7 @@
                                     @endif
                                 @else
                                     <li>
-                                        <a href="/task" class="btn  btn-danger">Submit An Order</a>
+                                        <a href="/task" class="nav-link text-danger">Submit An Order</a>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
