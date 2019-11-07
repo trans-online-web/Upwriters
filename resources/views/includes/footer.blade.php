@@ -30,7 +30,7 @@
                                     <li><a href="#">recent blog post</a></li>
                                     <li><a href="#">portfolio</a></li>
                                     <li><a href="#">login</a></li>
-                                    <li><a href="#">privacy</a></li>
+                                    <li><a href="terms">terms of service</a></li>
                                 </ul>
                             </div>
                         </div>

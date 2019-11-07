@@ -24,6 +24,10 @@ Route::get('/about', function () {
     return view('about');
 });
 
+Route::get('/terms', function () {
+    return view('terms');
+});
+
 Route::get('/blog', function () {
     return view('blog');
 });
