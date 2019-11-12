@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d67399ab-a3c2-4ce6-9490-5edcda03281d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/terms.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/includes/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -211,7 +209,8 @@
       <workItem from="1572980395432" duration="765000" />
       <workItem from="1573054997704" duration="6164000" />
       <workItem from="1573161299004" duration="741000" />
-      <workItem from="1573162127956" duration="2227000" />
+      <workItem from="1573162127956" duration="2873000" />
+      <workItem from="1573202571167" duration="1195000" />
     </task>
     <servers />
   </component>

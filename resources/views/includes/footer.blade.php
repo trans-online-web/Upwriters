@@ -26,10 +26,10 @@
                             <div class="footer-widget footer-nav">
                                 <h3>useful link</h3>
                                 <ul>
-                                    <li><a href="#">about</a></li>
-                                    <li><a href="#">recent blog post</a></li>
+                                    <li><a href="about">about</a></li>
+                                    <li><a href="blog">recent blog post</a></li>
                                     <li><a href="#">portfolio</a></li>
-                                    <li><a href="#">login</a></li>
+                                    <li><a href="login">login</a></li>
                                     <li><a href="terms">terms of service</a></li>
                                 </ul>
                             </div>
