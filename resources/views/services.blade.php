@@ -33,7 +33,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="single-service-2">
                         <div class="service-icon">
-                            <i class="flaticon-file-2"></i>
+                            <i class="flaticon-chat"></i>
                         </div>
                         <div class="service-content">
                             <h4><a href="#">Academic paper writing help</a></h4>
@@ -44,7 +44,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="single-service-2">
                         <div class="service-icon">
-                            <i class="flaticon-credit-card"></i>
+                            <i class="flaticon-bluetooth"></i>
                         </div>
                         <div class="service-content">
                             <h4><a href="#">Term paper writing help</a></h4>
@@ -55,7 +55,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="single-service-2">
                         <div class="service-icon">
-                            <i class="flaticon-megaphone"></i>
+                            <i class="flaticon-box"></i>
                         </div>
                         <div class="service-content">
                             <h4><a href="#">Help with Thesis papers</a></h4>
@@ -77,7 +77,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="single-service-2">
                         <div class="service-icon">
-                            <i class="flaticon-inbox"></i>
+                            <i class="flaticon-bell"></i>
                         </div>
                         <div class="service-content">
                             <h4><a href="#">Coursework</a></h4>
@@ -88,7 +88,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="single-service-2">
                         <div class="service-icon">
-                            <i class="flaticon-flag"></i>
+                            <i class="flaticon-calculator"></i>
                         </div>
                         <div class="service-content">
                             <h4><a href="#">Professional paper writing help</a></h4>

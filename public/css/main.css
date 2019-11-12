@@ -48,7 +48,7 @@ Primary Use:      Indoor playground HTML Template
 36. Error Area
 
 -------------------------------------------*/
-/*** 
+/***
 
 ===============
 	Reset Css
@@ -64,7 +64,7 @@ Primary Use:      Indoor playground HTML Template
     outline: none;
 }
 
-/*** 
+/***
 
 ===================
 	Global Settings
@@ -209,7 +209,7 @@ img {
     text-align: center;
 }
 
-/*** 
+/***
 
 ================
 	Fonts
@@ -644,7 +644,7 @@ font-family: 'Poppins', sans-serif;
     content: "\f163";
 }
 
-/*** 
+/***
 
 ==================
     Color Classes
@@ -757,7 +757,7 @@ font-family: 'Poppins', sans-serif;
     -webkit-background-clip: initial;
 }
 
-/*** 
+/***
 
 ==================
     Section Styles
@@ -886,14 +886,14 @@ font-family: 'Poppins', sans-serif;
     }
 }
 
-/*** 
+/***
 
 =======================
     Margin and Padding
 =======================
 
 ***/
-/* 
+/*
     Margin Top styles
 */
 .mar-0 {
@@ -924,7 +924,7 @@ font-family: 'Poppins', sans-serif;
     margin-top: 60px;
 }
 
-/* 
+/*
     Margin Bottom Styles
 */
 .mb-10 {
@@ -951,7 +951,7 @@ font-family: 'Poppins', sans-serif;
     margin-bottom: 60px;
 }
 
-/* 
+/*
     Margin Right Styles
 */
 .mr-10 {
@@ -978,7 +978,7 @@ font-family: 'Poppins', sans-serif;
     margin-right: 60px;
 }
 
-/* 
+/*
     Padding Top Styles
 */
 .pad-0 {
@@ -1009,7 +1009,7 @@ font-family: 'Poppins', sans-serif;
     padding-top: 60px;
 }
 
-/* 
+/*
     Padding Bottom Styles
 */
 .pb-10 {
@@ -1036,7 +1036,7 @@ font-family: 'Poppins', sans-serif;
     padding-bottom: 60px;
 }
 
-/*** 
+/***
 
 ============================
     Background and Overlay
@@ -1165,7 +1165,7 @@ font-family: 'Poppins', sans-serif;
     opacity: .80;
 }
 
-/*** 
+/***
 
 ===================
     Buttons Style
@@ -1305,10 +1305,10 @@ font-family: 'Poppins', sans-serif;
     }
 }
 
-/* 
+/*
 ==============================
-    ScrollUp Button 
-============================== 
+    ScrollUp Button
+==============================
 */
 a#scrollUp {
     right: 30px;
@@ -1843,7 +1843,7 @@ span.is-active:after {
     .header-btn {
         margin-left: 0;
     }
-	
+
 	.main-menu ul li ul li.dropdown {
         display: none;
     }
@@ -1951,7 +1951,7 @@ Footer Area
 
 .footer-area .footer-widget.footer-nav ul li::before {
     position: absolute;
-    /*content: "\f105";*/
+    content: "\f105";
     left: 0;
     top: 0;
     font-family: Fontawesome;
@@ -2547,7 +2547,7 @@ Services Area
 	.services-area .single-service .service-icon {
 		width: 50px;
 	}
-	
+
 }
 
 .services-area .single-service .service-content h4 {
