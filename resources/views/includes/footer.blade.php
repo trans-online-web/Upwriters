@@ -5,7 +5,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                     <div class="footer-widget">
                         <h3>About Us</h3>
-                        <p>Surrounded to me occasional pianoforte alteration unaffected impossible ye. For saw half than cold. Pretty merits waited six talked</p>
+                        <p>Upwriters is a team of professionals ready to help you in essay writing and editing field. We have many years of experienced and we are there when you need any form of assistance.</p>
                     </div>
                 </div>
                 <div class="col-xl-5 col-lg-5 col-md-6 col-sm-6">
