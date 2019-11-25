@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+How it works
+@stop
 @section('content')
 		<!--breadcrumb area-->
 	    <section class="breadcrumb-area">

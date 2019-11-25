@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+Terms
+@stop
 @section('content')
     <section class="breadcrumb-area">
         <div class="container">

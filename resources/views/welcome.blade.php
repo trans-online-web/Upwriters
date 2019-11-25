@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+Home
+@stop
 @section('content')
 <div>
     @include('includes.nav')
@@ -13,10 +15,11 @@
                             <div class="hero-sub">
                                 <div class="table-cell">
                                     <div class="hero-left">
-                                        <h4>Creative</h4>
+                                        <!-- <h4>Creative</h4> -->
+                                        <br>
                                         <h2>In need of professional paper help?</h2>
                                         <p>Our company provides customized paper writing help that will enable you to get the paper according to your needs. The customized papers will be written professionally and will be quality as well as affordable. </p>
-                                        <a href="contact.html" class="bttn-mid btn-fill radius-50">Get free consultation</a>
+                                        <a href="contact.html" class="bttn-mid btn-fill radius-50">Order Now!</a>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +48,7 @@
                             We love hearing from our customers. In case of any inquiries or clarification on any order, do not hesitate to contact us. Our replies are usually within minutes. Our platform consists of a one-stop solution for all students who need our paper writing services. Our wide range of paper help services will always come to your rescue when you are in need. So, be sure to reach us, we are looking forward to hearing from you.</p>
                         </div>
                         <div class="counting">
-                            <b><span class="count">4054</span>Services Sales</b>
+                            <b><span class="count">4054</span>Completed Orders</b>
                             <b><span class="count">759</span>Happy Clients</b>
                             <b><span class="count">102</span>Award Winning</b>
                         </div>
@@ -75,42 +78,42 @@
             <div class="row justify-content-center">
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="single-feature">
-                        <i class="fas fa-money-check cl-primary"></i>
+                        <i class="fa fa-money cl-primary"></i>
                         <h4>Money-back guarantee</h4>
                         <p>Obtain a refund when the delivered paper does not either meet the requirements or is canceled by the school.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="single-feature">
-                        <i class="fas fa-chart-pie cl-mint"></i>
+                        <i class="fa fa-pie-chart cl-mint"></i>
                         <h4>Quality Guarantee</h4>
                         <p>All papers are assessed and evaluated by the quality assurance department before delivery.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="single-feature">
-                        <i class="fas fa-key cl-green"></i>
+                        <i class="fa fa-key cl-green"></i>
                         <h4>Privacy and Confidentiality</h4>
                         <p>When you request to write my thesis statement service, we neither share nor disclose clients’ data.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="single-feature">
-                        <i class="fas fa-file-word cl-blue"></i>
+                        <i class="fa fa-file-word-o cl-blue"></i>
                         <h4>Free Revision Guarantee</h4>
                         <p>The quality assurance department might request writers to undertake revisions to correct flaws in the paper’s format and content before submission.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="single-feature">
-                        <i class="fas fa-align-center cl-instagram"></i>
+                        <i class="fa fa-align-center cl-instagram"></i>
                         <h4>Originality</h4>
                         <p>We deliver 100% original papers with 0% plagiarism.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="single-feature">
-                        <i class="fas fa-trophy cl-yellow"></i>
+                        <i class="fa fa-trophy cl-yellow"></i>
                         <h4>Compliance</h4>
                         <p>We follow customers’ instructions to the latter. Writers’ suggested proofing language, format, content, and vocabulary level are prioritized.</p>
                     </div>

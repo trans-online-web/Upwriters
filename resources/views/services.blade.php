@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+Our Services
+@stop
 @section('content')
 	<!--breadcrumb area-->
     <section class="breadcrumb-area">
@@ -107,7 +109,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="section-title">
                         <h2>testimonials</h2>
-                        <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
+                        <p>What our esteemed clients say about us.</p>
                     </div>
                     <div class="testimonials owl-carousel">
                         <div class="single-review">
