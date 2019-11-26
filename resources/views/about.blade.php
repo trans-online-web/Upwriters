@@ -54,7 +54,7 @@ About Us
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="single-mission-vission">
                     <h4>Experienced Writers</h4>
-                    <p>We have a team of experts comprising of professional, skillful and top-notch writers who are accustomed to writing papers.</p>
+                    <p>We have a team of experts comprising professional, skillful and top-notch writers who are accustomed to writing papers.</p>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">

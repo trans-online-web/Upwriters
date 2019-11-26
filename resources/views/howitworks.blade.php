@@ -9,11 +9,11 @@ How it works
 	            <div class="row">
 	                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
 	                    <div class="banner-title">
-	                        <h2>Services 2</h2>
+	                        <h2>How it works</h2>
 	                    </div>
 	                    <ul>
 	                        <li><a href="#">Home</a></li>
-	                        <li>Services</li>
+	                        <li>How it works</li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -38,7 +38,7 @@ How it works
 	                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
 	                    <div class="growth-content">
 	                        <h3>Register - Create an account</h3>
-	                        <p>You can create an account with us by clicking on the Register button. This will open a simple form that you will fill few required details and click on Sign Up button. </p>
+	                        <p>You can create an account with us by clicking on the Register button. This will open a simple form that you will fill a few required details and click on Sign Up button. </p>
 	                        <p>The account created will assist you in submiting and managing your orders. You can always sign in and check the progress of your order or submit a new one.</p>
 	                        <p>After creating an account you now sign in to submit or check your order.</p>
 	                    </div>
@@ -48,7 +48,7 @@ How it works
 	                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 order-2 order-xl-1 order-lg-1 order-md-1 order-sm-2 wow fadeInUp" data-wow-delay="0.4s">
 	                    <div class="growth-content">
 	                        <h3>Fill & Submit Order Information form</h3>
-	                        <p>After creating an account with Upwriters, you can proceed to submit your order. Submit the assignment details such as topic, the number of pages, different sources needed, formatting style, and order deadline.</p>
+	                        <p>After creating an account with Upwriters, you can proceed to submit your order. Submit the assignment details such as the topic, the number of pages, different sources needed, formatting style, and order deadline.</p>
 	                        <p>You can also attach files that will further help the writer with the task and submit together with the order.</p>
 	                    </div>
 	                </div>
