@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row pt-5 justify-content-center">
         <div class="col-md-8 p-5">
-            <div class="signup-form">
+            <div class="signup-form" style="width: 590px;">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <h2 class="mt-10">Create Account</h2>

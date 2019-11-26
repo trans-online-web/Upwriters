@@ -3,9 +3,9 @@
 @section('content')
 <div class="container mt-120">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+        <div class="col-md-12">
+{{--            <div class="card">--}}
+{{--                <div class="card-header">{{ __('Login') }}</div>--}}
 
                 {{-- <div class="card-body signup-form">
                     <form method="POST" action="{{ route('login') }}">
@@ -67,8 +67,8 @@
                     </form>
                 </div> --}}
                 
-            </div>
-            <div class="signup-form p-5">   
+{{--            </div>--}}
+            <div class="signup-form p-5" style="width: 590px;">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <h2 class="m-2">Login</h2>
