@@ -3206,6 +3206,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3674,10 +3686,26 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_datetime_dist_vue_datetime_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-datetime/dist/vue-datetime.css */ "./node_modules/vue-datetime/dist/vue-datetime.css");
 /* harmony import */ var vue_datetime_dist_vue_datetime_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_datetime_dist_vue_datetime_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_popperjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-popperjs */ "./node_modules/vue-popperjs/dist/vue-popper.min.js");
-/* harmony import */ var vue_popperjs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_popperjs__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vue_popperjs_dist_vue_popper_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-popperjs/dist/vue-popper.css */ "./node_modules/vue-popperjs/dist/vue-popper.css");
-/* harmony import */ var vue_popperjs_dist_vue_popper_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_popperjs_dist_vue_popper_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vue_popperjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-popperjs */ "./node_modules/vue-popperjs/dist/vue-popper.min.js");
+/* harmony import */ var vue_popperjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_popperjs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_popperjs_dist_vue_popper_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-popperjs/dist/vue-popper.css */ "./node_modules/vue-popperjs/dist/vue-popper.css");
+/* harmony import */ var vue_popperjs_dist_vue_popper_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_popperjs_dist_vue_popper_css__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3866,7 +3894,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'popper': vue_popperjs__WEBPACK_IMPORTED_MODULE_2___default.a
+    'popper': vue_popperjs__WEBPACK_IMPORTED_MODULE_1___default.a
   },
   data: function data() {
     return {
@@ -3892,7 +3920,8 @@ __webpack_require__.r(__webpack_exports__);
         date: '',
         time: '',
         task: '',
-        budget: ''
+        budget: '',
+        format: ''
       })
     };
   },
@@ -4248,6 +4277,7 @@ __webpack_require__.r(__webpack_exports__);
       this.formf.append('task', this.form.task);
       this.formf.append('budget', this.form.budget);
       this.formf.append('suggested', this.suggestion);
+      this.formf.append('w_format', this.form.format);
       var config = {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -4302,6 +4332,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -101373,6 +101407,36 @@ var render = function() {
                             _c("td", [
                               _c("span", [_vm._v(_vm._s(_vm.details.spacing))])
                             ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("Format")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("span", [_vm._v(_vm._s(_vm.details.format))])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("Cost")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("span", [
+                                _vm._v(
+                                  "$" + _vm._s(_vm.details.suggested_price)
+                                )
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("Your Budget")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("span", [
+                                _vm._v("$" + _vm._s(_vm.details.budget))
+                              ])
+                            ])
                           ])
                         ])
                       ])
@@ -102873,6 +102937,77 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", [_vm._v("Format")]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.format,
+                                expression: "form.format"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.form,
+                                  "format",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { selected: "", value: "" } },
+                              [_vm._v("--Select Format--")]
+                            ),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "APA" } }, [
+                              _vm._v("APA")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "MLA" } }, [
+                              _vm._v("MLA")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Chicago" } }, [
+                              _vm._v("Chicago")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Turabian" } }, [
+                              _vm._v("Turabian")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "IEEE" } }, [
+                              _vm._v("IEEE")
+                            ])
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col" })
+                  ]),
+                  _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
                   _c(
@@ -103215,6 +103350,16 @@ var render = function() {
                                 _c("td", [
                                   _c("span", [
                                     _vm._v(_vm._s(_vm.details.spacing))
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [_vm._v("Format")]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c("span", [
+                                    _vm._v(_vm._s(_vm.details.format))
                                   ])
                                 ])
                               ])
