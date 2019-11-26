@@ -3542,6 +3542,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -102082,7 +102085,16 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("My Orders")])
+      _c("h3", { staticClass: "card-title" }, [_vm._v("My Orders")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" }, [
+        _c("a", { attrs: { href: "/task" } }, [
+          _c("button", { staticClass: "btn btn-success pull-left" }, [
+            _vm._v("Add new order  "),
+            _c("i", { staticClass: "fas fa-plus" })
+          ])
+        ])
+      ])
     ])
   },
   function() {

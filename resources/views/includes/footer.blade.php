@@ -18,7 +18,6 @@
                                     <li><a href="howitworks">How it Works</a></li>
                                     <li><a href="services">Services</a></li>
                                     <li><a href="about">About</a></li>
-                                    <li><a href="/contact">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -28,7 +27,6 @@
                                 <ul>
                                     <li><a href="about">about</a></li>
                                     <li><a href="blog">recent blog post</a></li>
-                                    <li><a href="#">portfolio</a></li>
                                     <li><a href="login">login</a></li>
                                     <li><a href="terms">terms of service</a></li>
                                 </ul>
