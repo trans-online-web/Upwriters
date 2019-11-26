@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<script type="text/javascript">//<![CDATA[
+    var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");
+    document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+    //]]>
+</script>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,6 +41,10 @@
     <!-- Main css -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 </head>
+<script language="JavaScript" type="text/javascript">
+    TrustLogo("https://upwriters.net/", "SC5", "none");
+</script>
+<a href="https://www.instantssl.com/ssl-certificate.html" id="comodoTL">Gold SSL</a>
 <body>
     <div id="app">
         @include('includes.nav')

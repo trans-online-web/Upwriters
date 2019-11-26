@@ -179,90 +179,89 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                 </div>
 
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <router-link to="/dashboard" class="nav-link text-dark">
-                                <i class="nav-icon fas fa-tachometer-alt blue"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/subject" class="nav-link text-dark">
-                                <i class="nav-icon fas fa-book-open green"></i>
-                                <p>
-                                    Subject
-                                </p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/documents" class="nav-link text-dark">
-                                <i class="fas fa-file-word indigo"></i>
-                                <p>
-                                    Documents
-                                </p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/levels" class="nav-link text-dark">
-                                <i class="nav-icon fas fa-level-up-alt cyan"></i>
-                                <p>
-                                    Levels
-                                </p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/orders" class="nav-link text-dark">
-                                <i class="nav-icon fas fa-book white"></i>
-                                <p>
-                                    Orders
-                                </p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/user" class="nav-link text-dark">
-                                <i class=" nav-icon fas fa-users-cog indigo"></i>
-                                <p>
-                                    User Management
-                                </p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item has-treeview menu ">
-                            <a href="#" class="nav-link ">
-                                <i class="fa fa-calendar-week teal"></i>
-                                <p style="color: rgba(0,0,0,0.8);">
-                                    Blog
-                                    <i class="right fa fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <router-link to="/blog-admin" class="nav-link">
-                                        <i class="fa fa-calendar-week teal"></i>
-                                        <p style="color: rgba(0,0,0,0.8);">
-                                            Create Story
-                                        </p>
-                                    </router-link>
-                                </li>
-                                <li class="nav-item">
-                                    <router-link to="/blog-categories" class="nav-link">
-                                        <i class="fa fa-calendar-week teal"></i>
-                                        <p style="color: rgba(0,0,0,0.8);">
-                                            Blog Categories
-                                        </p>
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link text-dark" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <router-link to="/dashboard" class="nav-link text-dark">
+                            <i class="nav-icon fas fa-tachometer-alt blue"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/subject" class="nav-link text-dark">
+                            <i class="nav-icon fas fa-book-open green"></i>
+                            <p>
+                                Subject
+                            </p>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/documents" class="nav-link text-dark">
+                            <i class="nav-icon fas fa-file-word pink"></i>
+                            <p>
+                                Documents
+                            </p>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/levels" class="nav-link text-dark">
+                            <i class="nav-icon fas fa-sort-amount-up-alt cyan"></i>
+                            <p>
+                                Levels
+                            </p>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/orders" class="nav-link text-dark">
+                            <i class="nav-icon fas fa-book teal"></i>
+                            <p>
+                               Orders
+                            </p>
+                        </router-link>
+                    </li>
+                    <li class="nav-item has-treeview menu ">
+                        <a href="#" class="nav-link ">
+                            <i class="fa fa-calendar-week teal"></i>
+                            <p style="color: rgba(0,0,0,0.8);">
+                                Blog
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <router-link to="/blog-admin" class="nav-link">
+                                    <i class="fa fa-calendar-week teal"></i>
+                                    <p style="color: rgba(0,0,0,0.8);">
+                                        Create Story
+                                    </p>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/blog-categories" class="nav-link">
+                                    <i class="fa fa-calendar-week teal"></i>
+                                    <p style="color: rgba(0,0,0,0.8);">
+                                        Blog Categories
+                                    </p>
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/user" class="nav-link text-dark">
+                            <i class=" nav-icon fas fa-users-cog yellow"></i>
+                            <p>
+                               User Management
+                            </p>
+                        </router-link>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-dark" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 <i class="nav-icon fa fa-power-off red"></i>
                                 <p>

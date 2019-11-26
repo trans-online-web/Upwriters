@@ -5,7 +5,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                     <div class="footer-widget">
                         <h3>About Us</h3>
-                        <p>Upwriters is a team of professionals ready to help you in essay writing and editing field. We have many years of experienced and we are there when you need any form of assistance.</p>
+                        <p>Upwriters is a team of professionals ready to help you in essay writing and editing fields. We have many years of experience, and we are there when you need any form of assistance.</p>
                     </div>
                 </div>
                 <div class="col-xl-5 col-lg-5 col-md-6 col-sm-6">
@@ -45,6 +45,10 @@
                             <li class="ml-4"><a href="blog"><i class="fa fa-twitter cl-mint"></i></a></li>
                             <li class="ml-4"><a href="#"><i class="fa fa-instagram cl-mint"></i></a></li>
                         </ul>
+                    </div>
+                    <div class="footer-widget footer-form">
+                        <h3>We accept</h3>
+                        <!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="#" onclick="javascript:window.open('https://www.paypal.com/ke/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside','olcwhatispaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=350');"><img  src="https://www.paypal.com/en_US/i/logo/PayPal_mark_37x23.gif" border="0" alt="Acceptance Mark"></a></td></tr></table><!-- PayPal Logo -->
                     </div>
                 </div>
             </div>

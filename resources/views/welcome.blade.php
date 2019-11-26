@@ -94,7 +94,7 @@ Home
                     <div class="single-feature">
                         <i class="fa fa-key cl-green"></i>
                         <h4>Privacy and Confidentiality</h4>
-                        <p>When you request to write my thesis statement service, we neither share nor disclose clients’ data.</p>
+                        <p>When you request to write your thesis statement service, we neither share nor disclose clients’ data.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -115,7 +115,7 @@ Home
                     <div class="single-feature">
                         <i class="fa fa-trophy cl-yellow"></i>
                         <h4>Compliance</h4>
-                        <p>We follow customers’ instructions to the latter. Writers’ suggested proofing language, format, content, and vocabulary level are prioritized.</p>
+                        <p>We follow customers’ instructions to the letter. Writers’ suggested proofing language, format, content, and vocabulary level are prioritized.</p>
                     </div>
                 </div>
             </div>
