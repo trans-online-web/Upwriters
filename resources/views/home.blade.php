@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
-
+@section('title')
+Here is a title!
+@stop
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

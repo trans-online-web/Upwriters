@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+Our Services
+@stop
 @section('content')
 	<!--breadcrumb area-->
     <section class="breadcrumb-area">
@@ -107,22 +109,22 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="section-title">
                         <h2>testimonials</h2>
-                        <p>Lose away off why half led have near bed. At engage simple father of period others except</p>
+                        <p>What our esteemed clients say about us.</p>
                     </div>
                     <div class="testimonials owl-carousel">
                         <div class="single-review">
                             <div class="reviewer-thumb">
                                 <h3>Erin Washington</h3>
-                                <span>Co founder, Rocket agency</span>
+                                <!-- <span>Co founder, Rocket agency</span> -->
                             </div>
-                            <p>Entire any had depend and figure winter. Change stairs and men likely wisdom new happen piqued six. Now taken him timed world get. Enjoyed married an feeling</p>
+                            <p>Perfect. I am so glad i decided to order from you. My essay was done perfectly.</p>
                         </div>
                         <div class="single-review">
                             <div class="reviewer-thumb">
                                 <h3>Mario wagon</h3>
-                                <span>Businessman</span>
+                                <!-- <span>Businessman</span> -->
                             </div>
-                            <p>Change stairs and men likely wisdom new happen piqued six. Now taken him timed world get. Enjoyed married an feeling delight pursuit as offered. Change stairs</p>
+                            <p>Timely and quality work. You are the best. Thank you.</p>
                         </div>
                     </div>
                 </div>

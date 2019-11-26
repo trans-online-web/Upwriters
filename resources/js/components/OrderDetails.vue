@@ -82,6 +82,10 @@
                                                 <td>Spacing</td>
                                                 <td><span>{{details.spacing}}</span></td>
                                             </tr>
+                                            <tr>
+                                                <td>Format</td>
+                                                <td><span>{{details.format}}</span></td>
+                                            </tr>
                                             </tbody></table>
                                     </div>
                                     <!-- /.box-body -->
@@ -96,9 +100,9 @@
                                     <div class="box-body" v-if="this.filesCount > 0">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 col-xs-12" v-for="file in files" :key="file.id">
-                                                <a href="#" @click="download(file.id)">
+                                                <a href="#" @click="download(file.id, file.path)">
                                                     <div class="info-box">
-                                                        <span class="info-box-icon" style="background-color: green;"><i class="fas fa-download" style="color: white;"></i></span>
+                                                        <span class="info-box-icon" style="background-color: purple;"><i class="fas fa-download" style="color: white;"></i></span>
 
                                                         <div class="info-box-content">
                                                             <span class="info-box-text">Download</span>
@@ -134,7 +138,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="box">
+                                <div class="box mb-4">
                                     <div class="box-header">
                                         <h5 class="box-title">Upload</h5>
                                     </div>
@@ -143,6 +147,33 @@
                                             <i class="fas fa-cloud-upload-alt"></i>
                                             Upload Completed Task
                                         </button>
+                                    </div>
+                                </div>
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h5 class="box-title">Completed</h5>
+                                    </div>
+                                    <div class="box-body" v-if="this.filesCount > 0" style="padding-top: 10px;">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-12" v-for="complete in completed" :key="complete.id">
+                                                <a href="#" @click="downloadCompleted(complete.id, complete.path)">
+                                                    <div class="info-box">
+                                                        <span class="info-box-icon" style="background-color: #31d125;"><i class="fas fa-download" style="color: white;"></i></span>
+
+                                                        <div class="info-box-content">
+                                                            <span class="info-box-text">Download</span>
+                                                        </div>
+                                                        <!-- /.info-box-content -->
+                                                    </div>
+                                                </a>
+                                                <!-- /.info-box -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="alert alert-warning alert-dismissible" v-if="this.filesCount == 0">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <h5><i class="icon fa fa-ban"></i> Alert!</h5>
+                                        No files attached!!
                                     </div>
                                 </div>
                             </div>
@@ -224,6 +255,7 @@
                 orderId: this.$route.params.orderId,
                 details: {},
                 filesCount: {},
+                completed: {},
                 files: {},
                 attachments:[],
                 formf: new FormData(),
@@ -246,9 +278,24 @@
                 });
         },
         methods:{
+            downloadCompleted(id, path) {
+                axios.get("/api/downloadcompleted/" + id, {responseType: 'blob'})
+                    .then((response) => {
+                        var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                        var fileLink = document.createElement('a');
+                        console.log(fileLink);
+                        fileLink.href = fileURL;
+                        fileLink.setAttribute('download', path.substring(8));
+                        document.body.appendChild(fileLink);
+                        fileLink.click();
+                    });
+            },
+            getCompleted(){
+                axios.get("/api/getcompleted/" + this.orderId).then(({ data }) => ([this.completed = data]));
+            },
             submit(){
                 for(let i=0; i<this.attachments.length;i++){
-                    this.formf.append('pics[]',this.attachments[i]);
+                    this.formf.append('files[]',this.attachments[i]);
                 }
 
                 const config = { headers: { 'Content-Type': 'multipart/form-data' } };
@@ -281,6 +328,8 @@
             },
             newModal(){
                 this.form.reset();
+                $("#files").val('');
+                this.attachments = [];
                 $('#addnew').modal('show');
             },
             handleIncoming(message) {
@@ -305,8 +354,17 @@
                     this.message = '';
                 })
             },
-            download(id){
-                axios.get("/api/download/" + id).then();
+            download(id, path) {
+                axios.get("/api/download/" + id, {responseType: 'blob'})
+                    .then((response) => {
+                        var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                        var fileLink = document.createElement('a');
+                        console.log(fileLink);
+                        fileLink.href = fileURL;
+                        fileLink.setAttribute('download', path.substring(8));
+                        document.body.appendChild(fileLink);
+                        fileLink.click();
+                    });
             },
             getDetails(){
                 axios.get("/api/task/" + this.orderId).then(({ data }) => ([this.details = data]));
@@ -349,6 +407,10 @@
             this.getMessages();
             this.getUser();
             this.getFiles();
+            this.getCompleted();
+            Fire.$on('entry', () =>{
+                this.getCompleted();
+            })
         }
     }
 </script>

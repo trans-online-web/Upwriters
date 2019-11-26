@@ -5,6 +5,9 @@
                 <div class="card mt-4">
                     <div class="card-header">
                         <h3 class="card-title">My Orders</h3>
+                        <div class="card-tools">
+                            <a href="/task"><button class="btn btn-success pull-left">Add new order &nbsp;<i class="fas fa-plus"></i></button></a>
+                        </div>
                     </div>
 
                     <div class="card-body">
