@@ -14,6 +14,35 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="title">Title</label>
+                                            <popper
+                                                    trigger="clickToOpen"
+                                                    :options="{
+                                                              placement: 'top',
+                                                              modifiers: { offset: { offset: '0,10px' } }
+                                                            }">
+                                                <div class="popper" style="padding: 3px;">
+                                                    <b>Writer's choice:</b> We determine the title of the task for you <br>
+                                                    <b>Manual Input:</b> You specify your own title for the task
+                                                </div>
+
+                                                <i class="fas fa-info-circle ml-1"
+                                                   style="color: blue; font-size: 20px;" slot="reference"></i>
+                                            </popper>
+
+                                            <br>
+                                            <button type="button" :class="'btn btn-sm mb-2 ' + btnOne"
+                                                    @click="writerChoice">
+                                                Writer's Choice
+                                            </button>
+                                            <button type="button" :class="'btn btn-sm mb-2 ' + btnTwo" @click="manual">
+                                                Manual
+                                                Input
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group" v-if="isManual == 1">
+                                            <label for="title">Input Title</label>
                                             <input v-model="form.title" type="text" class="form-control" name="title"
                                                    id="title"
                                                    placeholder="Title"
@@ -21,6 +50,10 @@
                                             <has-error :form="form" field="title"></has-error>
                                         </div>
                                     </div>
+                                </div>
+
+
+                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="level">Level</label>
@@ -34,10 +67,6 @@
                                             <has-error :form="form" field="level"></has-error>
                                         </div>
                                     </div>
-                                </div>
-
-
-                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Subject</label>
@@ -52,6 +81,8 @@
                                             <has-error :form="form" field="subject"></has-error>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="type">Document Type</label>
@@ -65,8 +96,6 @@
                                             <has-error :form="form" field="type"></has-error>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label>No. of Pages</label><br>
@@ -77,18 +106,20 @@
                                             <has-error :form="form" field="pages"></has-error>
                                         </div>
                                     </div>
+
+                                </div>
+                                <div class="row">
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Deadline Date & Time</label>
                                             <datetime type="datetime" :auto="true" :min-datetime="this.now" zone="local"
                                                       value-zone="UTC+3" v-model="form.date"
-                                                      class="{ 'is-invalid': form.errors.has('date') }" placeholder="Click to Select" style="border: 1px solid rgba(0,0,0,0.35);"></datetime>
+                                                      class="{ 'is-invalid': form.errors.has('date') }"
+                                                      placeholder="Click to Select"
+                                                      style="border: 1px solid rgba(0,0,0,0.35); padding: 2px;"></datetime>
                                             <has-error :form="form" field="date"></has-error>
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="row">
                                     <div class="col">
                                         <label for="spacing">Spacing</label><br>
                                         <div class="form-check form-check-inline">
@@ -105,9 +136,6 @@
                                             <label class="form-check-label">Double</label>
                                             <has-error :form="form" field="spacing"></has-error>
                                         </div>
-                                    </div>
-                                    <div class="col">
-
                                     </div>
                                 </div>
                                 <hr>
@@ -155,10 +183,18 @@
 
 <script>
     import 'vue-datetime/dist/vue-datetime.css';
+    import Popper from 'vue-popperjs';
+    import 'vue-popperjs/dist/vue-popper.css';
 
     export default {
+        components: {
+            'popper': Popper
+        },
         data() {
             return {
+                isManual: 0,
+                btnOne: "btn-info",
+                btnTwo: "btn-info",
                 attachments: [],
                 now: moment().format(),
                 levels: {},
@@ -183,6 +219,18 @@
             }
         },
         methods: {
+            manual() {
+                this.btnOne = "btn-info";
+                this.isManual = 1;
+                this.btnTwo = "btn-success";
+                this.form.title = "";
+            },
+            writerChoice() {
+                this.btnTwo = "btn-info";
+                this.isManual = 0;
+                this.form.title = "Writer's Choice";
+                this.btnOne = "btn-success";
+            },
             loadSubjects() {
                 axios.get("api/subject").then(({data}) => (this.subjects = data));
             },
