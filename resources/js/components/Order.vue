@@ -138,6 +138,22 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Format</label>
+                                            <select v-model="form.format" class="form-control">
+                                                <option selected value="">--Select Format--</option>
+                                                <option value="APA">APA</option>
+                                                <option value="MLA">MLA</option>
+                                                <option value="Chicago">Chicago</option>
+                                                <option value="Turabian">Turabian</option>
+                                                <option value="IEEE">IEEE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col"></div>
+                                </div>
                                 <hr>
                                 <div class="form-group">
                                     <label for="task">Task</label>
@@ -215,6 +231,7 @@
                     time: '',
                     task: '',
                     budget: '',
+                    format: ''
                 })
             }
         },
@@ -554,6 +571,7 @@
                 this.formf.append('task', this.form.task);
                 this.formf.append('budget', this.form.budget);
                 this.formf.append('suggested', this.suggestion);
+                this.formf.append('w_format', this.form.format);
 
                 const config = {headers: {'Content-Type': 'multipart/form-data'}};
 

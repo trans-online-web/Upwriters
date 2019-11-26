@@ -3206,6 +3206,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3858,6 +3870,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3889,7 +3917,8 @@ __webpack_require__.r(__webpack_exports__);
         date: '',
         time: '',
         task: '',
-        budget: ''
+        budget: '',
+        format: ''
       })
     };
   },
@@ -4245,6 +4274,7 @@ __webpack_require__.r(__webpack_exports__);
       this.formf.append('task', this.form.task);
       this.formf.append('budget', this.form.budget);
       this.formf.append('suggested', this.suggestion);
+      this.formf.append('w_format', this.form.format);
       var config = {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -4299,6 +4329,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -101370,6 +101404,36 @@ var render = function() {
                             _c("td", [
                               _c("span", [_vm._v(_vm._s(_vm.details.spacing))])
                             ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("Format")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("span", [_vm._v(_vm._s(_vm.details.format))])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("Cost")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("span", [
+                                _vm._v(
+                                  "$" + _vm._s(_vm.details.suggested_price)
+                                )
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("Your Budget")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("span", [
+                                _vm._v("$" + _vm._s(_vm.details.budget))
+                              ])
+                            ])
                           ])
                         ])
                       ])
@@ -102861,6 +102925,77 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", [_vm._v("Format")]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.format,
+                                expression: "form.format"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.form,
+                                  "format",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { selected: "", value: "" } },
+                              [_vm._v("--Select Format--")]
+                            ),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "APA" } }, [
+                              _vm._v("APA")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "MLA" } }, [
+                              _vm._v("MLA")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Chicago" } }, [
+                              _vm._v("Chicago")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Turabian" } }, [
+                              _vm._v("Turabian")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "IEEE" } }, [
+                              _vm._v("IEEE")
+                            ])
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col" })
+                  ]),
+                  _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
                   _c(
@@ -103203,6 +103338,16 @@ var render = function() {
                                 _c("td", [
                                   _c("span", [
                                     _vm._v(_vm._s(_vm.details.spacing))
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [_vm._v("Format")]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c("span", [
+                                    _vm._v(_vm._s(_vm.details.format))
                                   ])
                                 ])
                               ])

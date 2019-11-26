@@ -60,6 +60,7 @@ class TaskController extends Controller
         $task->task = $request->task;
         $task->pages = $request->pages;
         $task->spacing = $request->spacing;
+        $task->format = $request->w_format;
         $task->save();
         $task_id = $task->id;
 

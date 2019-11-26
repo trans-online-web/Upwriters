@@ -56,6 +56,18 @@
                                                 <td>Spacing</td>
                                                 <td><span>{{details.spacing}}</span></td>
                                             </tr>
+                                            <tr>
+                                                <td>Format</td>
+                                                <td><span>{{details.format}}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Cost</td>
+                                                <td><span>${{details.suggested_price}}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Your Budget</td>
+                                                <td><span>${{details.budget}}</span></td>
+                                            </tr>
                                             </tbody></table>
                                     </div>
                                     <!-- /.box-body -->

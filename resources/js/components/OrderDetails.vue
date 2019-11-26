@@ -82,6 +82,10 @@
                                                 <td>Spacing</td>
                                                 <td><span>{{details.spacing}}</span></td>
                                             </tr>
+                                            <tr>
+                                                <td>Format</td>
+                                                <td><span>{{details.format}}</span></td>
+                                            </tr>
                                             </tbody></table>
                                     </div>
                                     <!-- /.box-body -->
