@@ -65,7 +65,7 @@
                             <div class="col-md-6">
                                 <div class="box">
                                     <div class="box-header">
-                                        <h5 class="box-title">Files Sent</h5>
+                                        <h5 class="box-title">Files Attached</h5>
                                         <div class="box-tools">
                                             <button class="btn btn-primary btn-sm" @click="newModal"><i class="fas fa-paperclip"></i>Add Files</button>
                                         </div>
@@ -73,7 +73,7 @@
                                     <div class="box-body" v-if="this.filesCount > 0" style="padding-top: 10px;">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 col-xs-12" v-for="file in files" :key="file.id">
-                                                <a href="#" @click="download(file.id)">
+                                                <a href="#" @click="download(file.id, file.path)">
                                                     <div class="info-box">
                                                         <span class="info-box-icon" style="background-color: #a60de2;"><i class="fas fa-download" style="color: white;"></i></span>
 
@@ -100,7 +100,7 @@
                                     <div class="box-body" v-if="this.filesCount > 0" style="padding-top: 10px;">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 col-xs-12" v-for="complete in completed" :key="complete.id">
-                                                <a href="#" @click="downloadCompleted(complete.id)">
+                                                <a href="#" @click="downloadCompleted(complete.id, complete.path)">
                                                     <div class="info-box">
                                                         <span class="info-box-icon" style="background-color: #31d125;"><i class="fas fa-download" style="color: white;"></i></span>
 
@@ -228,15 +228,24 @@
             saveNewMessage(message){
                 this.messages.push(message);
             },
-            downloadCompleted(id){
-                axios.get("/api/downloadcompleted/" + id).then();
+            downloadCompleted(id, path) {
+                axios.get("/api/downloadcompleted/" + id, {responseType: 'blob'})
+                    .then((response) => {
+                        var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                        var fileLink = document.createElement('a');
+                        console.log(fileLink);
+                        fileLink.href = fileURL;
+                        fileLink.setAttribute('download', path.substring(8));
+                        document.body.appendChild(fileLink);
+                        fileLink.click();
+                    });
             },
             getCompleted(){
                 axios.get("/api/getcompleted/" + this.orderId).then(({ data }) => ([this.completed = data]));
             },
             submit(){
                 for(let i=0; i<this.attachments.length;i++){
-                    this.formf.append('pics[]',this.attachments[i]);
+                    this.formf.append('files[]',this.attachments[i]);
                 }
 
                 const config = { headers: { 'Content-Type': 'multipart/form-data' } };
@@ -291,10 +300,21 @@
             },
             newModal(){
                 this.form.reset();
+                $("#files").val('');
+                this.attachments = [];
                 $('#addnew').modal('show');
             },
-            download(id){
-                axios.get("/api/download/" + id).then();
+            download(id, path) {
+                axios.get("/api/download/" + id, {responseType: 'blob'})
+                    .then((response) => {
+                        var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                        var fileLink = document.createElement('a');
+                        console.log(fileLink);
+                        fileLink.href = fileURL;
+                        fileLink.setAttribute('download', path.substring(8));
+                        document.body.appendChild(fileLink);
+                        fileLink.click();
+                    });
             },
             getDetails(){
                 axios.get("/api/task/" + this.orderId).then(({ data }) => ([this.details = data]));
