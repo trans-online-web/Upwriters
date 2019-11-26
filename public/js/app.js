@@ -3333,8 +3333,18 @@ __webpack_require__.r(__webpack_exports__);
       this.form.reset();
       $('#addnew').modal('show');
     },
-    download: function download(id) {
-      axios.get("/api/download/" + id).then();
+    download: function download(id, path) {
+      axios.get("/api/download/" + id, {
+        responseType: 'blob'
+      }).then(function (response) {
+        var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+        var fileLink = document.createElement('a');
+        console.log(fileLink);
+        fileLink.href = fileURL;
+        fileLink.setAttribute('download', path.substring(8));
+        document.body.appendChild(fileLink);
+        fileLink.click();
+      });
     },
     getDetails: function getDetails() {
       var _this6 = this;
@@ -4157,7 +4167,7 @@ __webpack_require__.r(__webpack_exports__);
       this.getDiff();
 
       for (var i = 0; i < this.attachments.length; i++) {
-        this.formf.append('pics[]', this.attachments[i]);
+        this.formf.append('files[]', this.attachments[i]);
       }
 
       this.formf.append('title', this.form.title);
@@ -4180,9 +4190,11 @@ __webpack_require__.r(__webpack_exports__);
         $('#TaskModal').modal('hide');
         _this4.isOk = 0;
         _this4.suggestion = 0;
+        $("#files").val('');
 
         _this4.form.reset();
 
+        _this4.attachments = [];
         swal.fire({
           type: 'success',
           title: 'Submited!!',
@@ -101263,7 +101275,10 @@ var render = function() {
                                       attrs: { href: "#" },
                                       on: {
                                         click: function($event) {
-                                          return _vm.download(file.id)
+                                          return _vm.download(
+                                            file.id,
+                                            file.path
+                                          )
                                         }
                                       }
                                     },
@@ -102280,9 +102295,7 @@ var render = function() {
                         "div",
                         { staticClass: "form-group" },
                         [
-                          _c("label", { attrs: { for: "status" } }, [
-                            _vm._v("Subject")
-                          ]),
+                          _c("label", [_vm._v("Subject")]),
                           _vm._v(" "),
                           _c(
                             "select",
@@ -102442,9 +102455,7 @@ var render = function() {
                         "div",
                         { staticClass: "form-group" },
                         [
-                          _c("label", { attrs: { for: "pages" } }, [
-                            _vm._v("No. of Pages")
-                          ]),
+                          _c("label", [_vm._v("No. of Pages")]),
                           _c("br"),
                           _vm._v(" "),
                           _c("vue-numeric-input", {
@@ -102474,9 +102485,7 @@ var render = function() {
                         "div",
                         { staticClass: "form-group" },
                         [
-                          _c("label", { attrs: { for: "date" } }, [
-                            _vm._v("Deadline Date & Time")
-                          ]),
+                          _c("label", [_vm._v("Deadline Date & Time")]),
                           _vm._v(" "),
                           _c("datetime", {
                             staticClass:
@@ -102550,14 +102559,9 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _c(
-                            "label",
-                            {
-                              staticClass: "form-check-label",
-                              attrs: { for: "inlineRadio1" }
-                            },
-                            [_vm._v("Single")]
-                          ),
+                          _c("label", { staticClass: "form-check-label" }, [
+                            _vm._v("Single")
+                          ]),
                           _vm._v(" "),
                           _c("has-error", {
                             attrs: { form: _vm.form, field: "spacing" }
@@ -102599,14 +102603,9 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _c(
-                            "label",
-                            {
-                              staticClass: "form-check-label",
-                              attrs: { for: "inlineRadio1" }
-                            },
-                            [_vm._v("Double")]
-                          ),
+                          _c("label", { staticClass: "form-check-label" }, [
+                            _vm._v("Double")
+                          ]),
                           _vm._v(" "),
                           _c("has-error", {
                             attrs: { form: _vm.form, field: "spacing" }
@@ -102674,9 +102673,7 @@ var render = function() {
                   _c("hr"),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "suggested" } }, [
-                      _vm._v("Suggested")
-                    ]),
+                    _c("label", [_vm._v("Suggested")]),
                     _vm._v(" "),
                     _c(
                       "button",

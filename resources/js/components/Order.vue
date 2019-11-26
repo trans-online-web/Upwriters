@@ -40,7 +40,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="status">Subject</label>
+                                            <label>Subject</label>
                                             <select v-model="form.subject" class="form-control" name="subject"
                                                     id="subject"
                                                     :class="{ 'is-invalid': form.errors.has('subject') }">
@@ -69,7 +69,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="pages">No. of Pages</label><br>
+                                            <label>No. of Pages</label><br>
                                             <vue-numeric-input v-model="form.pages" :min="1" :step="1"
                                                                :class="{ 'is-invalid': form.errors.has('pages') }"></vue-numeric-input>
                                             <!-- <input v-model="form.pages" type="number" min="1" class="form-control" name="pages" id="pages"
@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="date">Deadline Date & Time</label>
+                                            <label>Deadline Date & Time</label>
                                             <datetime type="datetime" :auto="true" :min-datetime="this.now" zone="local"
                                                       value-zone="UTC+3" v-model="form.date"
                                                       class="{ 'is-invalid': form.errors.has('date') }" placeholder="Click to Select" style="border: 1px solid rgba(0,0,0,0.35);"></datetime>
@@ -95,14 +95,14 @@
                                             <input v-model="form.spacing" class="form-check-input" type="radio"
                                                    name="spacing" id="spacing" value="single"
                                                    :class="{ 'is-invalid': form.errors.has('spacing') }">
-                                            <label class="form-check-label" for="inlineRadio1">Single</label>
+                                            <label class="form-check-label">Single</label>
                                             <has-error :form="form" field="spacing"></has-error>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input v-model="form.spacing" class="form-check-input" type="radio"
                                                    name="spacing" id="spacing" value="double"
                                                    :class="{ 'is-invalid': form.errors.has('spacing') }">
-                                            <label class="form-check-label" for="inlineRadio1">Double</label>
+                                            <label class="form-check-label">Double</label>
                                             <has-error :form="form" field="spacing"></has-error>
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@
                                 </div>
                                 <hr>
                                 <div class="form-group">
-                                    <label for="suggested">Suggested</label>
+                                    <label>Suggested</label>
                                     <button @click="getDiff()" type="button" class="btn btn-success btn-sm">Compute
                                     </button>
                                     <p>${{this.suggestion}}</p>
@@ -493,7 +493,7 @@
             submit() {
                 this.getDiff();
                 for (let i = 0; i < this.attachments.length; i++) {
-                    this.formf.append('pics[]', this.attachments[i]);
+                    this.formf.append('files[]', this.attachments[i]);
                 }
                 this.formf.append('title', this.form.title);
                 this.formf.append('level', this.form.level);
@@ -513,7 +513,9 @@
                     $('#TaskModal').modal('hide');
                     this.isOk = 0;
                     this.suggestion = 0;
+                    $("#files").val('');
                     this.form.reset();
+                    this.attachments = [];
                     swal.fire({
                         type: 'success',
                         title: 'Submited!!',

@@ -73,7 +73,7 @@
                                     <div class="box-body" v-if="this.filesCount > 0" style="padding-top: 10px;">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 col-xs-12" v-for="file in files" :key="file.id">
-                                                <a href="#" @click="download(file.id)">
+                                                <a href="#" @click="download(file.id, file.path)">
                                                     <div class="info-box">
                                                         <span class="info-box-icon" style="background-color: #a60de2;"><i class="fas fa-download" style="color: white;"></i></span>
 
@@ -293,8 +293,17 @@
                 this.form.reset();
                 $('#addnew').modal('show');
             },
-            download(id){
-                axios.get("/api/download/" + id).then();
+            download(id, path) {
+                axios.get("/api/download/" + id, {responseType: 'blob'})
+                    .then((response) => {
+                        var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                        var fileLink = document.createElement('a');
+                        console.log(fileLink);
+                        fileLink.href = fileURL;
+                        fileLink.setAttribute('download', path.substring(8));
+                        document.body.appendChild(fileLink);
+                        fileLink.click();
+                    });
             },
             getDetails(){
                 axios.get("/api/task/" + this.orderId).then(({ data }) => ([this.details = data]));
