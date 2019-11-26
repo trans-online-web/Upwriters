@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Files;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Completed;
@@ -31,13 +32,12 @@ class CompletedController extends Controller
     public function store(Request $request, $orderId)
     {
         $request->validate([
-            'pics' => 'required',
+            'files' => 'required',
         ]);
 
-        if ($request->pics) {
-            $uploadedFiles=$request->pics;
-            foreach ($uploadedFiles as $file){
-                $filename = $file->store('uploads');
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $uploadedFile) {
+                $filename = $uploadedFile->store('uploads');
                 // echo $filename;
                 $file = new Completed();
                 $file->task_id = $orderId;
@@ -46,7 +46,7 @@ class CompletedController extends Controller
                 $file->save();
             }
         }
-        return response(['status'=>'success'],200);
+        return response(['status' => 'success'], 200);
     }
 
     public function downloadCompleted($id)
@@ -65,7 +65,7 @@ class CompletedController extends Controller
      */
     public function show($orderId)
     {
-        return Completed::where('task_id', $orderId)->get();
+        return Completed::where('task_id', $orderId)->latest()->get();
     }
 
     /**

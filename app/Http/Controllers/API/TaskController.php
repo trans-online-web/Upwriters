@@ -75,20 +75,6 @@ class TaskController extends Controller
             }
         }
         return response(['status' => 'success'], 200);
-
-//        if ($request->pics) {
-//            $uploadedFiles=$request->pics;
-//            foreach ($uploadedFiles as $file){
-//                $filename = $file->store('uploads');
-//                // echo $filename;
-//                $file = new Files();
-//                $file->task_id = $task_id;
-//                $file->path = $filename;
-//                $file->user_id = auth()->user()->id;
-//                $file->save();
-//            }
-//        }
-//        return response(['status'=>'success'],200);
     }
 
     /**
@@ -139,13 +125,12 @@ class TaskController extends Controller
     public function addFiles(Request $request, $orderId)
     {
         $request->validate([
-            'pics' => 'required',
+            'files' => 'required',
         ]);
 
-        if ($request->pics) {
-            $uploadedFiles=$request->pics;
-            foreach ($uploadedFiles as $file){
-                $filename = $file->store('uploads');
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $uploadedFile) {
+                $filename = $uploadedFile->store('uploads');
                 // echo $filename;
                 $file = new Files();
                 $file->task_id = $orderId;
@@ -154,6 +139,7 @@ class TaskController extends Controller
                 $file->save();
             }
         }
+        return response(['status' => 'success'], 200);
     }
 
     public function downloadFile($id)
