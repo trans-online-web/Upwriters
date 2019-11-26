@@ -24,6 +24,18 @@ Route::get('/about', function () {
     return view('about');
 });
 
+Route::get('/terms', function () {
+    return view('terms');
+});
+
+Route::get('/blog', function () {
+    return view('blog');
+});
+
+Route::get('/blogcontent/{blogId}', function () {
+    return view('blogcontent');
+});
+
 // Route::get('/task', function () {
 //     return view('order');
 // });
@@ -35,4 +47,5 @@ Route::get('/markasread', function (){
 });
 Route::get('/task', 'HomeController@task')->name('task');
 Route::get('/myorder', 'HomeController@myorder')->name('myorder');
+Route::get('/myorderdetails/{id}', 'HomeController@myorderdetails');
 Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-/_.]+)?' );

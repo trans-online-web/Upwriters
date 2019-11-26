@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMessangersTable extends Migration
+class CreateBlogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateMessangersTable extends Migration
      */
     public function up()
     {
-        Schema::create('messengers', function (Blueprint $table) {
+        Schema::create('blog', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('Oder_id')->unsigned();
-            $table->integer('from')->unsigned();
-            $table->integer('to')->unsigned();
-            $table->text('text');
+            $table->string('title');
+            $table->string('status');
+            $table->longText('content');
+            $table->binary('image');
+            $table->integer('category');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateMessangersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messengers');
+        Schema::dropIfExists('blog');
     }
 }

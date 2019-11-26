@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="$gate.isAdmin()">
         <div class="row pt-3" >
             <div class="col-12">
                 <div class="card">

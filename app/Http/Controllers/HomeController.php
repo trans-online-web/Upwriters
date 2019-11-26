@@ -33,4 +33,8 @@ class HomeController extends Controller
     {
         return view('order');
     }
+    public function myorderdetails()
+    {
+        return view('myorderdetails');
+    }
 }

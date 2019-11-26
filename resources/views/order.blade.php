@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+Order
+@stop
 @section('content')
 	<Order></Order>
-    @include('includes.footer')
 @endsection

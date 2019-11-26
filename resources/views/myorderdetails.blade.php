@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('title')
-My orders
+My order
 @stop
 @section('content')
     <div class="container-fluid" style="margin-top: 100px;">
-        <myorders></myorders>
+        <myorderdetails></myorderdetails>
     </div>
 @endsection

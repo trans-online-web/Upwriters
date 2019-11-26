@@ -66,6 +66,10 @@ let routes = [
     { path: '/MyOrderDetails/:orderId', component: require('./components/MyOrderDetails.vue').default },
     { path: '/MyOrder', component: require('./components/Myoders.vue').default },
     { path: '/chat', component: require('./components/Chat.vue').default },
+    {path: '/blog-categories', component: require('./components/BlogCategories.vue').default},
+    {path: '/blog-admin', component: require('./components/Blog.vue').default},
+    {path: '/readmore/:blogId', component: require('./components/Readmore.vue').default},
+    {path: '/blogcontent/:blogId', component: require('./components/Blog/BlogContent').default},
 ]
 const router = new VueRouter({
   mode:'history',
@@ -96,6 +100,9 @@ Vue.component('chat', require('./components/Chat.vue'));
 Vue.component('notification', require('./components/Notification.vue').default);
 Vue.component('Order', require('./components/Order.vue').default);
 Vue.component('myorders', require('./components/Myoders.vue').default);
+Vue.component('myorderdetails', require('./components/MyOrderDetails.vue').default);
+Vue.component('blog-user', require('./components/Blog/BlogUser.vue').default);
+Vue.component('blog-content', require('./components/Blog/BlogContent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

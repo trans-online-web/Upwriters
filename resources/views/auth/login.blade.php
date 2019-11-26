@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-120">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+        <div class="col-md-12">
+{{--            <div class="card">--}}
+{{--                <div class="card-header">{{ __('Login') }}</div>--}}
 
-                {{-- <div class="card-body">
+                {{-- <div class="card-body signup-form">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -67,14 +67,14 @@
                     </form>
                 </div> --}}
                 
-            </div>
-            <div class="signup-form">   
+{{--            </div>--}}
+            <div class="signup-form p-5" style="width: 590px;">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-                    <h2>Login</h2>
+                    <h2 class="m-2">Login</h2>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                            <span class="input-group-addon p-2"><i class="fa fa-paper-plane"></i></span>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email Address">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -85,7 +85,7 @@
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <span class="input-group-addon p-2"><i class="fa fa-lock"></i></span>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
