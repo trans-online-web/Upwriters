@@ -197,7 +197,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
                     <li class="nav-item">
                         <router-link to="/documents" class="nav-link text-dark">
-                            <i class="fas fa-file-word indigo"></i>
+                            <i class="nav-icon fas fa-file-word pink"></i>
                             <p>
                                 Documents
                             </p>
@@ -205,7 +205,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
                     <li class="nav-item">
                         <router-link to="/levels" class="nav-link text-dark">
-                            <i class="nav-icon fas fa-level-up-alt cyan"></i>
+                            <i class="nav-icon fas fa-sort-amount-up-alt cyan"></i>
                             <p>
                                 Levels
                             </p>
@@ -213,7 +213,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
                     <li class="nav-item">
                         <router-link to="/orders" class="nav-link text-dark">
-                            <i class="nav-icon fas fa-book white"></i>
+                            <i class="nav-icon fas fa-book teal"></i>
                             <p>
                                Orders
                             </p>
@@ -221,7 +221,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
                     <li class="nav-item">
                         <router-link to="/MyOrder" class="nav-link text-dark">
-                           <i class="fas fa-folder blue"></i>
+                           <i class="nav-icon fas fa-folder orange"></i>
                             <p>
                                 MyOrders
                             </p>
@@ -229,7 +229,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
                     <li class="nav-item">
                         <router-link to="/user" class="nav-link text-dark">
-                            <i class=" nav-icon fas fa-users-cog indigo"></i>
+                            <i class=" nav-icon fas fa-users-cog yellow"></i>
                             <p>
                                User Management
                             </p>
