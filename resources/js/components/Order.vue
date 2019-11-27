@@ -165,9 +165,9 @@
                                 </div>
                                 <hr>
                                 <div class="form-group">
-                                    <label for="files">Upload Files</label>
+                                    <label for="files">Upload Files (.xlsx, .xls, images, .doc, .docx,.ppt, .pptx, .pdf, .zip ONLY)</label>
                                     <input type="file" multiple class="form-control-file" @change="fieldChange"
-                                           id="files">
+                                           id="files" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.pdf,.zip">
                                 </div>
                                 <hr>
                                 <div class="form-group">

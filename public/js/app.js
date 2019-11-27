@@ -103102,12 +103102,20 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "files" } }, [
-                      _vm._v("Upload Files")
+                      _vm._v(
+                        "Upload Files (.xlsx, .xls, images, .doc, .docx,.ppt, .pptx, .pdf, .zip ONLY)"
+                      )
                     ]),
                     _vm._v(" "),
                     _c("input", {
                       staticClass: "form-control-file",
-                      attrs: { type: "file", multiple: "", id: "files" },
+                      attrs: {
+                        type: "file",
+                        multiple: "",
+                        id: "files",
+                        accept:
+                          ".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.pdf,.zip"
+                      },
                       on: { change: _vm.fieldChange }
                     })
                   ]),
