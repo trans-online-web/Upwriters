@@ -75,8 +75,8 @@
                                             <select v-model="form.subject" class="form-control" name="subject"
                                                     id="subject"
                                                     :class="{ 'is-invalid': form.errors.has('subject') }">
-                                                <option selected value="">--Select Status--</option>
-                                                <option v-for="subject in subjects.data" :key="subject['name']"
+                                                <option selected value="">--Select Subject--</option>
+                                                <option v-for="subject in subjects" :key="subject['name']"
                                                         :value="subject['name']">{{ subject.name}}
                                                 </option>
                                             </select>
@@ -91,7 +91,7 @@
                                             <select v-model="form.type" class="form-control" name="type" id="type"
                                                     :class="{ 'is-invalid': form.errors.has('type') }">
                                                 <option selected value="">--Select Document Type--</option>
-                                                <option v-for="document in documents.data" :key="document['name']"
+                                                <option v-for="document in documents" :key="document['name']"
                                                         :value="document['name']">{{ document.name}}
                                                 </option>
                                             </select>

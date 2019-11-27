@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API;
 use App\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use auth;
 class SubjectController extends Controller
 {
     public function __construct()
@@ -20,7 +20,10 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        return Subject::latest()->paginate(10);
+        if(auth()->user()->role == 'admin'){
+            return Subject::latest()->paginate(10);
+        }
+        return Subject::latest()->get();
     }
 
     /**

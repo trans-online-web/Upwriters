@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="d67399ab-a3c2-4ce6-9490-5edcda03281d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/DocumentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/DocumentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/SubjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/SubjectController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_28_130905_create_messangers_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Order.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Order.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+=======
     <list default="true" id="95fd1f38-156d-40d1-94b2-6bd0f777d7df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Order.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Order.vue" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/resources/views/myorder.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/myorder.blade.php" afterDir="false" />
+>>>>>>> fe3a9d4409d94698f2ad5743290cbdef6efc8f8d
+>>>>>>> 9a1d35d055c59980224d81ec56a6dcaa65fa2e15
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,6 +36,8 @@
       <executable />
     </execution>
   </component>
+<<<<<<< HEAD
+=======
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
@@ -58,6 +79,7 @@
       </file>
     </leaf>
   </component>
+>>>>>>> fe3a9d4409d94698f2ad5743290cbdef6efc8f8d
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -68,6 +90,8 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
+=======
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -77,6 +101,7 @@
       </list>
     </option>
   </component>
+>>>>>>> fe3a9d4409d94698f2ad5743290cbdef6efc8f8d
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
@@ -190,6 +215,8 @@
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+<<<<<<< HEAD
+=======
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -233,6 +260,7 @@
       <pane id="Scope" />
     </panes>
   </component>
+>>>>>>> fe3a9d4409d94698f2ad5743290cbdef6efc8f8d
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -304,10 +332,12 @@
       <workItem from="1572501671827" duration="22000" />
       <workItem from="1574701902263" duration="3261000" />
       <workItem from="1574748551644" duration="3693000" />
-      <workItem from="1574794855613" duration="719000" />
+      <workItem from="1574833222345" duration="645000" />
     </task>
     <servers />
   </component>
+<<<<<<< HEAD
+=======
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="5878000" />
   </component>
@@ -337,6 +367,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+>>>>>>> fe3a9d4409d94698f2ad5743290cbdef6efc8f8d
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -346,12 +377,6 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -392,6 +417,8 @@
       </breakpoints>
     </breakpoint-manager>
   </component>
+<<<<<<< HEAD
+=======
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -425,4 +452,5 @@
       </provider>
     </entry>
   </component>
+>>>>>>> fe3a9d4409d94698f2ad5743290cbdef6efc8f8d
 </project>

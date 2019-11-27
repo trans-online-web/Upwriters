@@ -102702,10 +102702,10 @@ var render = function() {
                               _c(
                                 "option",
                                 { attrs: { selected: "", value: "" } },
-                                [_vm._v("--Select Status--")]
+                                [_vm._v("--Select Subject--")]
                               ),
                               _vm._v(" "),
-                              _vm._l(_vm.subjects.data, function(subject) {
+                              _vm._l(_vm.subjects, function(subject) {
                                 return _c(
                                   "option",
                                   {
@@ -102787,7 +102787,7 @@ var render = function() {
                                 [_vm._v("--Select Document Type--")]
                               ),
                               _vm._v(" "),
-                              _vm._l(_vm.documents.data, function(document) {
+                              _vm._l(_vm.documents, function(document) {
                                 return _c(
                                   "option",
                                   {
