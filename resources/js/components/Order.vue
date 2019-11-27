@@ -263,6 +263,11 @@
                         level: 'This field is required'
                     })
                     return false;
+                }else if (!this.form.title) {
+                    this.form.errors.set({
+                        title: 'This field is required'
+                    })
+                    return false;
                 } else if (!this.form.date) {
                     this.form.errors.set({
                         date: 'This field is required'

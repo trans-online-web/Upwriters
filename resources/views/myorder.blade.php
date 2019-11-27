@@ -3,7 +3,7 @@
 My orders
 @stop
 @section('content')
-    <div class="container-fluid" style="margin-top: 100px;">
-        <myorders></myorders>
+    <div class="container-fluid mb-4" style="margin-top: 50px;">
+        <my-order></my-order>
     </div>
 @endsection
