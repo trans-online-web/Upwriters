@@ -3218,6 +3218,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3905,6 +3908,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3928,6 +3941,7 @@ __webpack_require__.r(__webpack_exports__);
       e_pages: '',
       isOk: '',
       diff: '',
+      state: false,
       formf: new FormData(),
       form: new Form({
         title: '',
@@ -3940,7 +3954,8 @@ __webpack_require__.r(__webpack_exports__);
         time: '',
         task: '',
         budget: '',
-        format: ''
+        format: '',
+        other_subject: ''
       })
     };
   },
@@ -4010,6 +4025,12 @@ __webpack_require__.r(__webpack_exports__);
         // set(type, 'required');
         this.form.errors.set({
           subject: 'This field is required'
+        });
+        return false;
+      } else if (this.form.subject == 'Other' && !this.form.other_subject) {
+        // set(type, 'required');
+        this.form.errors.set({
+          other_subject: 'This field is required'
         });
         return false;
       } else if (!this.form.type) {
@@ -4313,6 +4334,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       this.getDiff();
+      this.state = true;
 
       for (var i = 0; i < this.attachments.length; i++) {
         this.formf.append('files[]', this.attachments[i]);
@@ -4321,6 +4343,7 @@ __webpack_require__.r(__webpack_exports__);
       this.formf.append('title', this.form.title);
       this.formf.append('level', this.form.level);
       this.formf.append('subject', this.form.subject);
+      this.formf.append('other_subject', this.form.other_subject);
       this.formf.append('type', this.form.type);
       this.formf.append('pages', this.form.pages);
       this.formf.append('spacing', this.form.spacing);
@@ -4344,6 +4367,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.form.reset();
 
         _this4.attachments = [];
+        _this4.state = false;
         swal.fire({
           type: 'success',
           title: 'Submited!!',
@@ -101418,9 +101442,22 @@ var render = function() {
                             _c("td", [_vm._v("Subject")]),
                             _vm._v(" "),
                             _c("td", [
-                              _c("span", [
-                                _vm._v(_vm._s(_vm.details.subject_name))
-                              ])
+                              _vm.details.other_subject
+                                ? _c("span", [
+                                    _vm._v(
+                                      _vm._s(_vm.details.subject_name) +
+                                        "(" +
+                                        _vm._s(_vm.details.other_subject) +
+                                        ")"
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.details.other_subject
+                                ? _c("span", [
+                                    _vm._v(_vm._s(_vm.details.subject_name))
+                                  ])
+                                : _vm._e()
                             ])
                           ]),
                           _vm._v(" "),
@@ -102743,7 +102780,63 @@ var render = function() {
                           })
                         ],
                         1
-                      )
+                      ),
+                      _vm._v(" "),
+                      this.form.subject == "Other"
+                        ? _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("label", { attrs: { for: "other_subject" } }, [
+                                _vm._v("Input Your Subject")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.other_subject,
+                                    expression: "form.other_subject"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has(
+                                    "other_subject"
+                                  )
+                                },
+                                attrs: {
+                                  type: "text",
+                                  name: "other_subject",
+                                  id: "other_subject",
+                                  placeholder: "Your Subject"
+                                },
+                                domProps: { value: _vm.form.other_subject },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "other_subject",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: {
+                                  form: _vm.form,
+                                  field: "other_subject"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
@@ -103117,7 +103210,7 @@ var render = function() {
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "files" } }, [
                       _vm._v(
-                        "Upload Files (.xlsx, .xls, images, .doc, .docx,.ppt, .pptx, .pdf, .zip ONLY)"
+                        "Upload Files (.xlsx, .xls, images, .doc, .docx,.ppt, .pptx, .pdf,\n                                    .zip ONLY)"
                       )
                     ]),
                     _vm._v(" "),
@@ -103253,7 +103346,7 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-success",
-                          attrs: { type: "submit" },
+                          attrs: { type: "submit", disabled: _vm.state },
                           on: {
                             click: function($event) {
                               return _vm.lastValidation()

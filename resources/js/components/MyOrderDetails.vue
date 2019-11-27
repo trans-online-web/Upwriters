@@ -38,7 +38,10 @@
                                             </tr>
                                             <tr>
                                                 <td>Subject</td>
-                                                <td><span>{{details.subject_name}}</span></td>
+                                                <td>
+                                                    <span v-if="details.other_subject">{{details.subject_name}}({{details.other_subject}})</span>
+                                                    <span v-if="!details.other_subject">{{details.subject_name}}</span>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Document Type</td>

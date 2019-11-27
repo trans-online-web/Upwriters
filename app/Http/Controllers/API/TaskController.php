@@ -29,7 +29,7 @@ class TaskController extends Controller
     public function student()
     {
         $user = auth()->user()->id;
-        return Task::where('user_id',$user)->get();
+        return Task::where('user_id',$user)->latest()->get();
     }
     /**
      * Store a newly created resource in storage.
@@ -51,6 +51,7 @@ class TaskController extends Controller
         $task->name = auth()->user()->name;
         $task->email = auth()->user()->email;
         $task->subject_name = $request->subject;
+        $task->other_subject = $request->other_subject;
         $task->documentType_name = $request->type;
         $task->deadline_datetime = $request->date;
         $task->suggested_price = $request->suggested;
