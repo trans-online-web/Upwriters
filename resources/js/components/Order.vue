@@ -20,9 +20,9 @@
                                                               placement: 'top',
                                                               modifiers: { offset: { offset: '0,10px' } }
                                                             }">
-                                                <div class="popper" style="padding: 3px;">
-                                                    <b>Writer's choice:</b> We determine the title of the task for you <br>
-                                                    <b>Manual Input:</b> You specify your own title for the task
+                                                <div class="popper" style="padding: 4px;">
+                                                    <b>Writer's choice:</b> We determine the title of the task for you. <br>
+                                                    <b>Input Title:</b> You define your own title for the task.
                                                 </div>
 
                                                 <i class="fas fa-info-circle ml-1"
@@ -35,8 +35,7 @@
                                                 Writer's Choice
                                             </button>
                                             <button type="button" :class="'btn btn-sm mb-2 ' + btnTwo" @click="manual">
-                                                Manual
-                                                Input
+                                                Input Title
                                             </button>
                                         </div>
                                     </div>
@@ -73,8 +72,8 @@
                                             <select v-model="form.subject" class="form-control" name="subject"
                                                     id="subject"
                                                     :class="{ 'is-invalid': form.errors.has('subject') }">
-                                                <option selected value="">--Select Status--</option>
-                                                <option v-for="subject in subjects.data" :key="subject['name']"
+                                                <option selected value="">--Select Subject--</option>
+                                                <option v-for="subject in subjects" :key="subject['name']"
                                                         :value="subject['name']">{{ subject.name}}
                                                 </option>
                                             </select>
@@ -89,7 +88,7 @@
                                             <select v-model="form.type" class="form-control" name="type" id="type"
                                                     :class="{ 'is-invalid': form.errors.has('type') }">
                                                 <option selected value="">--Select Document Type--</option>
-                                                <option v-for="document in documents.data" :key="document['name']"
+                                                <option v-for="document in documents" :key="document['name']"
                                                         :value="document['name']">{{ document.name}}
                                                 </option>
                                             </select>

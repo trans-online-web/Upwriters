@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API;
 use App\Document;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use auth;
 class DocumentController extends Controller
 {
     public function __construct()
@@ -20,7 +20,12 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        return Document::latest()->paginate(10);
+        if(auth()->user()->role == 'admin'){
+            return Document::latest()->paginate(10);
+        }elseif (auth()->user()->role == 'student'){
+            return Document::latest()->get();
+        }
+
     }
 
     /**

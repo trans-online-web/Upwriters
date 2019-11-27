@@ -35,7 +35,9 @@ Route::get('/blog', function () {
 Route::get('/blogcontent/{blogId}', function () {
     return view('blogcontent');
 });
-
+Route::get('/terms', function () {
+    return view('terms');
+});
 // Route::get('/task', function () {
 //     return view('order');
 // });

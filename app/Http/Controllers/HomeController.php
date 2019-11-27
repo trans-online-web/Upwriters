@@ -37,4 +37,8 @@ class HomeController extends Controller
     {
         return view('myorderdetails');
     }
+    public function terms()
+    {
+        return view('terms');
+    }
 }

@@ -78,7 +78,7 @@ let routes = [
     {path: '/chat', component: require('./components/Chat.vue').default},
     {path: '/blog-admin', component: require('./components/Blog.vue').default},
     {path: '/blog-categories', component: require('./components/BlogCategories.vue').default},
-    {path: '/readmore/:blogId', component: require('./components/ReadMore.vue').default},
+    {path: '/readmore/:blogId', component: require('./components/Readmore.vue').default},
     {path: '/blogcontent/:blogId', component: require('./components/Blog/BlogContent').default},
 
 ]
