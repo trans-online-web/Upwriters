@@ -3888,6 +3888,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -3906,6 +3909,9 @@ __webpack_require__.r(__webpack_exports__);
       documents: {},
       subjects: {},
       suggestion: 0,
+      e_date: '',
+      e_title: '',
+      e_pages: '',
       isOk: '',
       diff: '',
       formf: new FormData(),
@@ -3925,13 +3931,25 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    lastValidation: function lastValidation() {
+      if (!this.form.budget) {
+        this.form.errors.set({
+          budget: 'This field is required'
+        });
+        return false;
+      } else {
+        this.submit();
+      }
+    },
     manual: function manual() {
+      this.e_title = "";
       this.btnOne = "btn-info";
       this.isManual = 1;
       this.btnTwo = "btn-success";
       this.form.title = "";
     },
     writerChoice: function writerChoice() {
+      this.e_title = "";
       this.btnTwo = "btn-info";
       this.isManual = 0;
       this.form.title = "Writer's Choice";
@@ -3962,30 +3980,46 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getDiff: function getDiff() {
-      if (!this.form.level) {
+      if (!this.form.title) {
+        this.e_title = "Please select an option";
+        this.form.errors.set({
+          title: 'This field is required'
+        });
+        return false;
+      } else if (!this.form.level) {
         // set(type, 'required');
         this.form.errors.set({
           level: 'This field is required'
         });
         return false;
-      } else if (!this.form.title) {
+      } else if (!this.form.subject) {
+        // set(type, 'required');
         this.form.errors.set({
-          title: 'This field is required'
+          subject: 'This field is required'
+        });
+        return false;
+      } else if (!this.form.type) {
+        // set(type, 'required');
+        this.form.errors.set({
+          type: 'This field is required'
         });
         return false;
       } else if (!this.form.date) {
-        this.form.errors.set({
-          date: 'This field is required'
-        });
+        this.e_date = "This field is required";
         return false;
       } else if (!this.form.spacing) {
+        this.e_date = "";
         this.form.errors.set({
           spacing: 'This field is required'
         });
         return false;
       } else if (!this.form.pages) {
+        this.e_pages = "This field is required";
+        return false;
+      } else if (!this.form.format) {
+        this.e_date = "";
         this.form.errors.set({
-          pages: 'This field is required'
+          format: 'This field is required'
         });
         return false;
       } else {
@@ -102422,7 +102456,7 @@ var render = function() {
                                 [
                                   _c("b", [_vm._v("Writer's choice:")]),
                                   _vm._v(
-                                    " We determine the title of the task for you. "
+                                    " We determine the title of the task for you.\n                                                "
                                   ),
                                   _c("br"),
                                   _vm._v(" "),
@@ -102473,7 +102507,13 @@ var render = function() {
                                 "\n                                            Input Title\n                                        "
                               )
                             ]
-                          )
+                          ),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("small", { staticStyle: { color: "red" } }, [
+                            _vm._v(_vm._s(_vm.e_title))
+                          ])
                         ],
                         1
                       )
@@ -102796,9 +102836,9 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _c("has-error", {
-                            attrs: { form: _vm.form, field: "pages" }
-                          })
+                          _c("small", { staticStyle: { color: "red" } }, [
+                            _vm._v(_vm._s(_vm.e_pages))
+                          ])
                         ],
                         1
                       )
@@ -102826,7 +102866,7 @@ var render = function() {
                               "min-datetime": this.now,
                               zone: "local",
                               "value-zone": "UTC+3",
-                              placeholder: "Click to Select"
+                              placeholder: "Click here to input"
                             },
                             model: {
                               value: _vm.form.date,
@@ -102837,9 +102877,9 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _c("has-error", {
-                            attrs: { form: _vm.form, field: "date" }
-                          })
+                          _c("small", { staticStyle: { color: "red" } }, [
+                            _vm._v(_vm._s(_vm.e_date))
+                          ])
                         ],
                         1
                       )
@@ -102871,7 +102911,6 @@ var render = function() {
                             attrs: {
                               type: "radio",
                               name: "spacing",
-                              id: "spacing",
                               value: "single"
                             },
                             domProps: {
@@ -102886,13 +102925,8 @@ var render = function() {
                           _vm._v(" "),
                           _c("label", { staticClass: "form-check-label" }, [
                             _vm._v("Single")
-                          ]),
-                          _vm._v(" "),
-                          _c("has-error", {
-                            attrs: { form: _vm.form, field: "spacing" }
-                          })
-                        ],
-                        1
+                          ])
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -102931,6 +102965,7 @@ var render = function() {
                           _c("label", { staticClass: "form-check-label" }, [
                             _vm._v("Double")
                           ]),
+                          _c("br"),
                           _vm._v(" "),
                           _c("has-error", {
                             attrs: { form: _vm.form, field: "spacing" }
@@ -102943,70 +102978,83 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
                     _c("div", { staticClass: "col" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", [_vm._v("Format")]),
-                        _vm._v(" "),
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.format,
-                                expression: "form.format"
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c("label", [_vm._v("Format")]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.format,
+                                  expression: "form.format"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: {
+                                "is-invalid": _vm.form.errors.has("format")
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.form,
+                                    "format",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
                               }
-                            ],
-                            staticClass: "form-control",
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.form,
-                                  "format",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "option",
-                              { attrs: { selected: "", value: "" } },
-                              [_vm._v("--Select Format--")]
-                            ),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "APA" } }, [
-                              _vm._v("APA")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "MLA" } }, [
-                              _vm._v("MLA")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Chicago" } }, [
-                              _vm._v("Chicago")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Turabian" } }, [
-                              _vm._v("Turabian")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "IEEE" } }, [
-                              _vm._v("IEEE")
-                            ])
-                          ]
-                        )
-                      ])
+                            },
+                            [
+                              _c(
+                                "option",
+                                { attrs: { selected: "", value: "" } },
+                                [_vm._v("--Select Format--")]
+                              ),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "APA" } }, [
+                                _vm._v("APA")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "MLA" } }, [
+                                _vm._v("MLA")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Chicago" } }, [
+                                _vm._v("Chicago")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Turabian" } }, [
+                                _vm._v("Turabian")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "IEEE" } }, [
+                                _vm._v("IEEE")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "format" }
+                          })
+                        ],
+                        1
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col" })
@@ -103147,7 +103195,7 @@ var render = function() {
                           attrs: { type: "submit" },
                           on: {
                             click: function($event) {
-                              return _vm.submit()
+                              return _vm.lastValidation()
                             }
                           }
                         },

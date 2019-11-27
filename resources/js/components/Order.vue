@@ -21,7 +21,8 @@
                                                               modifiers: { offset: { offset: '0,10px' } }
                                                             }">
                                                 <div class="popper" style="padding: 4px;">
-                                                    <b>Writer's choice:</b> We determine the title of the task for you. <br>
+                                                    <b>Writer's choice:</b> We determine the title of the task for you.
+                                                    <br>
                                                     <b>Input Title:</b> You define your own title for the task.
                                                 </div>
 
@@ -37,6 +38,8 @@
                                             <button type="button" :class="'btn btn-sm mb-2 ' + btnTwo" @click="manual">
                                                 Input Title
                                             </button>
+                                            <br>
+                                            <small style="color: red;">{{e_title}}</small>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -102,7 +105,7 @@
                                                                :class="{ 'is-invalid': form.errors.has('pages') }"></vue-numeric-input>
                                             <!-- <input v-model="form.pages" type="number" min="1" class="form-control" name="pages" id="pages"
                                                    placeholder="Pages" :class="{ 'is-invalid': form.errors.has('pages') }"> -->
-                                            <has-error :form="form" field="pages"></has-error>
+                                            <small style="color: red;">{{e_pages}}</small>
                                         </div>
                                     </div>
 
@@ -114,25 +117,24 @@
                                             <datetime type="datetime" :auto="true" :min-datetime="this.now" zone="local"
                                                       value-zone="UTC+3" v-model="form.date"
                                                       class="{ 'is-invalid': form.errors.has('date') }"
-                                                      placeholder="Click to Select"
+                                                      placeholder="Click here to input"
                                                       style="border: 1px solid rgba(0,0,0,0.35); padding: 2px;"></datetime>
-                                            <has-error :form="form" field="date"></has-error>
+                                            <small style="color: red;">{{e_date}}</small>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <label for="spacing">Spacing</label><br>
                                         <div class="form-check form-check-inline">
                                             <input v-model="form.spacing" class="form-check-input" type="radio"
-                                                   name="spacing" id="spacing" value="single"
+                                                   name="spacing" value="single"
                                                    :class="{ 'is-invalid': form.errors.has('spacing') }">
                                             <label class="form-check-label">Single</label>
-                                            <has-error :form="form" field="spacing"></has-error>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input v-model="form.spacing" class="form-check-input" type="radio"
                                                    name="spacing" id="spacing" value="double"
                                                    :class="{ 'is-invalid': form.errors.has('spacing') }">
-                                            <label class="form-check-label">Double</label>
+                                            <label class="form-check-label">Double</label><br>
                                             <has-error :form="form" field="spacing"></has-error>
                                         </div>
                                     </div>
@@ -141,7 +143,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Format</label>
-                                            <select v-model="form.format" class="form-control">
+                                            <select v-model="form.format" class="form-control" :class="{ 'is-invalid': form.errors.has('format') }">
                                                 <option selected value="">--Select Format--</option>
                                                 <option value="APA">APA</option>
                                                 <option value="MLA">MLA</option>
@@ -149,6 +151,7 @@
                                                 <option value="Turabian">Turabian</option>
                                                 <option value="IEEE">IEEE</option>
                                             </select>
+                                            <has-error :form="form" field="format"></has-error>
                                         </div>
                                     </div>
                                     <div class="col"></div>
@@ -183,7 +186,7 @@
 
                             </div>
                             <div class="modal-footer" v-if="this.isOk == 1">
-                                <button type="submit" class="btn btn-success" @click="submit()">
+                                <button type="submit" class="btn btn-success" @click="lastValidation()">
                                     <i class="fa fa-send"></i>
                                     Submit
                                 </button>
@@ -216,6 +219,9 @@
                 documents: {},
                 subjects: {},
                 suggestion: 0,
+                e_date: '',
+                e_title: '',
+                e_pages: '',
                 isOk: '',
                 diff: '',
                 formf: new FormData(),
@@ -235,13 +241,25 @@
             }
         },
         methods: {
+            lastValidation(){
+                if (!this.form.budget) {
+                    this.form.errors.set({
+                        budget: 'This field is required'
+                    })
+                    return false;
+                }else {
+                    this.submit();
+                }
+            },
             manual() {
+                this.e_title = "";
                 this.btnOne = "btn-info";
                 this.isManual = 1;
                 this.btnTwo = "btn-success";
                 this.form.title = "";
             },
             writerChoice() {
+                this.e_title = "";
                 this.btnTwo = "btn-info";
                 this.isManual = 0;
                 this.form.title = "Writer's Choice";
@@ -257,30 +275,46 @@
                 axios.get("/api/level").then(({data}) => ([this.levels = data]));
             },
             getDiff() {
-                if (!this.form.level) {
+                if (!this.form.title) {
+                    this.e_title = "Please select an option";
+                    this.form.errors.set({
+                        title: 'This field is required'
+                    })
+                    return false;
+                } else if (!this.form.level) {
                     // set(type, 'required');
                     this.form.errors.set({
                         level: 'This field is required'
                     })
                     return false;
-                }else if (!this.form.title) {
+                } else if (!this.form.subject) {
+                    // set(type, 'required');
                     this.form.errors.set({
-                        title: 'This field is required'
+                        subject: 'This field is required'
+                    })
+                    return false;
+                }else if (!this.form.type) {
+                    // set(type, 'required');
+                    this.form.errors.set({
+                        type: 'This field is required'
                     })
                     return false;
                 } else if (!this.form.date) {
-                    this.form.errors.set({
-                        date: 'This field is required'
-                    })
+                    this.e_date = "This field is required";
                     return false;
                 } else if (!this.form.spacing) {
+                    this.e_date = "";
                     this.form.errors.set({
                         spacing: 'This field is required'
                     })
                     return false;
                 } else if (!this.form.pages) {
+                    this.e_pages = "This field is required";
+                    return false;
+                }else if (!this.form.format) {
+                    this.e_date = "";
                     this.form.errors.set({
-                        pages: 'This field is required'
+                        format: 'This field is required'
                     })
                     return false;
                 } else {
