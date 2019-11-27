@@ -19,7 +19,7 @@ Home
                                         <br>
                                         <h2>In need of professional paper help?</h2>
                                         <p>Our company provides customized paper writing help that will enable you to get the paper according to your needs. The customized papers will be written professionally and will be quality as well as affordable. </p>
-                                        <a href="contact.html" class="bttn-mid btn-fill radius-50">Order Now!</a>
+                                        <a href="/task" class="bttn-mid btn-fill radius-50">Order Now!</a>
                                     </div>
                                 </div>
                             </div>
