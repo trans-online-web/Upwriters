@@ -3891,6 +3891,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -103122,25 +103136,64 @@ var render = function() {
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Suggested")]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success btn-sm",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            return _vm.getDiff()
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", [_vm._v("Suggested")]),
+                      _vm._v(" "),
+                      _c(
+                        "popper",
+                        {
+                          attrs: {
+                            trigger: "clickToOpen",
+                            options: {
+                              placement: "top",
+                              modifiers: { offset: { offset: "0,10px" } }
+                            }
                           }
-                        }
-                      },
-                      [_vm._v("Compute\n                                ")]
-                    ),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("$" + _vm._s(this.suggestion))])
-                  ]),
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "popper",
+                              staticStyle: { padding: "4px" }
+                            },
+                            [_c("p", [_vm._v("Estimated cost for the task")])]
+                          ),
+                          _vm._v(" "),
+                          _c("i", {
+                            staticClass: "fas fa-info-circle ml-1",
+                            staticStyle: { color: "blue", "font-size": "20px" },
+                            attrs: { slot: "reference" },
+                            slot: "reference"
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-sm",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.getDiff()
+                            }
+                          }
+                        },
+                        [_vm._v("Compute\n                                ")]
+                      ),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v("Amount to pay: $" + _vm._s(this.suggestion))
+                      ])
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   this.isOk == 1
                     ? _c(
@@ -121689,8 +121742,8 @@ if (token) {
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "13fbb2237f308a46b5e2",
-  cluster: "ap2",
+  key: "",
+  cluster: "mt1",
   encrypted: true
 });
 
@@ -123427,8 +123480,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Upwriters\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Upwriters\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /opt/lampp/htdocs/Transonline/Up/Upwriters/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/Transonline/Up/Upwriters/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

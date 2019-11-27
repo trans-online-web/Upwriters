@@ -172,9 +172,23 @@
                                 <hr>
                                 <div class="form-group">
                                     <label>Suggested</label>
+                                    <popper
+                                            trigger="clickToOpen"
+                                            :options="{
+                                                              placement: 'top',
+                                                              modifiers: { offset: { offset: '0,10px' } }
+                                                            }">
+                                        <div class="popper" style="padding: 4px;">
+                                            <p>Estimated cost for the task</p>
+                                        </div>
+
+                                        <i class="fas fa-info-circle ml-1"
+                                           style="color: blue; font-size: 20px;" slot="reference"></i>
+                                    </popper>
+                                    <br>
                                     <button @click="getDiff()" type="button" class="btn btn-success btn-sm">Compute
                                     </button>
-                                    <p>${{this.suggestion}}</p>
+                                    <p>Amount to pay: ${{this.suggestion}}</p>
                                 </div>
                                 <div class="form-group" v-if="this.isOk == 1">
                                     <label for="budget">Your Budget</label>
