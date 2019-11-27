@@ -4,6 +4,6 @@ My orders
 @stop
 @section('content')
     <div class="container-fluid" style="margin-top: 100px;">
-        <myorders></myorders>
+        <my-order></my-order>
     </div>
 @endsection
