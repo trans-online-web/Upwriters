@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Mail\ReceivedOrder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -9,6 +10,7 @@ use App\Task;
 use App\Files;
 use App\Subject;
 use App\Document;
+use Illuminate\Support\Facades\Mail;
 
 class TaskController extends Controller
 {
@@ -75,6 +77,8 @@ class TaskController extends Controller
                 $file->save();
             }
         }
+        $email = User::where('id',  $task)->value('email');
+          Mail::to($email)->send(new ReceivedOrder());
         return response(['status' => 'success'], 200);
     }
 
