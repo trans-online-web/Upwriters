@@ -73,6 +73,10 @@
                                                 <td>Your Budget</td>
                                                 <td><span>${{details.budget}}</span></td>
                                             </tr>
+                                            <tr>
+                                                <td>Agreed Price</td>
+                                                <td><span>${{details.budget}}</span></td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>

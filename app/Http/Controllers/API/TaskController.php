@@ -179,8 +179,15 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function agreedPrice(Request $request)
     {
-        //
+        $request->validate([
+            'price' => 'required',
+        ]);
+
+        $taskId = Task::where('orderNumber', $request->orderId)->value('id');
+        $task = Task::findOrFail($taskId);
+        $task->agreedAmount = $request->price;
+        $task->update();
     }
 }

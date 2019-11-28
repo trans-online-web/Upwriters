@@ -3243,6 +3243,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4671,6 +4675,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -4691,7 +4758,10 @@ __webpack_require__.r(__webpack_exports__);
       files: {},
       attachments: [],
       formf: new FormData(),
-      form: new Form({})
+      form: new Form({
+        price: '',
+        orderId: this.$route.params.orderId
+      })
     };
   },
   mounted: function mounted() {
@@ -4708,6 +4778,32 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    addPrice: function addPrice() {
+      var _this2 = this;
+
+      this.form.post('/api/agreed').then(function () {
+        Fire.$emit('entry');
+        toast.fire({
+          type: 'success',
+          title: 'added successfully'
+        });
+
+        _this2.form.reset();
+
+        $('#agreed').modal('hide');
+      })["catch"](function (error) {
+        _this2.errors = error.response.data.errors;
+        swal.fire({
+          type: 'error',
+          title: 'Error!!',
+          text: error.response.data.msg
+        });
+      });
+    },
+    agreedModal: function agreedModal() {
+      this.form.reset();
+      $('#agreed').modal('show');
+    },
     downloadCompleted: function downloadCompleted(id, path) {
       axios.get("/api/downloadcompleted/" + id, {
         responseType: 'blob'
@@ -4722,15 +4818,15 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getCompleted: function getCompleted() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get("/api/getcompleted/" + this.orderId).then(function (_ref) {
         var data = _ref.data;
-        return [_this2.completed = data];
+        return [_this3.completed = data];
       });
     },
     submit: function submit() {
-      var _this3 = this;
+      var _this4 = this;
 
       for (var i = 0; i < this.attachments.length; i++) {
         this.formf.append('files[]', this.attachments[i]);
@@ -4745,7 +4841,7 @@ __webpack_require__.r(__webpack_exports__);
         Fire.$emit('entry');
         $('#addnew').modal('hide');
 
-        _this3.form.reset();
+        _this4.form.reset();
 
         swal.fire({
           type: 'success',
@@ -4778,14 +4874,14 @@ __webpack_require__.r(__webpack_exports__);
       this.messages.push(message);
     },
     scrollToBottom: function scrollToBottom() {
-      var _this4 = this;
+      var _this5 = this;
 
       setTimeout(function () {
-        _this4.$refs.feed.scrollTop = _this4.$refs.feed.scrollHeight - _this4.$refs.feed.clientHeight;
+        _this5.$refs.feed.scrollTop = _this5.$refs.feed.scrollHeight - _this5.$refs.feed.clientHeight;
       }, 50);
     },
     sendMessage: function sendMessage() {
-      var _this5 = this;
+      var _this6 = this;
 
       console.log(this.orderId);
 
@@ -4798,9 +4894,9 @@ __webpack_require__.r(__webpack_exports__);
         OrderId: this.orderId,
         contact_id: this.users
       }).then(function (response) {
-        _this5.messages.push(response.data);
+        _this6.messages.push(response.data);
 
-        _this5.message = '';
+        _this6.message = '';
       });
     },
     download: function download(id, path) {
@@ -4817,51 +4913,51 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getDetails: function getDetails() {
-      var _this6 = this;
+      var _this7 = this;
 
       axios.get("/api/task/" + this.orderId).then(function (_ref2) {
         var data = _ref2.data;
-        return [_this6.details = data];
+        return [_this7.details = data];
       });
     },
     getFilesCount: function getFilesCount() {
-      var _this7 = this;
+      var _this8 = this;
 
       axios.get("/api/ifFiles/" + this.orderId).then(function (_ref3) {
         var data = _ref3.data;
-        return [_this7.filesCount = data];
+        return [_this8.filesCount = data];
       });
     },
     getFiles: function getFiles() {
-      var _this8 = this;
+      var _this9 = this;
 
       axios.get("/api/getFiles/" + this.orderId).then(function (_ref4) {
         var data = _ref4.data;
-        return [_this8.files = data];
+        return [_this9.files = data];
       });
     },
     getUser: function getUser() {
-      var _this9 = this;
+      var _this10 = this;
 
       if (this.$gate.isAdmin()) {
         axios.get("/api/getUser/" + this.orderId).then(function (_ref5) {
           var data = _ref5.data;
-          return [_this9.users = data];
+          return [_this10.users = data];
         });
       }
 
       if (this.$gate.isStudent()) {
         axios.get("/api/getAdmin/").then(function (_ref6) {
           var data = _ref6.data;
-          return [_this9.users = data.data];
+          return [_this10.users = data.data];
         });
       }
     },
     getMessages: function getMessages() {
-      var _this10 = this;
+      var _this11 = this;
 
       axios.get("/api/getMessage/" + this.orderId).then(function (response) {
-        return _this10.messages = response.data;
+        return _this11.messages = response.data;
       });
     }
   },
@@ -4876,7 +4972,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this11 = this;
+    var _this12 = this;
 
     this.getDetails();
     this.getFilesCount();
@@ -4885,7 +4981,9 @@ __webpack_require__.r(__webpack_exports__);
     this.getFiles();
     this.getCompleted();
     Fire.$on('entry', function () {
-      _this11.getCompleted();
+      _this12.getCompleted();
+
+      _this12.getDetails();
     });
   }
 });
@@ -101556,6 +101654,16 @@ var render = function() {
                                 _vm._v("$" + _vm._s(_vm.details.budget))
                               ])
                             ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("Agreed Price")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("span", [
+                                _vm._v("$" + _vm._s(_vm.details.budget))
+                              ])
+                            ])
                           ])
                         ])
                       ])
@@ -103466,6 +103574,36 @@ var render = function() {
                                     _vm._v("$" + _vm._s(_vm.details.budget))
                                   ])
                                 ])
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c("td", [_vm._v("Agreed Price")]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm.details.agreedAmount
+                                    ? _c("span", [
+                                        _vm._v(
+                                          "$" + _vm._s(_vm.details.agreedAmount)
+                                        )
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  !_vm.details.agreedAmount
+                                    ? _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-sm btn-primary",
+                                          attrs: { type: "button" },
+                                          on: { click: _vm.agreedModal }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "add\n                                                "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ])
                               ])
                             ])
                           ])
@@ -103638,7 +103776,11 @@ var render = function() {
                                     "aria-hidden": "true"
                                   }
                                 },
-                                [_vm._v("×")]
+                                [
+                                  _vm._v(
+                                    "×\n                                    "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _vm._m(7),
@@ -103761,7 +103903,11 @@ var render = function() {
                                     "aria-hidden": "true"
                                   }
                                 },
-                                [_vm._v("×")]
+                                [
+                                  _vm._v(
+                                    "×\n                                    "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _vm._m(13),
@@ -103810,13 +103956,16 @@ var render = function() {
                         },
                         [
                           _c("i", { staticClass: "fas fa-paper-plane" }),
-                          _vm._v(" Send message")
+                          _vm._v(
+                            " Send message\n                                "
+                          )
                         ]
                       )
                     ])
                   ])
                 ])
               ]),
+              _vm._v(" "),
               _c("hr"),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
@@ -103855,6 +104004,7 @@ var render = function() {
                                   _vm._v(_vm._s(message.text))
                                 ]),
                                 _c("br"),
+                                _vm._v(" "),
                                 _c("small", { staticClass: "date" }, [
                                   _vm._v(
                                     _vm._s(_vm._f("myDate")(message.created_at))
@@ -103920,6 +104070,97 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _vm._m(15)
+                    ]
+                  )
+                ])
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "agreed",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "addnewLabel",
+              "aria-hidden": "true"
+            }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "modal-dialog", attrs: { role: "document" } },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _vm._m(16),
+                  _vm._v(" "),
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.addPrice()
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "modal-body" }, [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("label", { attrs: { for: "price" } }, [
+                              _vm._v("Agreed Price")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.price,
+                                  expression: "form.price"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: {
+                                "is-invalid": _vm.form.errors.has("price")
+                              },
+                              attrs: {
+                                type: "number",
+                                name: "agreed",
+                                id: "price",
+                                placeholder: "price"
+                              },
+                              domProps: { value: _vm.form.price },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "price",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("has-error", {
+                              attrs: { form: _vm.form, field: "price" }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(17)
                     ]
                   )
                 ])
@@ -104159,6 +104400,53 @@ var staticRenderFns = [
           _vm._v(
             "\n                            Upload\n                        "
           )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title", attrs: { id: "addnewLabel" } }, [
+        _vm._v("Agreed Price")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [
+          _c("i", { staticClass: "fas fa-save" }),
+          _vm._v("\n                            Save\n                        ")
         ]
       )
     ])
@@ -123603,8 +123891,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\mihz\Desktop\web\Upwriters\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\mihz\Desktop\web\Upwriters\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /opt/lampp/htdocs/Transonline/Up/Upwriters/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/Transonline/Up/Upwriters/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
