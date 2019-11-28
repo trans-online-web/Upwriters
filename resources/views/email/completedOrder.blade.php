@@ -181,15 +181,15 @@
                             <!-- Body content -->
                             <tr>
                                 <td class="content-cell">
-                                    <h1>Your Order has been Received </h1>
+                                    <h1>Your Order has been Completed </h1>
                                     <!-- Action -->
                                     <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                                         <tr>
                                             <td align="center">
                                                 <div>
                                                     <h5>Dear <i>{{ $data['name'] }}</i></h5>,
-                                                    <p>We are glad to inform you that your assignment<b>'{{ $data['title'] }}'</b> order number <b>{{ $data['orderNo'] }}</b>  on  <b>{{ $data['subject'] }}</b> has been accepted into our system and is being evaluated by our experts.</p>
-                                                    <p>We are doing our best to define the cost of the assignment as quickly as possible. Usually it takes about 20 minutes. This time allows us to study the assignment most carefully and provide a very precise estimation.</p>
+                                                    <p>We are glad to inform you that your assignment  <b>'{{ $data['title'] }}'</b> order number <b>{{ $data['orderNo'] }}</b>  on  <b>{{ $data['subject'] }}</b> has been Completed and  it is ready for download.</p>
+                                                    <p>Login into your account and  download the completed assignment.</p>
                                                     Thank You,
                                                     <br/>
                                                     <i>Regards UpWriters.net</i>

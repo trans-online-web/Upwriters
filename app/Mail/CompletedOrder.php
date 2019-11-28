@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ReceivedOrder extends Mailable
+class CompletedOrder extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -18,7 +18,7 @@ class ReceivedOrder extends Mailable
      */
     public function __construct($data)
     {
-       $this->data = $data;
+        $this->data = $data;
     }
 
     /**
@@ -28,6 +28,6 @@ class ReceivedOrder extends Mailable
      */
     public function build()
     {
-        return $this->view('email.ReceivedOrder');
+        return $this->view('email.completedOrder');
     }
 }

@@ -24,7 +24,8 @@
                                     <!-- /.box-header -->
                                     <div class="box-body no-padding table-responsive p-0">
                                         <table class="table table-striped">
-                                            <tbody><tr>
+                                            <tbody>
+                                            <tr>
                                                 <th>Title</th>
                                                 <th style="width: 40px">Details</th>
                                             </tr>
@@ -38,7 +39,10 @@
                                             </tr>
                                             <tr>
                                                 <td>Subject</td>
-                                                <td><span>{{details.subject_name}}</span></td>
+                                                <td>
+                                                    <span v-if="details.other_subject">{{details.subject_name}}({{details.other_subject}})</span>
+                                                    <span v-if="!details.other_subject">{{details.subject_name}}</span>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Document Type</td>
@@ -50,7 +54,8 @@
                                             </tr>
                                             <tr>
                                                 <td>Deadline</td>
-                                                <td><i class="fa fa-clock-o mr-1"></i><span>{{details.deadline_datetime}}</span></td>
+                                                <td><i class="fa fa-clock-o mr-1"></i><span>{{details.deadline_datetime}}</span>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Spacing</td>
@@ -68,7 +73,8 @@
                                                 <td>Your Budget</td>
                                                 <td><span>${{details.budget}}</span></td>
                                             </tr>
-                                            </tbody></table>
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <!-- /.box-body -->
                                 </div>
@@ -79,15 +85,21 @@
                                     <div class="box-header">
                                         <h5 class="box-title">Files Attached</h5>
                                         <div class="box-tools">
-                                            <button class="btn btn-primary btn-sm" @click="newModal"><i class="fas fa-paperclip"></i>Add Files</button>
+                                            <button class="btn btn-primary btn-sm mb-2" @click="newModal"><i
+                                                    class="fas fa-paperclip"></i>Add Files
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="box-body" v-if="this.filesCount > 0" style="padding-top: 10px;">
                                         <div class="row">
-                                            <div class="col-md-6 col-sm-6 col-xs-12" v-for="file in files" :key="file.id">
-                                                <a href="#" @click="download(file.id, file.path)">
+                                            <div class="col-md-6 col-sm-6 col-xs-12" v-for="file in files"
+                                                 :key="file.id">
+                                                <a href="#" @click.prevent="download(file.id, file.path)">
                                                     <div class="info-box">
-                                                        <span class="info-box-icon" style="background-color: #a60de2;"><i class="fas fa-download" style="color: white;"></i></span>
+                                                        <span class="info-box-icon"
+                                                              style="background-color: #a60de2;"><i
+                                                                class="fas fa-download"
+                                                                style="color: white;"></i></span>
 
                                                         <div class="info-box-content">
                                                             <span class="info-box-text">Download</span>
@@ -100,7 +112,8 @@
                                         </div>
                                     </div>
                                     <div class="alert alert-warning alert-dismissible" v-if="this.filesCount == 0">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
+                                        </button>
                                         <h5><i class="icon fa fa-ban"></i> Alert!</h5>
                                         No files attached!!
                                     </div>
@@ -111,10 +124,14 @@
                                     </div>
                                     <div class="box-body" v-if="this.filesCount > 0" style="padding-top: 10px;">
                                         <div class="row">
-                                            <div class="col-md-6 col-sm-6 col-xs-12" v-for="complete in completed" :key="complete.id">
-                                                <a href="#" @click="downloadCompleted(complete.id, complete.path)">
+                                            <div class="col-md-6 col-sm-6 col-xs-12" v-for="complete in completed"
+                                                 :key="complete.id">
+                                                <a href="#" @click.prevent="downloadCompleted(complete.id, complete.path)">
                                                     <div class="info-box">
-                                                        <span class="info-box-icon" style="background-color: #31d125;"><i class="fas fa-download" style="color: white;"></i></span>
+                                                        <span class="info-box-icon"
+                                                              style="background-color: #31d125;"><i
+                                                                class="fas fa-download"
+                                                                style="color: white;"></i></span>
 
                                                         <div class="info-box-content">
                                                             <span class="info-box-text">Download</span>
@@ -127,7 +144,8 @@
                                         </div>
                                     </div>
                                     <div class="alert alert-warning alert-dismissible" v-if="this.filesCount == 0">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
+                                        </button>
                                         <h5><i class="icon fa fa-ban"></i> Alert!</h5>
                                         No files attached!!
                                     </div>
@@ -137,24 +155,30 @@
                         <div class="row justify-content-center">
                             <div class="col-md-12">
                                 <div class="card-body composer">
-                                    <textarea v-model="message"  placeholder="Write your question here..."></textarea><br>
+                                    <textarea v-model="message"
+                                              placeholder="Write your question here..."></textarea><br>
                                     <div class="col-md-10">
-                                        <button class="btn btn-success btn-md pull-left"  @click="sendMessage"><i class="fas fa-paper-plane"></i>&nbsp;Send message</button>
-                                        <button class="btn btn-primary btn-md pull-right" @click="newModal"><i class="fas fa-paperclip"></i>&nbsp;Add Files</button>
+                                        <button class="btn btn-success btn-md pull-left" @click="sendMessage"><i
+                                                class="fas fa-paper-plane"></i>&nbsp;Send message
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                        </div><hr>
+                        </div>
+                        <hr>
                         <div class="row">
-                            <div class="card-body conversation" >
+                            <div class="card-body conversation">
                                 <h1>Messages</h1>
                                 <div class=" badge badge-pill badge-primary">{{typing}}</div>
                                 <div class="card-body feed" ref="feed">
                                     <ul>
 
-                                        <li v-for="message in messages" :class="`message${message.to == users ? ' sent' : ' received'}`" :key="message.id">
+                                        <li v-for="message in messages"
+                                            :class="`message${message.to == users ? ' sent' : ' received'}`"
+                                            :key="message.id">
                                             <div class="text">
-                                                <span class="messo">{{ message.text }}</span><br/><small class="date">{{message.created_at | myDate}}</small>
+                                                <span class="messo">{{ message.text }}</span><br/>
+                                                <small class="date">{{message.created_at | myDate}}</small>
                                             </div>
                                         </li>
                                     </ul>
@@ -165,7 +189,8 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="addnewLabel" aria-hidden="true">
+        <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="addnewLabel"
+             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -194,50 +219,49 @@
 
 <script>
     export default {
-        data(){
-            return{
+        data() {
+            return {
                 message: '',
-                typing:'',
-                user : {},
-                users : {},
-                messages:[],
+                typing: '',
+                user: {},
+                users: {},
+                messages: [],
                 orderId: this.$route.params.orderId,
                 details: {},
                 filesCount: {},
                 files: {},
                 completed: {},
-                attachments:[],
-                unreadIds:{},
+                attachments: [],
+                unreadIds: {},
                 formf: new FormData(),
-                form: new Form({
-                })
+                form: new Form({})
             }
         },
 
         mounted() {
             Echo.private(`message.${user['id']}`)
-                .listen('ChatEvent',(e)=>{
+                .listen('ChatEvent', (e) => {
                     this.messages.push(e.message);
                 })
                 .listenForWhisper('typing', (e) => {
-                    if(e.name != ''){
-                        this.typing ='typing..'
-                    }else{
+                    if (e.name != '') {
+                        this.typing = 'typing..'
+                    } else {
                         this.typing = ''
                     }
                 });
         },
-        methods:{
+        methods: {
             handleIncoming(message) {
                 this.messages.push(message);
 
             },
-            scrollToBottom(){
-                setTimeout(()=>{
+            scrollToBottom() {
+                setTimeout(() => {
                     this.$refs.feed.scrollTop = this.$refs.feed.scrollHeight - this.$refs.feed.clientHeight;
-                },50);
+                }, 50);
             },
-            saveNewMessage(message){
+            saveNewMessage(message) {
                 this.messages.push(message);
             },
             downloadCompleted(id, path) {
@@ -252,17 +276,17 @@
                         fileLink.click();
                     });
             },
-            getCompleted(){
-                axios.get("/api/getcompleted/" + this.orderId).then(({ data }) => ([this.completed = data]));
+            getCompleted() {
+                axios.get("/api/getcompleted/" + this.orderId).then(({data}) => ([this.completed = data]));
             },
-            submit(){
-                for(let i=0; i<this.attachments.length;i++){
-                    this.formf.append('files[]',this.attachments[i]);
+            submit() {
+                for (let i = 0; i < this.attachments.length; i++) {
+                    this.formf.append('files[]', this.attachments[i]);
                 }
 
-                const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+                const config = {headers: {'Content-Type': 'multipart/form-data'}};
 
-                axios.post('/api/addFiles/' + this.orderId,this.formf,config).then(response=>{
+                axios.post('/api/addFiles/' + this.orderId, this.formf, config).then(response => {
                     Fire.$emit('entry');
                     $('#addnew').modal('hide');
                     this.form.reset();
@@ -274,43 +298,43 @@
                     })
 
                 })
-                    .catch(response=>{
+                    .catch(response => {
                         //error
                     });
             },
-            send(e){
+            send(e) {
 
-                if(this.message == ''){
+                if (this.message == '') {
                     return;
                 }
-                this.$emit('send',this.message);
+                this.$emit('send', this.message);
                 this.message = '';
             },
             sendMessage(e) {
                 e.preventDefault();
-                if ( this.message == '') {
+                if (this.message == '') {
                     return;
                 }
                 axios.post('/api/messenger/send', {
                     text: this.message,
-                    OrderId : this.orderId,
-                    contact_id : this.users,
+                    OrderId: this.orderId,
+                    contact_id: this.users,
                 }).then((response) => {
                     this.messages.push(response.data);
                     this.message = '';
                 })
             },
-            fieldChange(e){
-                let selectedFiles=e.target.files;
-                if(!selectedFiles.length){
+            fieldChange(e) {
+                let selectedFiles = e.target.files;
+                if (!selectedFiles.length) {
                     return false;
                 }
-                for(let i=0;i<selectedFiles.length;i++){
+                for (let i = 0; i < selectedFiles.length; i++) {
                     this.attachments.push(selectedFiles[i]);
                 }
                 console.log(this.attachments);
             },
-            newModal(){
+            newModal() {
                 this.form.reset();
                 $("#files").val('');
                 this.attachments = [];
@@ -328,32 +352,32 @@
                         fileLink.click();
                     });
             },
-            getDetails(){
-                axios.get("/api/task/" + this.orderId).then(({ data }) => ([this.details = data]));
+            getDetails() {
+                axios.get("/api/task/" + this.orderId).then(({data}) => ([this.details = data]));
             },
 
-            getFilesCount(){
-                axios.get("/api/ifFiles/" + this.orderId).then(({ data }) => ([this.filesCount = data]));
+            getFilesCount() {
+                axios.get("/api/ifFiles/" + this.orderId).then(({data}) => ([this.filesCount = data]));
             },
 
-            getFiles(){
-                axios.get("/api/getFiles/" + this.orderId).then(({ data }) => ([this.files = data]));
+            getFiles() {
+                axios.get("/api/getFiles/" + this.orderId).then(({data}) => ([this.files = data]));
             },
-            getThisUser(){
-                axios.get("/api/getThisUser/" + this.orderId).then(({ data }) => ([this.user = data]));
+            getThisUser() {
+                axios.get("/api/getThisUser/" + this.orderId).then(({data}) => ([this.user = data]));
             },
-            getMessages(){
+            getMessages() {
                 axios.get("/api/getMessage/" + this.orderId).then((response) => (this.messages = response.data));
             },
-            getUser(){
-                axios.get("/api/getAdmin/").then(({ data }) => ([this.users = data]));
+            getUser() {
+                axios.get("/api/getAdmin/").then(({data}) => ([this.users = data]));
             },
-            getUnread(){
+            getUnread() {
                 axios.get("/api/unread/" + this.orderId).then((response) => (this.unreadIds = response['unread']));
             },
         },
         watch: {
-            messages(messages){
+            messages(messages) {
                 this.scrollToBottom();
             },
             message() {
@@ -371,12 +395,12 @@
             this.getThisUser();
             this.getMessages();
             this.getCompleted();
-            Fire.$on('entry', () =>{
+            Fire.$on('entry', () => {
                 this.getDetails();
                 this.getFilesCount();
                 this.getFiles();
                 this.getUser();
-                this. getMessages();
+                this.getMessages();
                 this.getThisUser();
             })
         }
@@ -390,12 +414,14 @@
         border: 1px solid lightgray;
         padding: 6px;
     }
+
     .conversation {
         overflow-y: scroll;
         flex: 5;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
         h1 {
             font-size: 20px;
             padding: 10px;
@@ -403,40 +429,50 @@
             border-bottom: 1px dashed lightgray;
         }
     }
-    .messo{
+
+    .messo {
         font-size: 15px;
-        font-weight:700;
+        font-weight: 700;
     }
-    .date{
-        color:#9e9e9e;
-        font-weight:700;
+
+    .date {
+        color: #9e9e9e;
+        font-weight: 700;
     }
+
     .feed {
         background: #f0f0f0;
         height: 100%;
         max-height: 470px;
         overflow: scroll;
+
         ul {
             list-style-type: none;
             padding: 5px;
+
             li {
                 &.message {
                     margin: 10px 0;
                     width: 100%;
+
                     .text {
                         max-width: 400px;
                         border-radius: 5px;
                         padding: 12px;
                         display: inline-block;
                     }
+
                     &.received {
                         text-align: right;
+
                         .text {
                             background: #00e676;
                         }
                     }
+
                     &.sent {
                         text-align: left;
+
                         .text {
                             background: #81c4f9;
                         }

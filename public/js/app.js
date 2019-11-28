@@ -3218,6 +3218,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3472,13 +3497,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3905,6 +3923,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3928,6 +3956,7 @@ __webpack_require__.r(__webpack_exports__);
       e_pages: '',
       isOk: '',
       diff: '',
+      state: false,
       formf: new FormData(),
       form: new Form({
         title: '',
@@ -3940,7 +3969,8 @@ __webpack_require__.r(__webpack_exports__);
         time: '',
         task: '',
         budget: '',
-        format: ''
+        format: '',
+        other_subject: ''
       })
     };
   },
@@ -4010,6 +4040,12 @@ __webpack_require__.r(__webpack_exports__);
         // set(type, 'required');
         this.form.errors.set({
           subject: 'This field is required'
+        });
+        return false;
+      } else if (this.form.subject == 'Other' && !this.form.other_subject) {
+        // set(type, 'required');
+        this.form.errors.set({
+          other_subject: 'This field is required'
         });
         return false;
       } else if (!this.form.type) {
@@ -4313,6 +4349,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       this.getDiff();
+      this.state = true;
 
       for (var i = 0; i < this.attachments.length; i++) {
         this.formf.append('files[]', this.attachments[i]);
@@ -4321,6 +4358,7 @@ __webpack_require__.r(__webpack_exports__);
       this.formf.append('title', this.form.title);
       this.formf.append('level', this.form.level);
       this.formf.append('subject', this.form.subject);
+      this.formf.append('other_subject', this.form.other_subject);
       this.formf.append('type', this.form.type);
       this.formf.append('pages', this.form.pages);
       this.formf.append('spacing', this.form.spacing);
@@ -4344,6 +4382,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.form.reset();
 
         _this4.attachments = [];
+        _this4.state = false;
         swal.fire({
           type: 'success',
           title: 'Submited!!',
@@ -4384,6 +4423,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5100,6 +5147,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -101418,9 +101472,22 @@ var render = function() {
                             _c("td", [_vm._v("Subject")]),
                             _vm._v(" "),
                             _c("td", [
-                              _c("span", [
-                                _vm._v(_vm._s(_vm.details.subject_name))
-                              ])
+                              _vm.details.other_subject
+                                ? _c("span", [
+                                    _vm._v(
+                                      _vm._s(_vm.details.subject_name) +
+                                        "(" +
+                                        _vm._s(_vm.details.other_subject) +
+                                        ")"
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              !_vm.details.other_subject
+                                ? _c("span", [
+                                    _vm._v(_vm._s(_vm.details.subject_name))
+                                  ])
+                                : _vm._e()
                             ])
                           ]),
                           _vm._v(" "),
@@ -101508,12 +101575,14 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-primary btn-sm",
+                          staticClass: "btn btn-primary btn-sm mb-2",
                           on: { click: _vm.newModal }
                         },
                         [
                           _c("i", { staticClass: "fas fa-paperclip" }),
-                          _vm._v("Add Files")
+                          _vm._v(
+                            "Add Files\n                                        "
+                          )
                         ]
                       )
                     ])
@@ -101544,6 +101613,7 @@ var render = function() {
                                       attrs: { href: "#" },
                                       on: {
                                         click: function($event) {
+                                          $event.preventDefault()
                                           return _vm.download(
                                             file.id,
                                             file.path
@@ -101579,7 +101649,7 @@ var render = function() {
                                 "aria-hidden": "true"
                               }
                             },
-                            [_vm._v("×")]
+                            [_vm._v("×\n                                    ")]
                           ),
                           _vm._v(" "),
                           _vm._m(4),
@@ -101619,6 +101689,7 @@ var render = function() {
                                       attrs: { href: "#" },
                                       on: {
                                         click: function($event) {
+                                          $event.preventDefault()
                                           return _vm.downloadCompleted(
                                             complete.id,
                                             complete.path
@@ -101654,7 +101725,7 @@ var render = function() {
                                 "aria-hidden": "true"
                               }
                             },
-                            [_vm._v("×")]
+                            [_vm._v("×\n                                    ")]
                           ),
                           _vm._v(" "),
                           _vm._m(7),
@@ -101702,25 +101773,16 @@ var render = function() {
                       },
                       [
                         _c("i", { staticClass: "fas fa-paper-plane" }),
-                        _vm._v(" Send message")
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary btn-md pull-right",
-                        on: { click: _vm.newModal }
-                      },
-                      [
-                        _c("i", { staticClass: "fas fa-paperclip" }),
-                        _vm._v(" Add Files")
+                        _vm._v(
+                          " Send message\n                                    "
+                        )
                       ]
                     )
                   ])
                 ])
               ])
             ]),
+            _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
@@ -101749,6 +101811,7 @@ var render = function() {
                               _vm._v(_vm._s(message.text))
                             ]),
                             _c("br"),
+                            _vm._v(" "),
                             _c("small", { staticClass: "date" }, [
                               _vm._v(
                                 _vm._s(_vm._f("myDate")(message.created_at))
@@ -102020,15 +102083,13 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.orders, function(order) {
                     return _c("tr", { key: order.id }, [
-                      _c("td", [_vm._v("#" + _vm._s(order.id))]),
+                      _c("td", [_vm._v("#" + _vm._s(order.orderNumber))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(order.title))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(order.subject_name))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(order.status))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(order.subject_name))]),
                       _vm._v(" "),
                       _c("td", [
                         _c("i", { staticClass: "fa fa-clock-o mr-1" }),
@@ -102043,30 +102104,11 @@ var render = function() {
                           {
                             staticClass: "btn btn-primary btn-sm",
                             attrs: {
-                              href: "/myorderdetails/" + order.id,
+                              href: "/myorderdetails/" + order.orderNumber,
                               type: "button"
                             }
                           },
                           [_vm._v("More")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteorder(order.id)
-                              }
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fa fa-pen p-1 text-danger"
-                            })
-                          ]
                         )
                       ])
                     ])
@@ -102219,7 +102261,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Order Id")]),
+        _c("th", [_vm._v("Order#")]),
         _vm._v(" "),
         _c("th", [_vm._v("Topic")]),
         _vm._v(" "),
@@ -102229,9 +102271,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Deadline")]),
         _vm._v(" "),
-        _c("th", [_vm._v("More")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Action")])
+        _c("th", [_vm._v("More")])
       ])
     ])
   },
@@ -102743,7 +102783,63 @@ var render = function() {
                           })
                         ],
                         1
-                      )
+                      ),
+                      _vm._v(" "),
+                      this.form.subject == "Other"
+                        ? _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("label", { attrs: { for: "other_subject" } }, [
+                                _vm._v("Input Your Subject")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.other_subject,
+                                    expression: "form.other_subject"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has(
+                                    "other_subject"
+                                  )
+                                },
+                                attrs: {
+                                  type: "text",
+                                  name: "other_subject",
+                                  id: "other_subject",
+                                  placeholder: "Your Subject"
+                                },
+                                domProps: { value: _vm.form.other_subject },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "other_subject",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: {
+                                  form: _vm.form,
+                                  field: "other_subject"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
@@ -103117,7 +103213,7 @@ var render = function() {
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "files" } }, [
                       _vm._v(
-                        "Upload Files (.xlsx, .xls, images, .doc, .docx,.ppt, .pptx, .pdf, .zip ONLY)"
+                        "Upload Files (.xlsx, .xls, images, .doc, .docx,.ppt, .pptx, .pdf,\n                                    .zip ONLY)"
                       )
                     ]),
                     _vm._v(" "),
@@ -103253,7 +103349,7 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-success",
-                          attrs: { type: "submit" },
+                          attrs: { type: "submit", disabled: _vm.state },
                           on: {
                             click: function($event) {
                               return _vm.lastValidation()
@@ -103312,7 +103408,7 @@ var render = function() {
     ? _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row justify-content-center" }, [
           _c("div", { staticClass: "col-md-12" }, [
-            _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card mt-4" }, [
               _vm._m(0),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
@@ -103506,6 +103602,7 @@ var render = function() {
                                         attrs: { href: "#" },
                                         on: {
                                           click: function($event) {
+                                            $event.preventDefault()
                                             return _vm.download(
                                               file.id,
                                               file.path
@@ -103627,6 +103724,7 @@ var render = function() {
                                           attrs: { href: "#" },
                                           on: {
                                             click: function($event) {
+                                              $event.preventDefault()
                                               return _vm.downloadCompleted(
                                                 complete.id,
                                                 complete.path
@@ -103838,7 +103936,22 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Order Details")])
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Order Details")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" }, [
+        _c("a", { attrs: { href: "/orders" } }, [
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", attrs: { type: "button" } },
+            [
+              _c("i", { staticClass: "fa fa-hand-point-left" }),
+              _vm._v(
+                "\n                                Back\n                            "
+              )
+            ]
+          )
+        ])
+      ])
     ])
   },
   function() {
@@ -104461,6 +104574,8 @@ var render = function() {
                       "tbody",
                       _vm._l(_vm.orders.data, function(order) {
                         return _c("tr", { key: order.id }, [
+                          _c("td", [_vm._v(_vm._s(order.orderNumber))]),
+                          _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(order.name))]),
                           _vm._v(" "),
                           _c("td", [
@@ -104521,11 +104636,17 @@ var render = function() {
                                 {
                                   staticClass: "btn btn-primary btn-sm",
                                   attrs: {
-                                    to: { path: "/orderdetails/" + order.id },
+                                    to: {
+                                      path: "/orderdetails/" + order.orderNumber
+                                    },
                                     type: "button"
                                   }
                                 },
-                                [_vm._v("More")]
+                                [
+                                  _vm._v(
+                                    "More\n                                    "
+                                  )
+                                ]
                               )
                             ],
                             1
@@ -104694,6 +104815,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
+        _c("th", [_vm._v("Order#")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
@@ -121742,8 +121865,8 @@ if (token) {
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "13fbb2237f308a46b5e2",
-  cluster: "ap2",
+  key: "",
+  cluster: "mt1",
   encrypted: true
 });
 
@@ -123480,8 +123603,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Upwriters\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Upwriters\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\mihz\Desktop\web\Upwriters\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\mihz\Desktop\web\Upwriters\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

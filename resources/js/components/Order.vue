@@ -82,6 +82,14 @@
                                             </select>
                                             <has-error :form="form" field="subject"></has-error>
                                         </div>
+                                        <div class="form-group" v-if="this.form.subject == 'Other'">
+                                            <label for="other_subject">Input Your Subject</label>
+                                            <input v-model="form.other_subject" type="text" class="form-control" name="other_subject"
+                                                   id="other_subject"
+                                                   placeholder="Your Subject"
+                                                   :class="{ 'is-invalid': form.errors.has('other_subject') }">
+                                            <has-error :form="form" field="other_subject"></has-error>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -143,7 +151,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Format</label>
-                                            <select v-model="form.format" class="form-control" :class="{ 'is-invalid': form.errors.has('format') }">
+                                            <select v-model="form.format" class="form-control"
+                                                    :class="{ 'is-invalid': form.errors.has('format') }">
                                                 <option selected value="">--Select Format--</option>
                                                 <option value="APA">APA</option>
                                                 <option value="MLA">MLA</option>
@@ -165,7 +174,8 @@
                                 </div>
                                 <hr>
                                 <div class="form-group">
-                                    <label for="files">Upload Files (.xlsx, .xls, images, .doc, .docx,.ppt, .pptx, .pdf, .zip ONLY)</label>
+                                    <label for="files">Upload Files (.xlsx, .xls, images, .doc, .docx,.ppt, .pptx, .pdf,
+                                        .zip ONLY)</label>
                                     <input type="file" multiple class="form-control-file" @change="fieldChange"
                                            id="files" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.pdf,.zip">
                                 </div>
@@ -200,7 +210,7 @@
 
                             </div>
                             <div class="modal-footer" v-if="this.isOk == 1">
-                                <button type="submit" class="btn btn-success" @click="lastValidation()">
+                                <button type="submit" class="btn btn-success" @click="lastValidation()" :disabled="state">
                                     <i class="fa fa-send"></i>
                                     Submit
                                 </button>
@@ -238,6 +248,7 @@
                 e_pages: '',
                 isOk: '',
                 diff: '',
+                state: false,
                 formf: new FormData(),
                 form: new Form({
                     title: '',
@@ -250,18 +261,19 @@
                     time: '',
                     task: '',
                     budget: '',
-                    format: ''
+                    format: '',
+                    other_subject: ''
                 })
             }
         },
         methods: {
-            lastValidation(){
+            lastValidation() {
                 if (!this.form.budget) {
                     this.form.errors.set({
                         budget: 'This field is required'
                     })
                     return false;
-                }else {
+                } else {
                     this.submit();
                 }
             },
@@ -307,7 +319,13 @@
                         subject: 'This field is required'
                     })
                     return false;
-                }else if (!this.form.type) {
+                }else if (this.form.subject == 'Other' && !this.form.other_subject) {
+                    // set(type, 'required');
+                    this.form.errors.set({
+                        other_subject: 'This field is required'
+                    })
+                    return false;
+                } else if (!this.form.type) {
                     // set(type, 'required');
                     this.form.errors.set({
                         type: 'This field is required'
@@ -325,7 +343,7 @@
                 } else if (!this.form.pages) {
                     this.e_pages = "This field is required";
                     return false;
-                }else if (!this.form.format) {
+                } else if (!this.form.format) {
                     this.e_date = "";
                     this.form.errors.set({
                         format: 'This field is required'
@@ -609,12 +627,14 @@
             },
             submit() {
                 this.getDiff();
+                this.state = true;
                 for (let i = 0; i < this.attachments.length; i++) {
                     this.formf.append('files[]', this.attachments[i]);
                 }
                 this.formf.append('title', this.form.title);
                 this.formf.append('level', this.form.level);
                 this.formf.append('subject', this.form.subject);
+                this.formf.append('other_subject', this.form.other_subject);
                 this.formf.append('type', this.form.type);
                 this.formf.append('pages', this.form.pages);
                 this.formf.append('spacing', this.form.spacing);
@@ -634,6 +654,7 @@
                     $("#files").val('');
                     this.form.reset();
                     this.attachments = [];
+                    this.state = false;
                     swal.fire({
                         type: 'success',
                         title: 'Submited!!',

@@ -2,9 +2,17 @@
     <div class="container" v-if="$gate.isAdmin()">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card mt-4">
                     <div class="card-header">
                         <h3 class="card-title">Order Details</h3>
+                        <div class="card-tools">
+                            <a href="/orders">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fa fa-hand-point-left"></i>
+                                    Back
+                                </button>
+                            </a>
+                        </div>
                     </div>
 
                     <div class="card-body">
@@ -100,7 +108,7 @@
                                     <div class="box-body" v-if="this.filesCount > 0">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 col-xs-12" v-for="file in files" :key="file.id">
-                                                <a href="#" @click="download(file.id, file.path)">
+                                                <a href="#" @click.prevent="download(file.id, file.path)">
                                                     <div class="info-box">
                                                         <span class="info-box-icon" style="background-color: purple;"><i class="fas fa-download" style="color: white;"></i></span>
 
@@ -156,7 +164,7 @@
                                     <div class="box-body" v-if="this.filesCount > 0" style="padding-top: 10px;">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 col-xs-12" v-for="complete in completed" :key="complete.id">
-                                                <a href="#" @click="downloadCompleted(complete.id, complete.path)">
+                                                <a href="#" @click.prevent="downloadCompleted(complete.id, complete.path)">
                                                     <div class="info-box">
                                                         <span class="info-box-icon" style="background-color: #31d125;"><i class="fas fa-download" style="color: white;"></i></span>
 

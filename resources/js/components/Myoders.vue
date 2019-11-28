@@ -15,30 +15,23 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Order Id</th>
+                                    <th>Order#</th>
                                     <th>Topic</th>
                                     <th>Subject</th>
                                     <th>Status</th>
                                     <th>Deadline</th>
                                     <th>More</th>
-                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr v-for="order in orders" :key="order.id">
-                                    <td>#{{order.id}}</td>
+                                    <td>#{{order.orderNumber}}</td>
                                     <td>{{order.title}}</td>
                                     <td>{{order.subject_name}}</td>
                                     <td>{{order.status}}</td>
-                                    <td>{{order.subject_name}}</td>
                                     <td><i class="fa fa-clock-o mr-1"></i>{{order.deadline_datetime | myDate}}</td>
                                     <td>
-                                        <a :href="'/myorderdetails/'+ order.id" type="button" class="btn btn-primary btn-sm">More</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" @click="deleteorder(order.id)">
-                                            <i class="fa fa-pen p-1 text-danger"></i>
-                                        </a>
+                                        <a :href="'/myorderdetails/'+ order.orderNumber" type="button" class="btn btn-primary btn-sm">More</a>
                                     </td>
                                 </tr>
                                 </tbody>
