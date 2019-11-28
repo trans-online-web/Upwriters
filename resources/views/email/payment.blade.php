@@ -164,6 +164,9 @@
     </style>
 </head>
 <body>
+<script
+    src="https://www.paypal.com/sdk/js?client-id=AS6QEAQNlytAzvFYVgxVUAOSzGSV-Bkii7nn8cbVmMtK4jAOAwgcq86nPGUKT_R-01NVk1GDt_P0REGb"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+</script>
 <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0">
     <tr>
         <td align="center">
@@ -188,8 +191,9 @@
                                             <td align="center">
                                                 <div>
                                                     <h5>Dear <i>{{ $data['name'] }}</i></h5>,
-                                                    <p>You can now settle the agreed compensation on the assignment<b>'{{ $data['title'] }}'</b> order number <b>{{ $data['orderNo'] }}</b>  on  <b>{{ $data['subject'] }}</b> .</p>
-                                                    <p>Click the link below to settle the payment so as to allow our exxperts to start working on the assignment.</p>
+                                                    <p>You can now settle the agreed compensation on the assignment  <b>'{{ $data['title'] }}'</b> order number <b>{{ $data['orderNo'] }}</b>  on  <b>{{ $data['subject'] }}</b> .</p>
+                                                    <p>Click the link below to settle the payment so as to allow our experts to start working on the assignment.</p>
+                                                    <div id="paypal-button-container">Paypal</div>
                                                     Thank You,
                                                     <br/>
                                                     <i>Regards UpWriters.net</i>
@@ -218,7 +222,6 @@
         </td>
     </tr>
 </table>
-</body>
 <script>
     paypal.Buttons({
         createOrder: function(data, actions) {
@@ -233,4 +236,6 @@
         }
     }).render('#paypal-button-container');
 </script>
+</body>
+
 </html>

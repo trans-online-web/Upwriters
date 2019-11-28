@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Mail\OrderPayment;
 use App\Mail\ReceivedOrder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -199,5 +200,15 @@ class TaskController extends Controller
         $task = Task::findOrFail($taskId);
         $task->agreedAmount = $request->price;
         $task->update();
+
+        $email = Task::where('orderNumber', $request->orderId)->value('email');
+        $data = array(
+            'name' => Task::where('orderNumber', $request->orderId)->value('name'),
+            'title' => Task::where('orderNumber', $request->orderId)->value('title'),
+            'subject'=>Task::where('orderNumber', $request->orderId)->value('subject_name'),
+            'orderNo' =>  $request->orderId,
+            'amount'=>$request->price
+        );
+        Mail::to($email)->send(new OrderPayment($data));
     }
 }
