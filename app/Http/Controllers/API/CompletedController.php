@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use App\Files;
+use App\Mail\CompletedOrder;
+use App\Mail\ReceivedOrder;
+use App\Task;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Completed;
+use Illuminate\Support\Facades\Mail;
 
 class CompletedController extends Controller
 {
@@ -46,6 +51,14 @@ class CompletedController extends Controller
                 $file->save();
             }
         }
+        $email = Task::where('orderNumber',$orderId)->value('email');
+        $data = array(
+            'name' => Task::where('orderNumber',$orderId)->value('name'),
+            'title' => Task::where('orderNumber',$orderId)->value('title'),
+            'subject'=>Task::where('orderNumber',$orderId)->value('subject_name'),
+            'orderNo' => $orderId,
+        );
+        Mail::to($email)->send(new CompletedOrder($data));
         return response(['status' => 'success'], 200);
     }
 
@@ -53,7 +66,7 @@ class CompletedController extends Controller
     {
         // echo $path;
         $path = Completed::where('id', $id)->value('path');
-        
+
         return response()->download(storage_path('app/' . $path));
     }
 
