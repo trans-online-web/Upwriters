@@ -22,8 +22,9 @@ class SubjectController extends Controller
     {
         if(auth()->user()->role == 'admin'){
             return Subject::latest()->paginate(10);
-        }
+        }else{
         return Subject::latest()->get();
+    }
     }
 
     /**

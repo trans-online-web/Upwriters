@@ -45,6 +45,7 @@ class TaskController extends Controller
             'budget' => 'required',
             'title' => 'required',
         ]);
+        $orderNo = auth('api')->user()->id . time();
 
         $task = new Task();
         $task->user_id = auth()->user()->id;
@@ -59,6 +60,7 @@ class TaskController extends Controller
         $task->level = $request->level;
         $task->title = $request->title;
         $task->task = $request->task;
+        $task->orderNumber = $orderNo;
         $task->pages = $request->pages;
         $task->spacing = $request->spacing;
         $task->format = $request->w_format;
@@ -71,6 +73,7 @@ class TaskController extends Controller
                 // echo $filename;
                 $file = new Files();
                 $file->task_id = $task_id;
+                $file->orderNumber = $orderNo;
                 $file->path = $filename;
                 $file->user_id = auth()->user()->id;
                 $file->save();
@@ -87,26 +90,26 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        return Task::where('id', $id)->first();
+        return Task::where('orderNumber', $id)->first();
     }
 
     public function ifFiles($orderId)
     {
-        return Files::where('task_id', $orderId)->count();
+        return Files::where('orderNumber', $orderId)->count();
     }
 
     public function getFiles($orderId)
     {
-        return Files::where('task_id', $orderId)->get();
+        return Files::where('orderNumber', $orderId)->get();
     }
     public function user($orderId)
     {
-        return Task::where('id', $orderId)->value('user_id');
+        return Task::where('orderNumber', $orderId)->value('user_id');
     }
     public function ThisUser($orderId)
     {
-        $id = Task::where('id', $orderId)->value('user_id');
-        $user = User::where('id',$id)->first();
+        $id = Task::where('orderNumber', $orderId)->value('user_id');
+        $user = User::where('orderNumber',$id)->first();
         return $user;
     }
     public function admin()
@@ -135,7 +138,7 @@ class TaskController extends Controller
                 $filename = $uploadedFile->store('uploads');
                 // echo $filename;
                 $file = new Files();
-                $file->task_id = $orderId;
+                $file->orderNumber = $orderId;
                 $file->path = $filename;
                 $file->user_id = auth()->user()->id;
                 $file->save();

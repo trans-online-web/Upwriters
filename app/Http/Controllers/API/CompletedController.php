@@ -40,7 +40,7 @@ class CompletedController extends Controller
                 $filename = $uploadedFile->store('uploads');
                 // echo $filename;
                 $file = new Completed();
-                $file->task_id = $orderId;
+                $file->orderNumber = $orderId;
                 $file->path = $filename;
                 $file->user_id = auth()->user()->id;
                 $file->save();
@@ -65,7 +65,7 @@ class CompletedController extends Controller
      */
     public function show($orderId)
     {
-        return Completed::where('task_id', $orderId)->latest()->get();
+        return Completed::where('orderNumber', $orderId)->latest()->get();
     }
 
     /**
