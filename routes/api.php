@@ -55,3 +55,5 @@ Route::get('getMessage/{orderId}', 'API\MessangerController@getMessagesFor');
 
 Route::apiResources(['category' => 'API\CategoryController']);
 Route::apiResources(['blog' => 'API\BlogController']);
+
+Route::apiResources(['revision' => 'API\RevisionController']);

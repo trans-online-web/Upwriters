@@ -3,16 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Files;
-use App\Mail\CompletedOrder;
-use App\Mail\ReceivedOrder;
+use App\Revision;
 use App\Task;
-use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Completed;
-use Illuminate\Support\Facades\Mail;
 
-class CompletedController extends Controller
+class RevisionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,6 +19,7 @@ class CompletedController extends Controller
     {
         $this->middleware('auth:api');
     }
+
     public function index()
     {
         //
@@ -34,41 +31,35 @@ class CompletedController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $orderId)
+    public function store(Request $request)
     {
-        $request->validate([
-            'files' => 'required',
-        ]);
+        $taskId = Task::where('orderNumber', $request->orderId)->value('id');
+        $task = Task::findOrFail($taskId);
+        $task->status = "Revision";
+        $task->update();
+
+        $revision = new Revision();
+        $revision->orderNumber = $request->orderId;
+        $revision->task_id = Task::where('orderNumber', $request->orderId)->value('id');
+        $revision->title = $request->title;
+        $revision->instruction = $request->instruction;
+        $revision->save();
+        $revision_id = $revision->id;
 
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $uploadedFile) {
                 $filename = $uploadedFile->storeAs('uploads', time() . $uploadedFile->getClientOriginalName());
                 // echo $filename;
-                $file = new Completed();
-                $file->task_id = Task::where('orderNumber', $orderId)->value('id');
-                $file->orderNumber = $orderId;
+                $file = new Files();
+                $file->task_id = Task::where('orderNumber', $request->orderId)->value('id');
+                $file->orderNumber = $request->orderId;
                 $file->path = $filename;
+                $file->revision = $revision_id;
                 $file->user_id = auth()->user()->id;
                 $file->save();
             }
         }
-        $email = Task::where('orderNumber',$orderId)->value('email');
-        $data = array(
-            'name' => Task::where('orderNumber',$orderId)->value('name'),
-            'title' => Task::where('orderNumber',$orderId)->value('title'),
-            'subject'=>Task::where('orderNumber',$orderId)->value('subject_name'),
-            'orderNo' => $orderId,
-        );
-        Mail::to($email)->send(new CompletedOrder($data));
         return response(['status' => 'success'], 200);
-    }
-
-    public function downloadCompleted($id)
-    {
-        // echo $path;
-        $path = Completed::where('id', $id)->value('path');
-
-        return response()->download(storage_path('app/' . $path));
     }
 
     /**
@@ -77,9 +68,9 @@ class CompletedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($orderId)
+    public function show($id)
     {
-        return Completed::where('orderNumber', $orderId)->latest()->get();
+        //
     }
 
     /**

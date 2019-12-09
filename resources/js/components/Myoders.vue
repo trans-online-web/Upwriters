@@ -6,7 +6,7 @@
                     <div class="card-header">
                         <h3 class="card-title">My Orders</h3>
                         <div class="card-tools">
-                            <a href="/task"><button class="btn btn-success pull-left">Add new order &nbsp;<i class="fas fa-plus"></i></button></a>
+                            <a href="/task"><button class="btn btn-success pull-left btn-sm">Add new order &nbsp;<i class="fas fa-plus"></i></button></a>
                         </div>
                     </div>
 
@@ -28,8 +28,15 @@
                                     <td>#{{order.orderNumber}}</td>
                                     <td>{{order.title}}</td>
                                     <td>{{order.subject_name}}</td>
-                                    <td>{{order.status}}</td>
-                                    <td><i class="fa fa-clock-o mr-1"></i>{{order.deadline_datetime | myDate}}</td>
+                                    <td>
+                                        <span class="badge badge-pill badge-warning" v-if="order.status == 'Pending'">Pending..</span>
+                                        <span class="badge badge-pill badge-info"
+                                              v-if="order.status == 'Paid'">Paid</span>
+                                        <span class="badge badge-pill badge-dark" v-if="order.status == 'Working'">Working</span>
+                                        <span class="badge badge-pill badge-success" v-if="order.status == 'Completed'">Completed</span>
+                                        <span class="badge badge-pill badge-danger" v-if="order.status == 'Revision'">Revision</span>
+                                    </td>
+                                    <td></i>{{order.deadline_datetime | myDatetime}}</td>
                                     <td>
                                         <a :href="'/myorderdetails/'+ order.orderNumber" type="button" class="btn btn-primary btn-sm">More</a>
                                     </td>

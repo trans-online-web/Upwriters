@@ -3024,6 +3024,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue2_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue2-editor */ "./node_modules/vue2-editor/dist/vue2-editor.esm.js");
 //
 //
 //
@@ -3247,10 +3248,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    VueEditor: vue2_editor__WEBPACK_IMPORTED_MODULE_0__["VueEditor"]
+  },
   data: function data() {
     return {
       message: '',
+      e_instruction: '',
       typing: '',
       user: {},
       users: {},
@@ -3263,7 +3323,12 @@ __webpack_require__.r(__webpack_exports__);
       attachments: [],
       unreadIds: {},
       formf: new FormData(),
-      form: new Form({})
+      formr: new FormData(),
+      form: new Form({
+        title: '',
+        instruction: '',
+        orderId: this.$route.params.orderId
+      })
     };
   },
   mounted: function mounted() {
@@ -3280,14 +3345,63 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    postRevision: function postRevision() {
+      var _this2 = this;
+
+      for (var i = 0; i < this.attachments.length; i++) {
+        this.formr.append('files[]', this.attachments[i]);
+      }
+
+      this.formr.append('orderId', this.form.orderId);
+      this.formr.append('title', this.form.title);
+      this.formr.append('instruction', this.form.instruction);
+      var config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      };
+      axios.post('/api/revision/', this.formr, config).then(function (response) {
+        Fire.$emit('entry');
+        $('#revisionModal').modal('hide');
+        _this2.attachments = [];
+
+        _this2.form.reset();
+
+        swal.fire({
+          type: 'success',
+          title: 'Submited!!',
+          text: 'Files added successfully'
+        });
+      })["catch"](function (response) {//error
+      });
+    },
+    isValid: function isValid() {
+      if (!this.form.title) {
+        this.form.errors.set({
+          title: 'This field is required'
+        });
+        return false;
+      } else if (!this.form.instruction) {
+        this.e_instruction = "This field is required";
+        return false;
+      } else {
+        this.postRevision();
+      }
+    },
+    revisionModal: function revisionModal() {
+      this.form.reset();
+      this.form.clear();
+      $("#revfiles").val('');
+      $('#revisionModal').modal('show');
+    },
     handleIncoming: function handleIncoming(message) {
       this.messages.push(message);
     },
     scrollToBottom: function scrollToBottom() {
-      var _this2 = this;
+      var _this3 = this;
 
       setTimeout(function () {
-        _this2.$refs.feed.scrollTop = _this2.$refs.feed.scrollHeight - _this2.$refs.feed.clientHeight;
+        _this3.$refs.feed.scrollTop = _this3.$refs.feed.scrollHeight - _this3.$refs.feed.clientHeight;
       }, 50);
     },
     saveNewMessage: function saveNewMessage(message) {
@@ -3301,21 +3415,21 @@ __webpack_require__.r(__webpack_exports__);
         var fileLink = document.createElement('a');
         console.log(fileLink);
         fileLink.href = fileURL;
-        fileLink.setAttribute('download', path.substring(8));
+        fileLink.setAttribute('download', path.substring(18));
         document.body.appendChild(fileLink);
         fileLink.click();
       });
     },
     getCompleted: function getCompleted() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get("/api/getcompleted/" + this.orderId).then(function (_ref) {
         var data = _ref.data;
-        return [_this3.completed = data];
+        return [_this4.completed = data];
       });
     },
     submit: function submit() {
-      var _this4 = this;
+      var _this5 = this;
 
       for (var i = 0; i < this.attachments.length; i++) {
         this.formf.append('files[]', this.attachments[i]);
@@ -3329,8 +3443,9 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/api/addFiles/' + this.orderId, this.formf, config).then(function (response) {
         Fire.$emit('entry');
         $('#addnew').modal('hide');
+        _this5.attachments = [];
 
-        _this4.form.reset();
+        _this5.form.reset();
 
         swal.fire({
           type: 'success',
@@ -3349,7 +3464,7 @@ __webpack_require__.r(__webpack_exports__);
       this.message = '';
     },
     sendMessage: function sendMessage(e) {
-      var _this5 = this;
+      var _this6 = this;
 
       e.preventDefault();
 
@@ -3362,9 +3477,9 @@ __webpack_require__.r(__webpack_exports__);
         OrderId: this.orderId,
         contact_id: this.users
       }).then(function (response) {
-        _this5.messages.push(response.data);
+        _this6.messages.push(response.data);
 
-        _this5.message = '';
+        _this6.message = '';
       });
     },
     fieldChange: function fieldChange(e) {
@@ -3377,8 +3492,6 @@ __webpack_require__.r(__webpack_exports__);
       for (var i = 0; i < selectedFiles.length; i++) {
         this.attachments.push(selectedFiles[i]);
       }
-
-      console.log(this.attachments);
     },
     newModal: function newModal() {
       this.form.reset();
@@ -3394,63 +3507,63 @@ __webpack_require__.r(__webpack_exports__);
         var fileLink = document.createElement('a');
         console.log(fileLink);
         fileLink.href = fileURL;
-        fileLink.setAttribute('download', path.substring(8));
+        fileLink.setAttribute('download', path.substring(18));
         document.body.appendChild(fileLink);
         fileLink.click();
       });
     },
     getDetails: function getDetails() {
-      var _this6 = this;
+      var _this7 = this;
 
       axios.get("/api/task/" + this.orderId).then(function (_ref2) {
         var data = _ref2.data;
-        return [_this6.details = data];
+        return [_this7.details = data];
       });
     },
     getFilesCount: function getFilesCount() {
-      var _this7 = this;
+      var _this8 = this;
 
       axios.get("/api/ifFiles/" + this.orderId).then(function (_ref3) {
         var data = _ref3.data;
-        return [_this7.filesCount = data];
+        return [_this8.filesCount = data];
       });
     },
     getFiles: function getFiles() {
-      var _this8 = this;
+      var _this9 = this;
 
       axios.get("/api/getFiles/" + this.orderId).then(function (_ref4) {
         var data = _ref4.data;
-        return [_this8.files = data];
+        return [_this9.files = data];
       });
     },
     getThisUser: function getThisUser() {
-      var _this9 = this;
+      var _this10 = this;
 
       axios.get("/api/getThisUser/" + this.orderId).then(function (_ref5) {
         var data = _ref5.data;
-        return [_this9.user = data];
+        return [_this10.user = data];
       });
     },
     getMessages: function getMessages() {
-      var _this10 = this;
+      var _this11 = this;
 
       axios.get("/api/getMessage/" + this.orderId).then(function (response) {
-        return _this10.messages = response.data;
+        return _this11.messages = response.data;
       });
     },
     getUser: function getUser() {
-      var _this11 = this;
+      var _this12 = this;
 
       axios.get("/api/getAdmin/").then(function (_ref6) {
         var data = _ref6.data;
-        return [_this11.users = data];
+        return [_this12.users = data];
       });
     },
     getUnread: function getUnread() {
-      var _this12 = this;
+      var _this13 = this;
 
       axios.get("/api/unread/" + this.orderId).then(function (response) {
-        return _this12.unreadIds = response['unread'];
+        return _this13.unreadIds = response['unread'];
       });
     }
   },
@@ -3465,7 +3578,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this13 = this;
+    var _this14 = this;
 
     this.getDetails();
     this.getFilesCount();
@@ -3475,17 +3588,17 @@ __webpack_require__.r(__webpack_exports__);
     this.getMessages();
     this.getCompleted();
     Fire.$on('entry', function () {
-      _this13.getDetails();
+      _this14.getDetails();
 
-      _this13.getFilesCount();
+      _this14.getFilesCount();
 
-      _this13.getFiles();
+      _this14.getFiles();
 
-      _this13.getUser();
+      _this14.getUser();
 
-      _this13.getMessages();
+      _this14.getMessages();
 
-      _this13.getThisUser();
+      _this14.getThisUser();
     });
   }
 });
@@ -3501,6 +3614,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4738,6 +4858,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -4812,7 +4935,7 @@ __webpack_require__.r(__webpack_exports__);
         var fileLink = document.createElement('a');
         console.log(fileLink);
         fileLink.href = fileURL;
-        fileLink.setAttribute('download', path.substring(8));
+        fileLink.setAttribute('download', path.substring(18));
         document.body.appendChild(fileLink);
         fileLink.click();
       });
@@ -4907,7 +5030,7 @@ __webpack_require__.r(__webpack_exports__);
         var fileLink = document.createElement('a');
         console.log(fileLink);
         fileLink.href = fileURL;
-        fileLink.setAttribute('download', path.substring(8));
+        fileLink.setAttribute('download', path.substring(18));
         document.body.appendChild(fileLink);
         fileLink.click();
       });
@@ -5245,6 +5368,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -101611,9 +101735,14 @@ var render = function() {
                             _c("td", [_vm._v("Deadline")]),
                             _vm._v(" "),
                             _c("td", [
-                              _c("i", { staticClass: "fa fa-clock-o mr-1" }),
-                              _c("span", [
-                                _vm._v(_vm._s(_vm.details.deadline_datetime))
+                              _c("span", { staticStyle: { color: "red" } }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("myDatetime")(
+                                      _vm.details.deadline_datetime
+                                    )
+                                  )
+                                )
                               ])
                             ])
                           ]),
@@ -101683,7 +101812,7 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-primary btn-sm mb-2",
+                          staticClass: "btn btn-primary btn-sm mb-2 mt-2",
                           on: { click: _vm.newModal }
                         },
                         [
@@ -101729,7 +101858,29 @@ var render = function() {
                                         }
                                       }
                                     },
-                                    [_vm._m(3, true)]
+                                    [
+                                      _c("div", { staticClass: "info-box" }, [
+                                        _vm._m(3, true),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "info-box-content" },
+                                          [
+                                            _c(
+                                              "span",
+                                              { staticClass: "info-box-text" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    file.path.substring(18)
+                                                  )
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ]
                                   )
                                 ]
                               )
@@ -101805,7 +101956,29 @@ var render = function() {
                                         }
                                       }
                                     },
-                                    [_vm._m(6, true)]
+                                    [
+                                      _c("div", { staticClass: "info-box" }, [
+                                        _vm._m(6, true),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "info-box-content" },
+                                          [
+                                            _c(
+                                              "span",
+                                              { staticClass: "info-box-text" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    complete.path.substring(18)
+                                                  )
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ]
                                   )
                                 ]
                               )
@@ -101843,6 +102016,35 @@ var render = function() {
                         ]
                       )
                     : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("div", { staticClass: "box" }, [
+                  _vm._m(8),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "box-body",
+                      staticStyle: { "padding-top": "10px" }
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-warning btn-sm",
+                          attrs: { type: "button" },
+                          on: { click: _vm.revisionModal }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                        Revision\n                                    "
+                          )
+                        ]
+                      )
+                    ]
+                  )
                 ])
               ])
             ]),
@@ -101957,7 +102159,7 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(8),
+              _vm._m(9),
               _vm._v(" "),
               _c(
                 "form",
@@ -101984,7 +102186,133 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(9)
+                  _vm._m(10)
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "revisionModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addnewLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(11),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.isValid()
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("label", [_vm._v("Title")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.title,
+                              expression: "form.title"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: { "is-invalid": _vm.form.errors.has("title") },
+                          attrs: {
+                            type: "text",
+                            id: "title",
+                            placeholder: "Title"
+                          },
+                          domProps: { value: _vm.form.title },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "title", $event.target.value)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form, field: "title" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("label", [_vm._v("Revision Instructions")]),
+                        _vm._v(" "),
+                        _c("vue-editor", {
+                          model: {
+                            value: _vm.form.instruction,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "instruction", $$v)
+                            },
+                            expression: "form.instruction"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("small", { staticStyle: { color: "red" } }, [
+                          _vm._v(_vm._s(_vm.e_instruction))
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group justify-content-center" },
+                      [
+                        _c("label", { attrs: { for: "files" } }, [
+                          _vm._v("Attach file(s) if need be")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control-file",
+                          attrs: { type: "file", multiple: "", id: "revfiles" },
+                          on: { change: _vm.fieldChange }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form, field: "files" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(12)
                 ]
               )
             ])
@@ -102006,7 +102334,10 @@ var staticRenderFns = [
         _c("a", { attrs: { href: "/myorder" } }, [
           _c(
             "button",
-            { staticClass: "btn btn-primary", attrs: { type: "button" } },
+            {
+              staticClass: "btn btn-primary btn-sm",
+              attrs: { type: "button" }
+            },
             [
               _c("i", { staticClass: "fa fa-hand-point-left" }),
               _vm._v(
@@ -102040,25 +102371,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "info-box" }, [
-      _c(
-        "span",
-        {
-          staticClass: "info-box-icon",
-          staticStyle: { "background-color": "#a60de2" }
-        },
-        [
-          _c("i", {
-            staticClass: "fas fa-download",
-            staticStyle: { color: "white" }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "info-box-content" }, [
-        _c("span", { staticClass: "info-box-text" }, [_vm._v("Download")])
-      ])
-    ])
+    return _c(
+      "span",
+      {
+        staticClass: "info-box-icon",
+        staticStyle: { "background-color": "#a60de2" }
+      },
+      [
+        _c("i", {
+          staticClass: "fas fa-download",
+          staticStyle: { color: "white" }
+        })
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -102081,25 +102406,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "info-box" }, [
-      _c(
-        "span",
-        {
-          staticClass: "info-box-icon",
-          staticStyle: { "background-color": "#31d125" }
-        },
-        [
-          _c("i", {
-            staticClass: "fas fa-download",
-            staticStyle: { color: "white" }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "info-box-content" }, [
-        _c("span", { staticClass: "info-box-text" }, [_vm._v("Download")])
-      ])
-    ])
+    return _c(
+      "span",
+      {
+        staticClass: "info-box-icon",
+        staticStyle: { "background-color": "#31d125" }
+      },
+      [
+        _c("i", {
+          staticClass: "fas fa-download",
+          staticStyle: { color: "white" }
+        })
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -102108,6 +102427,14 @@ var staticRenderFns = [
     return _c("h5", [
       _c("i", { staticClass: "icon fa fa-ban" }),
       _vm._v(" Alert!")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header" }, [
+      _c("h5", { staticClass: "box-title" }, [_vm._v("Actions")])
     ])
   },
   function() {
@@ -102151,6 +102478,53 @@ var staticRenderFns = [
         "button",
         { staticClass: "btn btn-success", attrs: { type: "submit" } },
         [_vm._v("Add")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [_vm._v("Submit Revision")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [
+          _c("i", { staticClass: "fas fa-save" }),
+          _vm._v(
+            "\n                            Submit\n                        "
+          )
+        ]
       )
     ])
   }
@@ -102197,12 +102571,51 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(order.subject_name))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(order.status))]),
+                      _c("td", [
+                        order.status == "Pending"
+                          ? _c(
+                              "span",
+                              { staticClass: "badge badge-pill badge-warning" },
+                              [_vm._v("Pending..")]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        order.status == "Paid"
+                          ? _c(
+                              "span",
+                              { staticClass: "badge badge-pill badge-info" },
+                              [_vm._v("Paid")]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        order.status == "Working"
+                          ? _c(
+                              "span",
+                              { staticClass: "badge badge-pill badge-dark" },
+                              [_vm._v("Working")]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        order.status == "Completed"
+                          ? _c(
+                              "span",
+                              { staticClass: "badge badge-pill badge-success" },
+                              [_vm._v("Completed")]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        order.status == "Revision"
+                          ? _c(
+                              "span",
+                              { staticClass: "badge badge-pill badge-danger" },
+                              [_vm._v("Revision")]
+                            )
+                          : _vm._e()
+                      ]),
                       _vm._v(" "),
                       _c("td", [
-                        _c("i", { staticClass: "fa fa-clock-o mr-1" }),
                         _vm._v(
-                          _vm._s(_vm._f("myDate")(order.deadline_datetime))
+                          _vm._s(_vm._f("myDatetime")(order.deadline_datetime))
                         )
                       ]),
                       _vm._v(" "),
@@ -102355,7 +102768,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "card-tools" }, [
         _c("a", { attrs: { href: "/task" } }, [
-          _c("button", { staticClass: "btn btn-success pull-left" }, [
+          _c("button", { staticClass: "btn btn-success pull-left btn-sm" }, [
             _vm._v("Add new order  "),
             _c("i", { staticClass: "fas fa-plus" })
           ])
@@ -103651,9 +104064,22 @@ var render = function() {
                                 _c("td", [_vm._v("Subject")]),
                                 _vm._v(" "),
                                 _c("td", [
-                                  _c("span", [
-                                    _vm._v(_vm._s(_vm.details.subject_name))
-                                  ])
+                                  _vm.details.other_subject
+                                    ? _c("span", [
+                                        _vm._v(
+                                          _vm._s(_vm.details.subject_name) +
+                                            "(" +
+                                            _vm._s(_vm.details.other_subject) +
+                                            ")"
+                                        )
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  !_vm.details.other_subject
+                                    ? _c("span", [
+                                        _vm._v(_vm._s(_vm.details.subject_name))
+                                      ])
+                                    : _vm._e()
                                 ])
                               ]),
                               _vm._v(" "),
@@ -103683,11 +104109,19 @@ var render = function() {
                                 _c("td", [_vm._v("Deadline")]),
                                 _vm._v(" "),
                                 _c("td", [
-                                  _c("span", [
-                                    _vm._v(
-                                      _vm._s(_vm.details.deadline_datetime)
-                                    )
-                                  ])
+                                  _c(
+                                    "span",
+                                    { staticStyle: { color: "red" } },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm._f("myDatetime")(
+                                            _vm.details.deadline_datetime
+                                          )
+                                        )
+                                      )
+                                    ]
+                                  )
                                 ])
                               ]),
                               _vm._v(" "),
@@ -103748,7 +104182,31 @@ var render = function() {
                                           }
                                         }
                                       },
-                                      [_vm._m(6, true)]
+                                      [
+                                        _c("div", { staticClass: "info-box" }, [
+                                          _vm._m(6, true),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "info-box-content" },
+                                            [
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "info-box-text"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      file.path.substring(18)
+                                                    )
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ])
+                                      ]
                                     )
                                   ]
                                 )
@@ -103824,7 +104282,7 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-success",
+                            staticClass: "btn btn-success btn-sm",
                             attrs: { type: "button" },
                             on: { click: _vm.newModal }
                           },
@@ -103874,7 +104332,41 @@ var render = function() {
                                             }
                                           }
                                         },
-                                        [_vm._m(12, true)]
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "info-box" },
+                                            [
+                                              _vm._m(12, true),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "info-box-content"
+                                                },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticClass:
+                                                        "info-box-text"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          complete.path.substring(
+                                                            18
+                                                          )
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
                                       )
                                     ]
                                   )
@@ -104243,25 +104735,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "info-box" }, [
-      _c(
-        "span",
-        {
-          staticClass: "info-box-icon",
-          staticStyle: { "background-color": "purple" }
-        },
-        [
-          _c("i", {
-            staticClass: "fas fa-download",
-            staticStyle: { color: "white" }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "info-box-content" }, [
-        _c("span", { staticClass: "info-box-text" }, [_vm._v("Download")])
-      ])
-    ])
+    return _c(
+      "span",
+      {
+        staticClass: "info-box-icon",
+        staticStyle: { "background-color": "purple" }
+      },
+      [
+        _c("i", {
+          staticClass: "fas fa-download",
+          staticStyle: { color: "white" }
+        })
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -104326,25 +104812,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "info-box" }, [
-      _c(
-        "span",
-        {
-          staticClass: "info-box-icon",
-          staticStyle: { "background-color": "#31d125" }
-        },
-        [
-          _c("i", {
-            staticClass: "fas fa-download",
-            staticStyle: { color: "white" }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "info-box-content" }, [
-        _c("span", { staticClass: "info-box-text" }, [_vm._v("Download")])
-      ])
-    ])
+    return _c(
+      "span",
+      {
+        staticClass: "info-box-icon",
+        staticStyle: { "background-color": "#31d125" }
+      },
+      [
+        _c("i", {
+          staticClass: "fas fa-download",
+          staticStyle: { color: "white" }
+        })
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -104906,6 +105386,16 @@ var render = function() {
                                       "badge badge-pill badge-success"
                                   },
                                   [_vm._v("Completed")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            order.status == "Revision"
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "badge badge-pill badge-danger"
+                                  },
+                                  [_vm._v("Revision")]
                                 )
                               : _vm._e()
                           ]),
@@ -122056,6 +122546,9 @@ Vue.filter('upText', function (text) {
 Vue.filter('myDate', function (created) {
   return moment__WEBPACK_IMPORTED_MODULE_1___default()(created).format('hh:mm MMMM Do YYYY');
 });
+Vue.filter('myDatetime', function (created) {
+  return moment__WEBPACK_IMPORTED_MODULE_1___default()(created).format('MMMM Do YYYY, h:mm a');
+});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -122153,8 +122646,8 @@ if (token) {
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "13fbb2237f308a46b5e2",
-  cluster: "ap2",
+  key: "",
+  cluster: "mt1",
   encrypted: true
 });
 
@@ -123891,8 +124384,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\Upwriters\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Upwriters\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /opt/lampp/htdocs/Transonline/Up/Upwriters/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/Transonline/Up/Upwriters/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

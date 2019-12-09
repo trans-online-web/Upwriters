@@ -32,6 +32,7 @@
                                               v-if="order.status == 'Paid'">Paid</span>
                                         <span class="badge badge-pill badge-dark" v-if="order.status == 'Working'">Working</span>
                                         <span class="badge badge-pill badge-success" v-if="order.status == 'Completed'">Completed</span>
+                                        <span class="badge badge-pill badge-danger" v-if="order.status == 'Revision'">Revision</span>
                                     </td>
                                     <td>{{order.level}}</td>
                                     <td>{{order.subject_name}}</td>

@@ -7,7 +7,7 @@
                         <h3 class="card-title">Order Details</h3>
                         <div class="card-tools">
                             <a href="/myorder">
-                                <button type="button" class="btn btn-primary">
+                                <button type="button" class="btn btn-primary btn-sm">
                                     <i class="fa fa-hand-point-left"></i>
                                     Back
                                 </button>
@@ -54,7 +54,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Deadline</td>
-                                                <td><i class="fa fa-clock-o mr-1"></i><span>{{details.deadline_datetime}}</span>
+                                                <td><span style="color: red;">{{details.deadline_datetime|myDatetime}}</span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -89,7 +89,7 @@
                                     <div class="box-header">
                                         <h5 class="box-title">Files Attached</h5>
                                         <div class="box-tools">
-                                            <button class="btn btn-primary btn-sm mb-2" @click="newModal"><i
+                                            <button class="btn btn-primary btn-sm mb-2 mt-2" @click="newModal"><i
                                                     class="fas fa-paperclip"></i>Add Files
                                             </button>
                                         </div>
@@ -106,7 +106,7 @@
                                                                 style="color: white;"></i></span>
 
                                                         <div class="info-box-content">
-                                                            <span class="info-box-text">Download</span>
+                                                            <span class="info-box-text">{{file.path.substring(18)}}</span>
                                                         </div>
                                                         <!-- /.info-box-content -->
                                                     </div>
@@ -130,7 +130,8 @@
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 col-xs-12" v-for="complete in completed"
                                                  :key="complete.id">
-                                                <a href="#" @click.prevent="downloadCompleted(complete.id, complete.path)">
+                                                <a href="#"
+                                                   @click.prevent="downloadCompleted(complete.id, complete.path)">
                                                     <div class="info-box">
                                                         <span class="info-box-icon"
                                                               style="background-color: #31d125;"><i
@@ -138,7 +139,7 @@
                                                                 style="color: white;"></i></span>
 
                                                         <div class="info-box-content">
-                                                            <span class="info-box-text">Download</span>
+                                                            <span class="info-box-text">{{complete.path.substring(18)}}</span>
                                                         </div>
                                                         <!-- /.info-box-content -->
                                                     </div>
@@ -152,6 +153,17 @@
                                         </button>
                                         <h5><i class="icon fa fa-ban"></i> Alert!</h5>
                                         No files attached!!
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h5 class="box-title">Actions</h5>
+                                    </div>
+                                    <div class="box-body" style="padding-top: 10px;">
+                                        <button type="button" class="btn btn-warning btn-sm" @click="revisionModal">
+                                            Revision
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -218,14 +230,62 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="revisionModal" tabindex="-1" role="dialog" aria-labelledby="addnewLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Submit Revision</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form @submit.prevent="isValid()">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input v-model="form.title" type="text" class="form-control" id="title"
+                                       placeholder="Title"
+                                       :class="{ 'is-invalid': form.errors.has('title') }">
+                                <has-error :form="form" field="title"></has-error>
+                            </div>
+                            <div class="form-group">
+                                <label>Revision Instructions</label>
+                                <vue-editor v-model="form.instruction"></vue-editor>
+                                <small style="color: red;">{{e_instruction}}</small>
+                            </div>
+                            <div class="form-group justify-content-center">
+                                <label for="files">Attach file(s) if need be</label>
+                                <input type="file" multiple class="form-control-file" @change="fieldChange"
+                                       id="revfiles">
+                                <has-error :form="form" field="files"></has-error>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i>
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+    import {VueEditor} from "vue2-editor";
+
     export default {
+        components: {
+            VueEditor
+        },
         data() {
             return {
                 message: '',
+                e_instruction: '',
                 typing: '',
                 user: {},
                 users: {},
@@ -238,7 +298,12 @@
                 attachments: [],
                 unreadIds: {},
                 formf: new FormData(),
-                form: new Form({})
+                formr: new FormData(),
+                form: new Form({
+                    title: '',
+                    instruction: '',
+                    orderId: this.$route.params.orderId,
+                })
             }
         },
 
@@ -256,6 +321,53 @@
                 });
         },
         methods: {
+            postRevision(){
+                for (let i = 0; i < this.attachments.length; i++) {
+                    this.formr.append('files[]', this.attachments[i]);
+                }
+
+                this.formr.append('orderId', this.form.orderId);
+                this.formr.append('title', this.form.title);
+                this.formr.append('instruction', this.form.instruction);
+
+                const config = {headers: {'Content-Type': 'multipart/form-data'}};
+
+                axios.post('/api/revision/', this.formr, config).then(response => {
+                    Fire.$emit('entry');
+                    $('#revisionModal').modal('hide');
+                    this.attachments = [];
+                    this.form.reset();
+                    swal.fire({
+                        type: 'success',
+                        title: 'Submited!!',
+                        text: 'Files added successfully',
+
+                    })
+
+                })
+                    .catch(response => {
+                        //error
+                    });
+            },
+            isValid() {
+                if (!this.form.title){
+                    this.form.errors.set({
+                        title: 'This field is required'
+                    })
+                    return false;
+                }else if (!this.form.instruction){
+                    this.e_instruction = "This field is required";
+                    return false;
+                }else {
+                    this.postRevision();
+                }
+            },
+            revisionModal() {
+                this.form.reset();
+                this.form.clear();
+                $("#revfiles").val('');
+                $('#revisionModal').modal('show');
+            },
             handleIncoming(message) {
                 this.messages.push(message);
 
@@ -275,7 +387,7 @@
                         var fileLink = document.createElement('a');
                         console.log(fileLink);
                         fileLink.href = fileURL;
-                        fileLink.setAttribute('download', path.substring(8));
+                        fileLink.setAttribute('download', path.substring(18));
                         document.body.appendChild(fileLink);
                         fileLink.click();
                     });
@@ -293,6 +405,7 @@
                 axios.post('/api/addFiles/' + this.orderId, this.formf, config).then(response => {
                     Fire.$emit('entry');
                     $('#addnew').modal('hide');
+                    this.attachments = [];
                     this.form.reset();
                     swal.fire({
                         type: 'success',
@@ -336,7 +449,6 @@
                 for (let i = 0; i < selectedFiles.length; i++) {
                     this.attachments.push(selectedFiles[i]);
                 }
-                console.log(this.attachments);
             },
             newModal() {
                 this.form.reset();
@@ -351,7 +463,7 @@
                         var fileLink = document.createElement('a');
                         console.log(fileLink);
                         fileLink.href = fileURL;
-                        fileLink.setAttribute('download', path.substring(8));
+                        fileLink.setAttribute('download', path.substring(18));
                         document.body.appendChild(fileLink);
                         fileLink.click();
                     });
