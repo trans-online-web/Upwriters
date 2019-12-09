@@ -57,3 +57,4 @@ Route::apiResources(['category' => 'API\CategoryController']);
 Route::apiResources(['blog' => 'API\BlogController']);
 
 Route::apiResources(['revision' => 'API\RevisionController']);
+Route::get('studentsort/{sort}', 'API\RevisionController@studentSort');

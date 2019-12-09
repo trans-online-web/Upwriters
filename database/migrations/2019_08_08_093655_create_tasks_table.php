@@ -25,7 +25,7 @@ class CreateTasksTable extends Migration
             $table->decimal('suggested_price', 8, 2);
             $table->decimal('budget', 8, 2);
             $table->string('title');
-            $table->string('status')->default('Pending');
+            $table->unsignedInteger('status')->default(0);
             $table->longText('task');
             $table->integer('pages');
             $table->string('spacing');

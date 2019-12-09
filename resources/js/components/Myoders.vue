@@ -1,12 +1,23 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="$gate.isStudent()">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card mt-4">
                     <div class="card-header">
                         <h3 class="card-title">My Orders</h3>
                         <div class="card-tools">
-                            <a href="/task"><button class="btn btn-success pull-left btn-sm">Add new order &nbsp;<i class="fas fa-plus"></i></button></a>
+                            <button class="btn btn-sm btn-danger" @click="studentSort(4)">Cancelled
+                            </button>
+                            <button class="btn btn-sm btn-primary" @click="studentSort(1)">Working
+                            </button>
+                            <button class="btn btn-sm btn-danger" @click="studentSort(5)">Revision
+                            </button>
+                            <button class="btn btn-sm btn-dark" @click="studentSort(3)">Completed
+                            </button>
+                            <button class="btn btn-sm btn-info" @click="studentSort(2)">Uploaded
+                            </button>
+                            <button class="btn btn-sm btn-warning" @click="studentSort(0)">Pending
+                            </button>
                         </div>
                     </div>
 
@@ -24,19 +35,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="order in orders" :key="order.id">
+                                <tr v-for="order in orders.data" :key="order.id">
                                     <td>#{{order.orderNumber}}</td>
                                     <td>{{order.title}}</td>
                                     <td>{{order.subject_name}}</td>
                                     <td>
-                                        <span class="badge badge-pill badge-warning" v-if="order.status == 'Pending'">Pending..</span>
-                                        <span class="badge badge-pill badge-info"
-                                              v-if="order.status == 'Paid'">Paid</span>
-                                        <span class="badge badge-pill badge-dark" v-if="order.status == 'Working'">Working</span>
-                                        <span class="badge badge-pill badge-success" v-if="order.status == 'Completed'">Completed</span>
-                                        <span class="badge badge-pill badge-danger" v-if="order.status == 'Revision'">Revision</span>
+                                        <span class="badge badge-pill badge-warning" v-if="order.status == 0">Pending..</span>
+                                        <span class="badge badge-pill badge-dark" v-if="order.status == 1">Working</span>
+                                        <span class="badge badge-pill badge-success" v-if="order.status == 3">Completed</span>
+                                        <span class="badge badge-pill badge-danger" v-if="order.status == 5">Revision</span>
+                                        <span class="badge badge-pill badge-info" v-if="order.status == 2">Uploaded</span>
+                                        <span class="badge badge-pill badge-danger" v-if="order.status == 4">Cancelled</span>
                                     </td>
-                                    <td></i>{{order.deadline_datetime | myDatetime}}</td>
+                                    <td>{{order.deadline_datetime | myDatetime}}</td>
                                     <td>
                                         <a :href="'/myorderdetails/'+ order.orderNumber" type="button" class="btn btn-primary btn-sm">More</a>
                                     </td>
@@ -94,6 +105,11 @@
             }
         },
         methods:{
+            studentSort(sort){
+                if (this.$gate.isStudent()){
+                    axios.get("/api/studentsort/" + sort).then(({data}) => ([this.orders = data]));
+                }
+            },
             getOrders(){
                 axios.get("api/student-task").then(({ data }) => ([this.orders = data]));
             },

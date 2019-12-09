@@ -27,12 +27,12 @@
                                     <td>{{order.orderNumber}}</td>
                                     <td>{{order.name}}</td>
                                     <td>
-                                        <span class="badge badge-pill badge-warning" v-if="order.status == 'Pending'">Pending..</span>
-                                        <span class="badge badge-pill badge-info"
-                                              v-if="order.status == 'Paid'">Paid</span>
-                                        <span class="badge badge-pill badge-dark" v-if="order.status == 'Working'">Working</span>
-                                        <span class="badge badge-pill badge-success" v-if="order.status == 'Completed'">Completed</span>
-                                        <span class="badge badge-pill badge-danger" v-if="order.status == 'Revision'">Revision</span>
+                                        <span class="badge badge-pill badge-warning" v-if="order.status == 0">Pending..</span>
+                                        <span class="badge badge-pill badge-dark" v-if="order.status == 1">Working</span>
+                                        <span class="badge badge-pill badge-success" v-if="order.status == 3">Completed</span>
+                                        <span class="badge badge-pill badge-danger" v-if="order.status == 5">Revision</span>
+                                        <span class="badge badge-pill badge-info" v-if="order.status == 2">Uploaded</span>
+                                        <span class="badge badge-pill badge-danger" v-if="order.status == 4">Cancelled</span>
                                     </td>
                                     <td>{{order.level}}</td>
                                     <td>{{order.subject_name}}</td>
@@ -73,10 +73,10 @@
                                 <select name="status" v-model="form.status" class="form-control"
                                         :class="{'is-invalid': form.errors.has('status')}">
                                     <option value="">--Select Status--</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Paid">Paid</option>
-                                    <option value="Working">Working</option>
-                                    <option value="Completed">Completed</option>
+                                    <option value="0">Pending</option>
+                                    <option value="1">Working</option>
+                                    <option value="3">Completed</option>
+                                    <option value="4">Cancelled</option>
                                 </select>
                                 <has-error :form="form" field="status"></has-error>
                             </div>

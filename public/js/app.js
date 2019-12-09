@@ -3699,6 +3699,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3707,12 +3718,22 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    getOrders: function getOrders() {
+    studentSort: function studentSort(sort) {
       var _this = this;
 
-      axios.get("api/student-task").then(function (_ref) {
-        var data = _ref.data;
-        return [_this.orders = data];
+      if (this.$gate.isStudent()) {
+        axios.get("/api/studentsort/" + sort).then(function (_ref) {
+          var data = _ref.data;
+          return [_this.orders = data];
+        });
+      }
+    },
+    getOrders: function getOrders() {
+      var _this2 = this;
+
+      axios.get("api/student-task").then(function (_ref2) {
+        var data = _ref2.data;
+        return [_this2.orders = data];
       });
     }
   },
@@ -101790,7 +101811,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [
                               _c("span", [
-                                _vm._v("$" + _vm._s(_vm.details.budget))
+                                _vm._v("$" + _vm._s(_vm.details.agreedAmount))
                               ])
                             ])
                           ])
@@ -102550,232 +102571,326 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "card mt-4" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "card-body table-responsive p-0" }, [
-              _c("table", { staticClass: "table table-hover" }, [
-                _vm._m(1),
+  return _vm.$gate.isStudent()
+    ? _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card mt-4" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _c("h3", { staticClass: "card-title" }, [_vm._v("My Orders")]),
                 _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.orders, function(order) {
-                    return _c("tr", { key: order.id }, [
-                      _c("td", [_vm._v("#" + _vm._s(order.orderNumber))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(order.title))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(order.subject_name))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        order.status == "Pending"
-                          ? _c(
-                              "span",
-                              { staticClass: "badge badge-pill badge-warning" },
-                              [_vm._v("Pending..")]
+                _c("div", { staticClass: "card-tools" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.studentSort(4)
+                        }
+                      }
+                    },
+                    [_vm._v("Cancelled\n                        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-primary",
+                      on: {
+                        click: function($event) {
+                          return _vm.studentSort(1)
+                        }
+                      }
+                    },
+                    [_vm._v("Working\n                        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.studentSort(5)
+                        }
+                      }
+                    },
+                    [_vm._v("Revision\n                        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-dark",
+                      on: {
+                        click: function($event) {
+                          return _vm.studentSort(3)
+                        }
+                      }
+                    },
+                    [_vm._v("Completed\n                        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-info",
+                      on: {
+                        click: function($event) {
+                          return _vm.studentSort(2)
+                        }
+                      }
+                    },
+                    [_vm._v("Uploaded\n                        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-warning",
+                      on: {
+                        click: function($event) {
+                          return _vm.studentSort(0)
+                        }
+                      }
+                    },
+                    [_vm._v("Pending\n                        ")]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "card-body table-responsive p-0" }, [
+                  _c("table", { staticClass: "table table-hover" }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.orders.data, function(order) {
+                        return _c("tr", { key: order.id }, [
+                          _c("td", [_vm._v("#" + _vm._s(order.orderNumber))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(order.title))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(order.subject_name))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            order.status == 0
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "badge badge-pill badge-warning"
+                                  },
+                                  [_vm._v("Pending..")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            order.status == 1
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "badge badge-pill badge-dark"
+                                  },
+                                  [_vm._v("Working")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            order.status == 3
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "badge badge-pill badge-success"
+                                  },
+                                  [_vm._v("Completed")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            order.status == 5
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "badge badge-pill badge-danger"
+                                  },
+                                  [_vm._v("Revision")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            order.status == 2
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "badge badge-pill badge-info"
+                                  },
+                                  [_vm._v("Uploaded")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            order.status == 4
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "badge badge-pill badge-danger"
+                                  },
+                                  [_vm._v("Cancelled")]
+                                )
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("myDatetime")(order.deadline_datetime)
+                              )
                             )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        order.status == "Paid"
-                          ? _c(
-                              "span",
-                              { staticClass: "badge badge-pill badge-info" },
-                              [_vm._v("Paid")]
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-primary btn-sm",
+                                attrs: {
+                                  href: "/myorderdetails/" + order.orderNumber,
+                                  type: "button"
+                                }
+                              },
+                              [_vm._v("More")]
                             )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        order.status == "Working"
-                          ? _c(
-                              "span",
-                              { staticClass: "badge badge-pill badge-dark" },
-                              [_vm._v("Working")]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        order.status == "Completed"
-                          ? _c(
-                              "span",
-                              { staticClass: "badge badge-pill badge-success" },
-                              [_vm._v("Completed")]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        order.status == "Revision"
-                          ? _c(
-                              "span",
-                              { staticClass: "badge badge-pill badge-danger" },
-                              [_vm._v("Revision")]
-                            )
-                          : _vm._e()
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(_vm._f("myDatetime")(order.deadline_datetime))
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "btn btn-primary btn-sm",
-                            attrs: {
-                              href: "/myorderdetails/" + order.orderNumber,
-                              type: "button"
-                            }
-                          },
-                          [_vm._v("More")]
-                        )
-                      ])
-                    ])
-                  }),
-                  0
-                )
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                ])
               ])
             ])
           ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "addnew",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "addnewLabel",
-          "aria-hidden": "true"
-        }
-      },
-      [
+        ]),
+        _vm._v(" "),
         _c(
           "div",
-          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "addnew",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "addnewLabel",
+              "aria-hidden": "true"
+            }
+          },
           [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(2),
-              _vm._v(" "),
-              _c(
-                "form",
-                {
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.updateStatus()
-                    }
-                  }
-                },
-                [
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _c("label", [_vm._v("Select Role")]),
-                        _vm._v(" "),
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.status,
-                                expression: "form.status"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            class: {
-                              "is-invalid": _vm.form.errors.has("status")
-                            },
-                            attrs: { name: "status" },
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.form,
-                                  "status",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              }
-                            }
-                          },
-                          [
-                            _c("option", { attrs: { value: "" } }, [
-                              _vm._v("--Select Status--")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Pending" } }, [
-                              _vm._v("Pending")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Paid" } }, [
-                              _vm._v("Paid")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Working" } }, [
-                              _vm._v("Working")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Completed" } }, [
-                              _vm._v("Completed")
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("has-error", {
-                          attrs: { form: _vm.form, field: "status" }
-                        })
-                      ],
-                      1
-                    )
-                  ]),
+            _c(
+              "div",
+              { staticClass: "modal-dialog", attrs: { role: "document" } },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _vm._m(1),
                   _vm._v(" "),
-                  _vm._m(3)
-                ]
-              )
-            ])
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.updateStatus()
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "modal-body" }, [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("label", [_vm._v("Select Role")]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.status,
+                                    expression: "form.status"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("status")
+                                },
+                                attrs: { name: "status" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.form,
+                                      "status",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("--Select Status--")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "Pending" } }, [
+                                  _vm._v("Pending")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "Paid" } }, [
+                                  _vm._v("Paid")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "Working" } }, [
+                                  _vm._v("Working")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "option",
+                                  { attrs: { value: "Completed" } },
+                                  [_vm._v("Completed")]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("has-error", {
+                              attrs: { form: _vm.form, field: "status" }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(2)
+                    ]
+                  )
+                ])
+              ]
+            )
           ]
         )
-      ]
-    )
-  ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("My Orders")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-tools" }, [
-        _c("a", { attrs: { href: "/task" } }, [
-          _c("button", { staticClass: "btn btn-success pull-left btn-sm" }, [
-            _vm._v("Add new order  "),
-            _c("i", { staticClass: "fas fa-plus" })
-          ])
-        ])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -105347,7 +105462,7 @@ var render = function() {
                           _c("td", [_vm._v(_vm._s(order.name))]),
                           _vm._v(" "),
                           _c("td", [
-                            order.status == "Pending"
+                            order.status == 0
                               ? _c(
                                   "span",
                                   {
@@ -105358,17 +105473,7 @@ var render = function() {
                                 )
                               : _vm._e(),
                             _vm._v(" "),
-                            order.status == "Paid"
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass: "badge badge-pill badge-info"
-                                  },
-                                  [_vm._v("Paid")]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            order.status == "Working"
+                            order.status == 1
                               ? _c(
                                   "span",
                                   {
@@ -105378,7 +105483,7 @@ var render = function() {
                                 )
                               : _vm._e(),
                             _vm._v(" "),
-                            order.status == "Completed"
+                            order.status == 3
                               ? _c(
                                   "span",
                                   {
@@ -105389,13 +105494,33 @@ var render = function() {
                                 )
                               : _vm._e(),
                             _vm._v(" "),
-                            order.status == "Revision"
+                            order.status == 5
                               ? _c(
                                   "span",
                                   {
                                     staticClass: "badge badge-pill badge-danger"
                                   },
                                   [_vm._v("Revision")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            order.status == 2
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "badge badge-pill badge-info"
+                                  },
+                                  [_vm._v("Uploaded")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            order.status == 4
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "badge badge-pill badge-danger"
+                                  },
+                                  [_vm._v("Cancelled")]
                                 )
                               : _vm._e()
                           ]),
@@ -105539,23 +105664,21 @@ var render = function() {
                                   _vm._v("--Select Status--")
                                 ]),
                                 _vm._v(" "),
-                                _c("option", { attrs: { value: "Pending" } }, [
+                                _c("option", { attrs: { value: "0" } }, [
                                   _vm._v("Pending")
                                 ]),
                                 _vm._v(" "),
-                                _c("option", { attrs: { value: "Paid" } }, [
-                                  _vm._v("Paid")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "Working" } }, [
+                                _c("option", { attrs: { value: "1" } }, [
                                   _vm._v("Working")
                                 ]),
                                 _vm._v(" "),
-                                _c(
-                                  "option",
-                                  { attrs: { value: "Completed" } },
-                                  [_vm._v("Completed")]
-                                )
+                                _c("option", { attrs: { value: "3" } }, [
+                                  _vm._v("Completed")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "4" } }, [
+                                  _vm._v("Cancelled")
+                                ])
                               ]
                             ),
                             _vm._v(" "),

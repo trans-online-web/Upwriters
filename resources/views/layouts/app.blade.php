@@ -84,5 +84,10 @@
     })();
     </script>
     <!--End of Tawk.to Script-->
+    @auth
+        <script>
+            window.user = @json(auth()->user())
+        </script>
+    @endauth
 </body>
 </html>

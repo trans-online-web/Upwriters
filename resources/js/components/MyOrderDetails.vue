@@ -75,7 +75,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Agreed Price</td>
-                                                <td><span>${{details.budget}}</span></td>
+                                                <td><span>${{details.agreedAmount}}</span></td>
                                             </tr>
                                             </tbody>
                                         </table>

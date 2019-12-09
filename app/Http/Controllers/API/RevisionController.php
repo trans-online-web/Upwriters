@@ -7,6 +7,9 @@ use App\Revision;
 use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Revision as OrderRevision;
 
 class RevisionController extends Controller
 {
@@ -35,7 +38,7 @@ class RevisionController extends Controller
     {
         $taskId = Task::where('orderNumber', $request->orderId)->value('id');
         $task = Task::findOrFail($taskId);
-        $task->status = "Revision";
+        $task->status = 5;
         $task->update();
 
         $revision = new Revision();
@@ -59,6 +62,12 @@ class RevisionController extends Controller
                 $file->save();
             }
         }
+        $email = User::where('role', 'admin')->get()->toArray();
+        $data = array(
+            'orderNo' => $request->orderId,
+        );
+        Mail::to($email)->send(new OrderRevision($data));
+
         return response(['status' => 'success'], 200);
     }
 
@@ -94,5 +103,12 @@ class RevisionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function studentSort($sort){
+        if (auth()->user()->role == "student"){
+            $user = auth()->user()->id;
+            return Task::where('user_id',$user)->where('status', $sort)->latest()->paginate(10);
+        }
     }
 }

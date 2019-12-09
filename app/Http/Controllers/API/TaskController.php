@@ -32,7 +32,7 @@ class TaskController extends Controller
     public function student()
     {
         $user = auth()->user()->id;
-        return Task::where('user_id',$user)->latest()->get();
+        return Task::where('user_id',$user)->latest()->paginate(10);
     }
     /**
      * Store a newly created resource in storage.
