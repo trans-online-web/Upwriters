@@ -32,7 +32,7 @@ class TaskController extends Controller
     public function student()
     {
         $user = auth()->user()->id;
-        return Task::where('user_id',$user)->latest()->get();
+        return Task::where('user_id',$user)->latest()->paginate(10);
     }
     /**
      * Store a newly created resource in storage.
@@ -72,7 +72,7 @@ class TaskController extends Controller
 
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $uploadedFile) {
-                $filename = $uploadedFile->store('uploads');
+                $filename = $uploadedFile->storeAs('uploads', time() . $uploadedFile->getClientOriginalName());
                 // echo $filename;
                 $file = new Files();
                 $file->task_id = $task_id;
@@ -106,12 +106,12 @@ class TaskController extends Controller
 
     public function ifFiles($orderId)
     {
-        return Files::where('orderNumber', $orderId)->count();
+        return Files::where('orderNumber', $orderId)->where('revision', 0)->count();
     }
 
     public function getFiles($orderId)
     {
-        return Files::where('orderNumber', $orderId)->get();
+        return Files::where('orderNumber', $orderId)->where('revision', 0)->get();
     }
     public function user($orderId)
     {
@@ -146,9 +146,10 @@ class TaskController extends Controller
 
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $uploadedFile) {
-                $filename = $uploadedFile->store('uploads');
+                $filename = $uploadedFile->storeAs('uploads', time() . $uploadedFile->getClientOriginalName());
                 // echo $filename;
                 $file = new Files();
+                $file->task_id = Task::where('orderNumber', $orderId)->value('id');
                 $file->orderNumber = $orderId;
                 $file->path = $filename;
                 $file->user_id = auth()->user()->id;

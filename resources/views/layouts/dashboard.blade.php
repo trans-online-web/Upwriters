@@ -24,6 +24,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini">
+<script
+        src="https://www.paypal.com/sdk/js?client-id=AVR-206XMxlGClbAhWRS2Ycb2QlNKPflZNYoB37XBuH3JOCvawfmysN9p_ne5bDDxYhuYhPE-ziiLNEz"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+</script>
 @can('isAdmin')
     <div class="wrapper" id="app">
 

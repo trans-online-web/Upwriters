@@ -40,11 +40,17 @@ class CompletedController extends Controller
             'files' => 'required',
         ]);
 
+        $task_id = Task::where('orderNumber', $orderId)->value('id');
+        $task = Task::findOrFail($task_id);
+        $task->status = 2;
+        $task->update();
+
         if ($request->hasFile('files')) {
             foreach ($request->file('files') as $uploadedFile) {
-                $filename = $uploadedFile->store('uploads');
+                $filename = $uploadedFile->storeAs('uploads', time() . $uploadedFile->getClientOriginalName());
                 // echo $filename;
                 $file = new Completed();
+                $file->task_id = Task::where('orderNumber', $orderId)->value('id');
                 $file->orderNumber = $orderId;
                 $file->path = $filename;
                 $file->user_id = auth()->user()->id;

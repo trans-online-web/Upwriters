@@ -99,6 +99,10 @@ Vue.filter('myDate', function (created) {
     return moment(created).format('hh:mm MMMM Do YYYY');
 });
 
+Vue.filter('myDatetime',function(created){
+    return moment(created).format('MMMM Do YYYY, h:mm a');
+});
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

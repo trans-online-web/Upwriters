@@ -84,7 +84,10 @@
                                             </tr>
                                             <tr>
                                                 <td>Subject</td>
-                                                <td><span>{{details.subject_name}}</span></td>
+                                                <td>
+                                                    <span v-if="details.other_subject">{{details.subject_name}}({{details.other_subject}})</span>
+                                                    <span v-if="!details.other_subject">{{details.subject_name}}</span>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Document Type</td>
@@ -96,7 +99,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Deadline</td>
-                                                <td><span>{{details.deadline_datetime}}</span></td>
+                                                <td><span style="color: red;">{{details.deadline_datetime|myDatetime}}</span></td>
                                             </tr>
                                             <tr>
                                                 <td>Spacing</td>
@@ -129,7 +132,7 @@
                                                                 style="color: white;"></i></span>
 
                                                         <div class="info-box-content">
-                                                            <span class="info-box-text">Download</span>
+                                                            <span class="info-box-text">{{file.path.substring(18)}}</span>
                                                         </div>
                                                         <!-- /.info-box-content -->
                                                     </div>
@@ -170,7 +173,7 @@
                                         <h5 class="box-title">Upload</h5>
                                     </div>
                                     <div class="box-body">
-                                        <button type="button" class="btn btn-success" @click="newModal">
+                                        <button type="button" class="btn btn-success btn-sm" @click="newModal">
                                             <i class="fas fa-cloud-upload-alt"></i>
                                             Upload Completed Task
                                         </button>
@@ -193,7 +196,7 @@
                                                                 style="color: white;"></i></span>
 
                                                         <div class="info-box-content">
-                                                            <span class="info-box-text">Download</span>
+                                                            <span class="info-box-text">{{complete.path.substring(18)}}</span>
                                                         </div>
                                                         <!-- /.info-box-content -->
                                                     </div>
@@ -387,7 +390,7 @@
                         var fileLink = document.createElement('a');
                         console.log(fileLink);
                         fileLink.href = fileURL;
-                        fileLink.setAttribute('download', path.substring(8));
+                        fileLink.setAttribute('download', path.substring(18));
                         document.body.appendChild(fileLink);
                         fileLink.click();
                     });
@@ -463,7 +466,7 @@
                         var fileLink = document.createElement('a');
                         console.log(fileLink);
                         fileLink.href = fileURL;
-                        fileLink.setAttribute('download', path.substring(8));
+                        fileLink.setAttribute('download', path.substring(18));
                         document.body.appendChild(fileLink);
                         fileLink.click();
                     });

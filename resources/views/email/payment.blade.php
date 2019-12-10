@@ -162,11 +162,11 @@
             }
         }
     </style>
+    <script
+            src="https://www.paypal.com/sdk/js?client-id=AVR-206XMxlGClbAhWRS2Ycb2QlNKPflZNYoB37XBuH3JOCvawfmysN9p_ne5bDDxYhuYhPE-ziiLNEz"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+    </script>
 </head>
 <body>
-<script
-    src="https://www.paypal.com/sdk/js?client-id=AS6QEAQNlytAzvFYVgxVUAOSzGSV-Bkii7nn8cbVmMtK4jAOAwgcq86nPGUKT_R-01NVk1GDt_P0REGb"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
-</script>
 <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0">
     <tr>
         <td align="center">
@@ -193,7 +193,7 @@
                                                     <h5>Dear <i>{{ $data['name'] }}</i></h5>,
                                                     <p>You can now settle the agreed compensation on the assignment  <b>'{{ $data['title'] }}'</b> order number <b>{{ $data['orderNo'] }}</b>  on  <b>{{ $data['subject'] }}</b> .</p>
                                                     <p>Click the link below to settle the payment so as to allow our experts to start working on the assignment.</p>
-                                                    <div id="paypal-button-container">Paypal</div>
+                                                    <div id="paypal-button-container"></div>
                                                     <script src="https://www.paypal.com/sdk/js?client-id=AS6QEAQNlytAzvFYVgxVUAOSzGSV-Bkii7nn8cbVmMtK4jAOAwgcq86nPGUKT_R-01NVk1GDt_P0REGb"></script>
                                                     <script>paypal.Buttons().render('body');</script>
                                                     Thank You,
@@ -225,18 +225,7 @@
     </tr>
 </table>
 <script>
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            // This function sets up the details of the transaction, including the amount and line item details.
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '0.01'
-                    }
-                }]
-            });
-        }
-    }).render('#paypal-button-container');
+    paypal.Buttons().render('#paypal-button-container');
 </script>
 </body>
 
