@@ -208,6 +208,9 @@
                                         <h5><i class="icon fa fa-ban"></i> Alert!</h5>
                                         No files attached!!
                                     </div>
+                                    <div class="row">
+                                        <div id="paypal-button-container"></div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -310,6 +313,7 @@
 </template>
 
 <script>
+
     export default {
         props: {
             user: {
@@ -317,6 +321,7 @@
                 required: true
             }
         },
+
         data() {
             return {
                 message: '',

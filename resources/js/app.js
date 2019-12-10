@@ -50,6 +50,10 @@ Vue.use(VueNumericInput);
 import uniq from 'lodash/uniq'
 
 window.uniq = uniq;
+//paypal
+import LoadScript from 'vue-plugin-load-script';
+Vue.use(LoadScript);
+
 // sweatalert
 import swal from 'sweetalert2';
 
@@ -114,6 +118,8 @@ Vue.component('my-order', require('./components/Myoders.vue').default);
 Vue.component('myorderdetails', require('./components/MyOrderDetails.vue').default);
 Vue.component('blog-user', require('./components/Blog/BlogUser.vue').default);
 Vue.component('blog-content', require('./components/Blog/BlogContent.vue').default);
+Vue.component('profile', require('./components/profile.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -38,6 +38,9 @@ Route::get('/blogcontent/{blogId}', function () {
 Route::get('/terms', function () {
     return view('terms');
 });
+Route::get('/profile', function () {
+    return view('myprofile');
+});
 // Route::get('/task', function () {
 //     return view('order');
 // });

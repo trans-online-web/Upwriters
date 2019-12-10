@@ -27,7 +27,7 @@ class TaskController extends Controller
 
     public function index()
     {
-        return Task::latest()->paginate(20);
+        return Task::latest()->paginate(10);
     }
     public function student()
     {

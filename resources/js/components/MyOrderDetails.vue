@@ -122,6 +122,20 @@
                                         No files attached!!
                                     </div>
                                 </div>
+                                <div class="box mb-4" v-if="this.details.agreedAmount > 0">
+                                    <div class="box-header">
+                                        <h5 class="box-title">Make Payments</h5>
+                                    </div>
+                                    <div class="box-body mt-3" >
+                                        <paypal-checkout
+                                            :amount="details.agreedAmount"
+                                            currency="USD"
+                                            :invoice-number="details.orderNumber"
+                                            :client="paypal">
+                                        </paypal-checkout>
+                                    </div>
+                                </div>
+
                                 <div class="box">
                                     <div class="box-header">
                                         <h5 class="box-title">Completed</h5>
@@ -222,9 +236,15 @@
 </template>
 
 <script>
+    import PayPal from 'vue-paypal-checkout';
     export default {
+
         data() {
             return {
+                paypal: {
+                    sandbox: 'AXpMb4rHHoJ_zLdftEmPDG3uENWaAgE2C_vInB8P082gqjLd0Us6217cAin8IPdg-cYT46MRewgaYfQF',
+                    production: 'AYgvJCQy-gIFDW-1P9VeVLo8O42Gehm50ciB4KfVN_qhtt-edkCC-CrUczxoctMu0DX1C9fj2INnZ4i1'
+                },
                 message: '',
                 typing: '',
                 user: {},

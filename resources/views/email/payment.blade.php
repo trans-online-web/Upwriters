@@ -194,6 +194,8 @@
                                                     <p>You can now settle the agreed compensation on the assignment  <b>'{{ $data['title'] }}'</b> order number <b>{{ $data['orderNo'] }}</b>  on  <b>{{ $data['subject'] }}</b> .</p>
                                                     <p>Click the link below to settle the payment so as to allow our experts to start working on the assignment.</p>
                                                     <div id="paypal-button-container">Paypal</div>
+                                                    <script src="https://www.paypal.com/sdk/js?client-id=AS6QEAQNlytAzvFYVgxVUAOSzGSV-Bkii7nn8cbVmMtK4jAOAwgcq86nPGUKT_R-01NVk1GDt_P0REGb"></script>
+                                                    <script>paypal.Buttons().render('body');</script>
                                                     Thank You,
                                                     <br/>
                                                     <i>Regards UpWriters.net</i>
