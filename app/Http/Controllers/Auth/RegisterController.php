@@ -62,13 +62,18 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+  protected function create(array $data)
+
     {
+        $ref_by = null;
         $referred_by = Cookie::get('referral');
+        if(!is_null($referred_by)){
+
         $ref = explode(":",$referred_by)[2];
         preg_match('!\d+!', $ref, $matches);
         $ref_by= intval(reset($matches));
-        
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
