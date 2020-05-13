@@ -16,6 +16,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Reffered by</th>
                                 <!--<th>Type</th>-->
                                 <th>Registered At</th>
                                 <th>Modify</th>
@@ -24,6 +25,7 @@
                                 <td>{{user.id}}</td>
                                 <td>{{user.name}}</td>
                                 <td>{{user.email}}</td>
+                                <td>{{user.referred_by }}</td>
                                <!-- <td>{{user.role | upText}}</td>-->
                                 <td>{{user.created_at | myDate}}</td>
                                 <td>
