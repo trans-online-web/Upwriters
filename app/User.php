@@ -38,6 +38,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['refereeName'];
+
+    public function getRefereeNameAttribute()
+    {
+        return User::where('id', $this->referred_by)->value('name');
+    }
+
+
 
 
     public function referee(){

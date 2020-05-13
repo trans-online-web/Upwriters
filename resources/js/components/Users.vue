@@ -25,7 +25,7 @@
                                 <td>{{user.id}}</td>
                                 <td>{{user.name}}</td>
                                 <td>{{user.email}}</td>
-                                <td>{{user.referred_by }}</td>
+                                <td>{{user.refereeName }}</td>
                                <!-- <td>{{user.role | upText}}</td>-->
                                 <td>{{user.created_at | myDate}}</td>
                                 <td>
