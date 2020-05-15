@@ -27,9 +27,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Get the best quality academic paper, essay or thesis written by qualified professional writers. Upwriters are here to help.">
-    <meta name="keywords" content="Writing, Essay, Academic, Professional, Thesis, Assignment, Homework">
+    <meta name="keywords" content="Writing, Essay, Academic, Professional, Thesis, Assignment, Homework, Writer help, Online Assignment, Finance Assignment, Online assignment help, Expert Assignment, Online writing, Law Assignments, Best Assignment service. ">
     <meta name="yandex-verification" content="9b568e26b1e48729" />
-    <title>Hire Top-Quality Essay and Paper Writing Services</title>
+    <title>Upwriters.net - Hire Top-Quality Essay and Paper Writing Services</title>
 
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script>--}}
