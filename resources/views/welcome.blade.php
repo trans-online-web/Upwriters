@@ -17,7 +17,7 @@ Home
                                     <div class="hero-left">
                                         <!-- <h4>Creative</h4> -->
                                         <br>
-                                        <h2>In need of a top quality essay writing help??</h2>
+                                        <h2>In need of a top quality essay writing help?</h2>
                                         <p>Upwriters.net provides quality plagiarism free essays and assignment solutions done by top rated professional writers that will enable you attain higher test scores at an affordable price. </p>
                                         <a href="/task" class="bttn-mid btn-fill radius-50">Order Now!</a>
                                     </div>
@@ -44,7 +44,7 @@ Home
                     <div class="single-about">
                         <div class="section-title mb-10">
                             <!-- <h4>About us</h4> -->
-                            <h2>Customer – Centered All Academic Paper Writing Help</h2>
+                            <h2>Customer–Centered All Academic Paper Writing Help</h2>
                             <p>Our team is available all-round the clock with the sole objective of helping our valued clients in all their paper needs. In case of a question about a particular order, you can ask and our online live support will get back to you instantly. <br><br>
                                 We value you. In case of any inquiries or clarification on any order information, don’t hesitate to contact us. Our replies are instant. This platform consists of one-stop solution for all students who need professional paper writing services. Our wide range of academic paper services will always come to rescue when in need of higher grade-level content. So be sure to reach us, we are looking forward to hearing from you. </p>
                         </div>
