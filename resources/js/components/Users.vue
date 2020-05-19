@@ -16,6 +16,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Reffered by</th>
                                 <!--<th>Type</th>-->
                                 <th>Registered At</th>
                                 <th>Modify</th>
@@ -23,7 +24,8 @@
                             <tr v-for="user in users.data" :key="user.id">
                                 <td>{{user.id}}</td>
                                 <td>{{user.name}}</td>
-                                <td><a :href="'/userDetails/'+ user.id" type="button" class="btn btn-primary btn-sm">{{user.email}}</a></td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.referred_by }}</td>
                                <!-- <td>{{user.role | upText}}</td>-->
                                 <td>{{user.created_at | myDate}}</td>
                                 <td>
