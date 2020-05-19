@@ -23,7 +23,7 @@
                             <tr v-for="user in users.data" :key="user.id">
                                 <td>{{user.id}}</td>
                                 <td>{{user.name}}</td>
-                                <td>{{user.email}}</td>
+                                <td><a :href="'/userDetails/'+ user.id" type="button" class="btn btn-primary btn-sm">{{user.email}}</a></td>
                                <!-- <td>{{user.role | upText}}</td>-->
                                 <td>{{user.created_at | myDate}}</td>
                                 <td>
