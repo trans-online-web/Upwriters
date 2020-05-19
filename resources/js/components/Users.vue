@@ -24,14 +24,9 @@
                             <tr v-for="user in users.data" :key="user.id">
                                 <td>{{user.id}}</td>
                                 <td>{{user.name}}</td>
-<<<<<<< HEAD
-                                <td>{{user.email}}</td>
-                                <td>{{user.referred_by }}</td>
-=======
                                 <td><a :href="'/userDetails/'+ user.id" type="button" class="btn btn-primary btn-sm">{{user.email}}</a></td>
-                                <td>{{user.email}}</td>
+                                
                                 <td>{{user.refereeName }}</td>
->>>>>>> ce82d349a677b22c2a45b82f6079160677a6cd44
                                <!-- <td>{{user.role | upText}}</td>-->
                                 <td>{{user.created_at | myDate}}</td>
                                 <td>
@@ -66,13 +61,7 @@
                     id:'',
                     name:'',
                     email: '',
-
-
-
-
                 })
-
-
             }
         },
         methods:{
@@ -97,7 +86,6 @@
                     })
                     .catch(()=>{
                         this.$Progress.fail();
-
                     })
             },
             editModal(user){
@@ -123,14 +111,12 @@
                     // send the request to the controller
                     if (result.value) {
                         this.form.delete('api/user/'+ id).then(()=>{
-
                             Swal.fire(
                                 'Deleted!',
                                 'Your file has been deleted.',
                                 'success'
                             )
                             Fire.$emit('AfterCreate');
-
                         });
                     }
                 }).catch(()=>{
@@ -156,8 +142,6 @@
                     })
             }
         },
-
-
         created() {
             Fire.$on('searching', ()=>{
                 let query = this.$parent.search;
@@ -166,7 +150,6 @@
                         this.users = data.data;
                     })
                     .catch(()=>{
-
                     })
             })
             this.loadUsers();
