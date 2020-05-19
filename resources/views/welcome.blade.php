@@ -5,15 +5,26 @@
 @section('content')
     <div>
     @include('includes.nav')
+
     <!--Hero Area-->
         <section class="hero-section">
             <div class="hero-area-1">
                 <div class="single-hero" style="background: url('images/hero-5.jpg') no-repeat center / cover;">
                     <div class="container">
                         <div class="row ml-3 pl-5 justify-content-center">
+
+
                             <div class="col-xl-7 centered">
+
+                
                                 <div class="hero-sub">
+
                                     <div class="table-cell">
+                                          @auth 
+                                            <div class="alert alert-primary">
+                                         Your Referral link is  <span> {{ url('/') . '/?ref=' . Auth::user()->id }} </span>
+                                            </div>
+                                            @endauth
                                         <div class="hero-left">
                                             <!-- <h4>Creative</h4> -->
                                             <br>
