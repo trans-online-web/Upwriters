@@ -16,6 +16,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Reffered by</th>
                                 <!--<th>Type</th>-->
                                 <th>Registered At</th>
                                 <th>Modify</th>
@@ -23,7 +24,9 @@
                             <tr v-for="user in users.data" :key="user.id">
                                 <td>{{user.id}}</td>
                                 <td>{{user.name}}</td>
-                                <td>{{user.email}}</td>
+                                <td><a :href="'/userDetails/'+ user.id" type="button" class="btn btn-primary btn-sm">{{user.email}}</a></td>
+                                
+                                <td>{{user.refereeName }}</td>
                                <!-- <td>{{user.role | upText}}</td>-->
                                 <td>{{user.created_at | myDate}}</td>
                                 <td>
@@ -58,13 +61,7 @@
                     id:'',
                     name:'',
                     email: '',
-
-
-
-
                 })
-
-
             }
         },
         methods:{
@@ -89,7 +86,6 @@
                     })
                     .catch(()=>{
                         this.$Progress.fail();
-
                     })
             },
             editModal(user){
@@ -115,14 +111,12 @@
                     // send the request to the controller
                     if (result.value) {
                         this.form.delete('api/user/'+ id).then(()=>{
-
                             Swal.fire(
                                 'Deleted!',
                                 'Your file has been deleted.',
                                 'success'
                             )
                             Fire.$emit('AfterCreate');
-
                         });
                     }
                 }).catch(()=>{
@@ -148,8 +142,6 @@
                     })
             }
         },
-
-
         created() {
             Fire.$on('searching', ()=>{
                 let query = this.$parent.search;
@@ -158,7 +150,6 @@
                         this.users = data.data;
                     })
                     .catch(()=>{
-
                     })
             })
             this.loadUsers();

@@ -5,7 +5,9 @@ Home
 @section('content')
 <div>
     @include('includes.nav')
+
     <!--Hero Area-->
+ SEO/meta
     <section class="hero-section">
         <div class="hero-area-1">
             <div class="single-hero" style="background: url('images/hero-5.jpg') no-repeat center / cover;">
@@ -20,6 +22,35 @@ Home
                                         <h2>In need of a top quality essay writing help?</h2>
                                         <p>Upwriters.net provides quality plagiarism free essays and assignment solutions done by top rated professional writers that will enable you attain higher test scores at an affordable price. </p>
                                         <a href="/task" class="bttn-mid btn-fill radius-50">Order Now!</a>
+
+        <section class="hero-section">
+            <div class="hero-area-1">
+                <div class="single-hero" style="background: url('images/hero-5.jpg') no-repeat center / cover;">
+                    <div class="container">
+                        <div class="row ml-3 pl-5 justify-content-center">
+
+
+                            <div class="col-xl-7 centered">
+
+                
+                                <div class="hero-sub">
+
+                                    <div class="table-cell">
+                                          @auth 
+                                            <div class="alert alert-primary">
+                                         Your Referral link is  <span> {{ url('/') . '/?ref=' . Auth::user()->id }} </span>
+                                            </div>
+                                            @endauth
+                                        <div class="hero-left">
+                                            <!-- <h4>Creative</h4> -->
+                                            <br>
+                                            <h2>In need of professional paper help?</h2>
+                                            <p>Our company provides customized paper writing help that will enable you
+                                                to get the paper according to your needs. The customized papers will be
+                                                written professionally and will be quality as well as affordable. </p>
+                                            <a href="/task" class="bttn-mid btn-fill radius-50">Order Now!</a>
+                                        </div>
+   master
                                     </div>
                                 </div>
                             </div>

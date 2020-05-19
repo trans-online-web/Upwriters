@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role',
+        'name', 'email', 'password','role', 'referred_by',
     ];
 
     /**
@@ -37,4 +37,33 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    protected $appends = ['refereeName'];
+
+    public function getRefereeNameAttribute()
+    {
+        return User::where('id', $this->referred_by)->value('name');
+    }
+
+
+
+
+
+    public function referee(){
+        return $this->belongsTo(User::class,'referred_by','id');
+    }
+
+
+   // Returns users count referrence by current user
+    public function referredUsers(){
+        $count = User::where('referred_by',$this->id)->count();
+
+        return $count;
+    }
+
+    // You can create points from here , if you reference may be you get 10 pointa
+    //  Multiply this by 10
+
+    // eg Auth::user()->rederredUsers() + 10 points = User points
 }
