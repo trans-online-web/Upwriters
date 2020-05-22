@@ -8,6 +8,8 @@ require('./bootstrap');
 
 
 window.Vue = require('vue');
+ window.EventBus=new Vue();
+
 
 // VueRouter
 import VueRouter from 'vue-router';
@@ -78,6 +80,7 @@ let routes = [
     {path: '/orders', component: require('./components/TaskOrders.vue').default},
     {path: '/orderdetails/:orderId', component: require('./components/OrderDetails.vue').default},
     {path: '/MyOrderDetails/:orderId', component: require('./components/MyOrderDetails.vue').default},
+    {path: '/userDetails/:userId', component: require('./components/userDetails').default},
     {path: '/MyOrder', component: require('./components/Myoders.vue').default},
     {path: '/chat', component: require('./components/Chat.vue').default},
     {path: '/blog-admin', component: require('./components/Blog.vue').default},

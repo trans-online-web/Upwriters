@@ -5,6 +5,11 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Order;
+use App\Task;
+use App\Payment;
+
+
 
 class UserController extends Controller
 {
@@ -15,6 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
+
         return User::latest()->paginate(10);
     }
 
@@ -37,7 +43,15 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $task=Task::where("user_id","=",$id)->get();
+
+        $payment = Payment::findOrFail($task[0]->payment)->amount;
+
+        $task[0]->setAttribute('payment', $payment);
+
+        return response(['data'=>  $task[0]]);
+
     }
 
     /**
@@ -75,5 +89,14 @@ class UserController extends Controller
             $users = User::latest()->paginate(10);
         }
         return $users;
+    }
+
+/**
+*get user details
+*@param id
+**/
+     public function details($id)
+    {
+        return 123;
     }
 }

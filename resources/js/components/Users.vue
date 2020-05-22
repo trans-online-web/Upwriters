@@ -24,8 +24,8 @@
                             <tr v-for="user in users.data" :key="user.id">
                                 <td>{{user.id}}</td>
                                 <td>{{user.name}}</td>
-                                <td><a :href="'/userDetails/'+ user.id" type="button" class="btn btn-primary btn-sm">{{user.email}}</a></td>
-                                
+                                <td><a :href="'/userDetails/'+ user" data-toggle="modal" data-target="#exampleModalCenter"  type="button" @click.prevent="sendEmailId(user)" class="btn btn-primary btn-sm">{{user.email}}</a></td>
+
                                 <td>{{user.refereeName }}</td>
                                <!-- <td>{{user.role | upText}}</td>-->
                                 <td>{{user.created_at | myDate}}</td>
@@ -45,6 +45,47 @@
                         <pagination :data="users" @pagination-change-page="getResults"></pagination>
                     </div>
                 </div>
+
+
+
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Reffered by:<b>{{ userInfo.referredBy  }}</b></h5> <!--{{userInfo}}&nbsp; -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+     <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ORDER</th>
+      <th scope="col">PAYMENT ID</th>
+      <th scope="col">DOCUMENT TYPE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>{{ userInfo.orderNumber}}</td>
+      <td>{{ userInfo.payment}}</td>
+      <td>{{ userInfo.documentType_name}}</td>
+    </tr>
+   
+  </tbody>
+</table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
                 <!-- /.box -->
             </div>
         </div>
@@ -57,6 +98,7 @@
             return{
                 editMode: false,
                 users :{},
+                userInfo:{},
                 form: new Form({
                     id:'',
                     name:'',
@@ -65,6 +107,22 @@
             }
         },
         methods:{
+
+            sendEmailId(value){
+
+            var that=this;
+            axios.get('api/user/'+value.id).then(response=>{
+             that.userInfo=response.data.data
+
+             that.userInfo.referredBy = value.referred_by;
+
+             console.log(that.userInfo)
+
+            }).catch().finally();
+
+            },
+
+
             getResults(page = 1) {
                 axios.get('api/user?page=' + page)
                     .then(response => {

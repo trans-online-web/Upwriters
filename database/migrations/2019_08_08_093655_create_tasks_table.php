@@ -16,6 +16,7 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
+            $table->integer('payment')->unsigned();
             $table->string('name');
             $table->string('email');
             $table->string('subject_name');
@@ -29,6 +30,7 @@ class CreateTasksTable extends Migration
             $table->longText('task');
             $table->integer('pages');
             $table->string('spacing');
+            $table->foreign('payment')->references('id')->on('payments');
             $table->timestamps();
         });
     }
