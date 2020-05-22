@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<script type="text/javascript">//<![CDATA[
+<script type="text/javascript">
+    //<![CDATA[
     var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");
     document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
     //]]>
 </script>
+
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146138937-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-146138937-1');
+    </script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Getting professional paper writing is not easy. Paper writing requires knowledge and a high level of English to produce a satisfactory paper. If you need help, we are here to help you with your paper.">
-
-    <title>Upwriters || @yield('title')</title>
+    <meta name="description" content="Get the best quality plagiarism free academic paper, essay, thesis or assignments written by qualified professional writers. Upwriters are here to help.">
+    <meta name="keywords" content="Writing, Essay, Academic, Professional, Thesis, Assignment, Homework, Writer help, Online Assignment, Finance Assignment, Online assignment help, Expert Assignment, Online writing, Law Assignments, Best Assignment service, research paper outline template, my assignment, help me with my homework, college homework help, research topics, essay help, buy homework online, personal letter format, research paper outline, information speech ideas, pay someone to do my homework ">
+    <meta name="yandex-verification" content="9b568e26b1e48729" />
+    <title>Upwriters.net - Hire Top-Quality Academic Essay and Paper Writing Services</title>
 
     <!-- Scripts -->
-{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script>--}}
     <script src="https://cdn.jsdelivr.net/momentjs/2.13.0/moment.min.js"></script>
+
+    <link rel="canonical" href="https://upwriters.net/" />
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -45,6 +63,7 @@
     TrustLogo("https://upwriters.net/", "SC5", "none");
 </script>
 <a href="https://www.instantssl.com/ssl-certificate.html" id="comodoTL">Gold SSL</a>
+
 <body>
     <div id="app">
         @include('includes.nav')
@@ -73,21 +92,19 @@
     <script src="js/script.js"></script>
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/5ddbc6a9d96992700fc91c1a/default';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/5ddbc6a9d96992700fc91c1a/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
     </script>
     <!--End of Tawk.to Script-->
-    @auth
-        <script>
-            window.user = @json(auth()->user())
-        </script>
-    @endauth
 </body>
+
 </html>
