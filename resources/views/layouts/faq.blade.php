@@ -5,8 +5,6 @@
     document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
     //]]>
 </script>
-<script>document.getElementsByTagName("html")[0].className += " js";</script>
-<link href="{{ asset('css/style1.css') }}" rel="stylesheet">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,14 +36,10 @@
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/util.js') }}" defer></script>
-    <script src="{{ asset('js/main1.js') }}" defer></script>
-    
 
 
     <!-- Main css -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-
 </head>
 <script language="JavaScript" type="text/javascript">
     TrustLogo("https://upwriters.net/", "SC5", "none");
@@ -59,36 +53,12 @@
         @include('includes.footer')
     </div>
 
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/jquery-migrate.js"></script>
-    <script src="js/jquery-ui.js"></script>
+   
+     <script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
+    <script src="assets/js/main1.js"></script> 
 
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
 
-    <script src="js/magnific-popup.min.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
-
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/scrollUp.min.js"></script>
-
-    <script src="js/script.js"></script>
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/5ddbc6a9d96992700fc91c1a/default';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
+ 
     <!--End of Tawk.to Script-->
     @auth
         <script>

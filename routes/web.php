@@ -36,6 +36,10 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/faq', function () {
+    return view('faq');
+});
+
 
 Route::get('/blogcontent/{blogId}', function () {
     return view('blogcontent');
