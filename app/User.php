@@ -35,6 +35,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $casts = [
+        
         'email_verified_at' => 'datetime',
     ];
 
@@ -44,6 +45,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getRefereeNameAttribute()
     {
         return User::where('id', $this->referred_by)->value('name');
+
+
     }
 
 

@@ -32,7 +32,11 @@
                                             <p>Our company provides customized paper writing help that will enable you
                                                 to get the paper according to your needs. The customized papers will be
                                                 written professionally and will be quality as well as affordable. </p>
-                                            <a href="/task" class="bttn-mid btn-fill radius-50">Order Now!</a>
+                                                @if (Auth::guest())
+                                             <a href="/register" class="bttn-mid btn-fill-2 radius-50" style="float: centre;">Join Us!</a><br>
+                                            @else
+                                             <a href="/task" class="bttn-mid btn-fill-2 radius-50" style="float: centre;">ORDER NOW!</a><br>
+                                             @endif
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +94,7 @@
                             <h2>Customer-centered paper writing help</h2>
                         </div>
                         @if (Auth::guest())
-                            <a href="/register" class="bttn-mid btn-fill">Get Started</a>
+                            <a href="/register" class="bttn-mid btn-fill">Sign up</a>
                         @else
                             <a href="/task" class="bttn-mid btn-fill">Get Started</a>
                         @endif

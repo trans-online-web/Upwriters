@@ -39,9 +39,9 @@
                         <h3>Connect with us</h3>
                         <!-- <p>Et erowisi curabitur ut sollicitudin sit, massa nibh disim condimentum tellus mauris ipsum</p> -->
                         <ul class="d-flex">
-                            <li class="ml-4"><a href="about"><i class="fa fa-facebook-official cl-mint"></i></a></li>
-                            <li class="ml-4"><a href="blog"><i class="fa fa-twitter cl-mint"></i></a></li>
-                            <li class="ml-4"><a href="#"><i class="fa fa-instagram cl-mint"></i></a></li>
+                            <li class="ml-4"><a href="https://web.facebook.com/TechnologiesTw/"><i class="fa fa-facebook-official cl-mint"></i></a></li>
+                            <li class="ml-4"><a href="https://twitter.com/TwTechnologies"><i class="fa fa-twitter cl-mint"></i></a></li>
+                            <li class="ml-4"><a href="https://www.instagram.com/transonlineweb.ke/"><i class="fa fa-instagram cl-mint"></i></a></li>
                         </ul>
                     </div>
                     <div class="footer-widget footer-form">
@@ -58,7 +58,7 @@
         <div class="container">
             <div class="row">
                 <div class="col centered">
-                    <p>Copyright &copy; 2019 All Rights Reserved</p>
+                    <p>Copyright &copy;2019 - <?php echo date("Y"); ?> All Rights Reserved</p>
                 </div>
             </div>
         </div>
