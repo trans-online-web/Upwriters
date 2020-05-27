@@ -18,6 +18,7 @@
                     <li class="nav-item"><a class="nav-link" href="services">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
                 </ul>
                 <div class="justify-content-end">
                     @if (Route::has('login'))
