@@ -5,12 +5,11 @@
     document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
     //]]>
 </script>
-
+<script>document.getElementsByTagName("php")[0].className += " js";</script>
 <link href="{{ asset('css/style1.css') }}" rel="stylesheet">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script>document.getElementsByTagName("html").className += " js";</script>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

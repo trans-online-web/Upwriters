@@ -58,14 +58,14 @@ About Us
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="single-mission-vission">
-                    <h3>phone</h3>
+                    <h4>phone</h4>
                      <h4>Upwriters 24/7 Service contact</h4>
                     <p>+254729631002</p>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="single-mission-vission">
-                    <h3>Email</h3>
+                    <h4>Email</h4>
                      <h4>Request for Proporsal</h4>
                     <p>Support@upwriters.net</p>
 
