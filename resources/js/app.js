@@ -9,6 +9,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
  window.EventBus=new Vue();
+ import store from "./store/store";
 
 
 // VueRouter
@@ -39,6 +40,11 @@ Vue.use(VueProgressBar, {
     failedColor: 'red',
     height: '3px'
 })
+
+//vue-good-table
+import VueGoodTablePlugin from 'vue-good-table/src';
+import 'vue-good-table/dist/vue-good-table.css';
+Vue.use(VueGoodTablePlugin);
 
 import {Datetime} from 'vue-datetime';
 
@@ -136,6 +142,7 @@ Vue.component('profile', require('./components/profile.vue').default);
 const app = new Vue({
     el: '#app',
     router,
+    store,
     data: {
         search: ''
     },

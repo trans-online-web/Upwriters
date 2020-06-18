@@ -7,12 +7,14 @@ use App\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use auth;
+
 class SubjectController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:api');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,22 +22,22 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->role == 'admin'){
-            return Subject::latest()->paginate(10);
-        }else{
-        return Subject::latest()->get();
-    }
+        if (auth()->user()->role == 'admin') {
+            return Subject::latest()->get();
+        } else {
+            return Subject::latest()->get();
+        }
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required|string|max:125|unique:subjects',
         ]);
         return Subject::Create([
@@ -46,7 +48,7 @@ class SubjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -57,13 +59,13 @@ class SubjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required|string|max:25,'
         ]);
         $county = Subject::findOrFail($id);
@@ -76,7 +78,7 @@ class SubjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -85,12 +87,14 @@ class SubjectController extends Controller
 
         $county->delete();
     }
-    public function search(){
+
+    public function search()
+    {
         if ($search = \Request::get('q')) {
-            $subject = Subject::where(function($query) use ($search){
-                $query->where('name','LIKE',"%$search%");
+            $subject = Subject::where(function ($query) use ($search) {
+                $query->where('name', 'LIKE', "%$search%");
             })->paginate(20);
-        }else{
+        } else {
             $subject = Subject::latest()->paginate(10);
         }
         return $subject;

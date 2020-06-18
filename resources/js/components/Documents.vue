@@ -12,33 +12,33 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                
-                                <th>Document Name</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-for="document_types in document.data" :key="document.id">
-                                
-                                <td>{{document_types.name}}</td>
-                                <td>
-                                    <a href="#" @click="editModal(document_types)">
+                        <vue-good-table
+                            :line-numbers="true"
+                            :columns="columns"
+                            :rows="$store.state.documents"
+                            :pagination-options="{
+                               enabled: true,
+                               mode: 'pages',
+                               perPage: 10
+                             }"
+                            :search-options="{
+                                enabled: true,
+                                placeholder: 'Search this table',
+                              }">
+                            <template slot="table-row" slot-scope="props">
+                                <span v-if="props.column.field == 'action'">
+                                    <a href="#" @click="editModal(props.row)">
                                         <i class="fa fa-edit p-1 text-primary"></i>
                                     </a>
-                                    <a href="#" @click="deleteDocument(document_types.id)">
+                                    <a href="#" @click="deleteDocument(props.row.id)">
                                         <i class="fa fa-trash p-1 text-danger"></i>
                                     </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <pagination :data="document" @pagination-change-page="getResults"></pagination>
+                                </span>
+                                <span v-else>
+                                        {{props.formattedRow[props.column.field]}}
+                                    </span>
+                            </template>
+                        </vue-good-table>
                     </div>
                 </div>
                 <!-- /.card -->
@@ -80,6 +80,16 @@
     export default {
         data(){
             return{
+                columns: [
+                    {
+                        label: 'Name',
+                        field: 'name',
+                    },
+                    {
+                        label: 'Action',
+                        field: 'action'
+                    }
+                ],
                 editMode:false,
                 document:{},
                 form: new Form({
@@ -90,16 +100,11 @@
         },
 
         methods: {
-            getResults(page = 1) {
-                axios.get('api/document?page=' + page)
-                    .then(response => {
-                        this.document = response.data;
-                    });
-            },
             addDocument(){
                 this.$Progress.start();
                 this.form.post('api/document')
                     .then(()=>{
+                        this.$store.dispatch('getDocuments');
                         Fire.$emit('entry');
                         $('#addnew').modal('hide');
                         toast.fire({
@@ -112,11 +117,8 @@
                         this.$Progress.fail();
                     });
             },
-            loadDocument(){
-                    axios.get("api/document").then(({data}) => (this.document = data));
-            },
             deleteDocument(id){
-                Swal.fire({
+                swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
                     //type: 'warning',
@@ -127,6 +129,7 @@
                 }).then((result) => {
                     if(result.value){
                         this.form.delete("api/document/"+id).then(()=>{
+                            this.$store.dispatch('getDocuments');
                             swal(
                                 'Delete!',
                                 'Your file has been deleted.',
@@ -152,8 +155,9 @@
             },
             updateDocument(){
                 this.$Progress.start();
-                this.form.put('api/county/'+this.form.id)
+                this.form.put('api/document/'+this.form.id)
                     .then(()=>{
+                        this.$store.dispatch('getDocuments');
                         $('#addnew').modal('hide');
                         swal(
                             'Updated!',
@@ -166,25 +170,10 @@
                     .catch(()=>{
                         this.$Progress.fail();
                     })
-                console.log('I can edit');
             }
         },
         created() {
-            Fire.$on('searching', ()=>{
-                let query = this.$parent.search;
-                axios.get('api/findDocument?q=' + query)
-                    .then((data)=>{
-                        this.document = data.data;
-                    })
-                    .catch(()=>{
-
-                    })
-            })
-            this.loadDocument();
-            Fire.$on('entry', () =>{
-                this.loadDocument();
-            })
-            //setInterval(() => this.loadUsers(), 3000);
+            this.$store.dispatch('getDocuments');
         }
     }
 </script>

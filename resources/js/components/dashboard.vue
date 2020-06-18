@@ -83,6 +83,9 @@
         },
         created() {
             this.loadDash();
+            this.$store.dispatch('getOrdersAdmin');
+            this.$store.dispatch('getDocuments');
+            this.$store.dispatch('getSubjects');
         }
     }
 </script>

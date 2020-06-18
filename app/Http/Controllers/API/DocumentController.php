@@ -21,7 +21,7 @@ class DocumentController extends Controller
     public function index()
     {
         if(auth()->user()->role == 'admin'){
-            return Document::latest()->paginate(10);
+            return Document::latest()->get();
         }elseif (auth()->user()->role == 'student'){
             return Document::latest()->get();
         }
