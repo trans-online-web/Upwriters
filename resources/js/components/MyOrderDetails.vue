@@ -352,6 +352,7 @@
                 const config = {headers: {'Content-Type': 'multipart/form-data'}};
 
                 axios.post('/api/revision/', this.formr, config).then(response => {
+                    this.$store.dispatch('getOrdersStudent');
                     Fire.$emit('entry');
                     $('#revisionModal').modal('hide');
                     this.attachments = [];

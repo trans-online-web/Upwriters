@@ -12,26 +12,6 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>N.o</th>
-                                <th>Subject Name</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-for="subjects in subject.data" :key="subject.id">
-                                <td>{{subjects.id}}</td>
-                                <td>{{subjects.name}}</td>
-                                <td>
-                                    <a href="#" @click="deleteSubject(subjects.id)">
-                                        <i class="fa fa-trash p-1 text-danger"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
                         <vue-good-table
                             :line-numbers="true"
                             :columns="columns"

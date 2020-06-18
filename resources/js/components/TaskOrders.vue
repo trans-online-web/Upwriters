@@ -5,6 +5,13 @@
                 <div class="card mt-4">
                     <div class="card-header">
                         <h3 class="card-title">Orders</h3>
+                        <div class="card-tools">
+                            <button class="btn btn-sm btn-info" @click="reset">reset</button>
+                            <button class="btn btn-sm btn-primary" @click="sort">
+                                <i class="fa fa-sort"></i>
+                                sort
+                            </button>
+                        </div>
                     </div>
 
                     <div class="card-body">
@@ -71,7 +78,7 @@
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label>Select Role</label>
+                                <label>Select Status</label>
                                 <select name="status" v-model="form.status" class="form-control"
                                         :class="{'is-invalid': form.errors.has('status')}">
                                     <option value="">--Select Status--</option>
@@ -86,6 +93,38 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="sort" tabindex="-1" role="dialog" aria-labelledby="addnewLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Status</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form @submit.prevent="updateStatus()">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Select Status</label>
+                                <select name="status" v-model="form2.status" class="form-control">
+                                    <option value="">--Select Status--</option>
+                                    <option value="0">Pending</option>
+                                    <option value="1">Working</option>
+                                    <option value="2">Uploaded</option>
+                                    <option value="3">Completed</option>
+                                    <option value="4">Cancelled</option>
+                                    <option value="5">Revision</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Go</button>
                         </div>
                     </form>
                 </div>
@@ -140,21 +179,32 @@
                 form: new Form({
                     status: '',
                     id: ''
-                })
+                }),
+                form2:{
+                    status: ''
+                }
             }
         },
         computed: {
             allOrders() {
-                if (!this.form.status) {
+                if (!this.form2.status) {
                     return this.$store.state.orders;
                 }
 
-                if (this.form.status) {
-                    return this.$store.state.orders.filter(m => m.status == this.form.status);
+                if (this.form2.status) {
+                    return this.$store.state.orders.filter(m => m.status == this.form2.status);
                 }
             }
         },
         methods: {
+            reset() {
+                this.form2 = {
+                    status: ''
+                }
+            },
+            sort() {
+                $('#sort').modal('show')
+            },
             updateStatus() {
                 this.form.put('api/task/' + this.form.id)
                     .then(() => {

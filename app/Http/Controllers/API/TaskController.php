@@ -29,15 +29,17 @@ class TaskController extends Controller
     {
         return Task::latest()->get();
     }
+
     public function student()
     {
         $user = auth()->user()->id;
-        return Task::where('user_id',$user)->latest()->paginate(10);
+        return Task::where('user_id', $user)->latest()->get();
     }
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -86,17 +88,17 @@ class TaskController extends Controller
         $data = array(
             'name' => auth()->user()->name,
             'title' => $request->title,
-            'subject'=>$request->subject,
+            'subject' => $request->subject,
             'orderNo' => $orderNo,
         );
-          Mail::to($email)->send(new ReceivedOrder($data));
+        Mail::to($email)->send(new ReceivedOrder($data));
         return response(['status' => 'success'], 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -113,20 +115,24 @@ class TaskController extends Controller
     {
         return Files::where('orderNumber', $orderId)->where('revision', 0)->get();
     }
+
     public function user($orderId)
     {
         return Task::where('orderNumber', $orderId)->value('user_id');
     }
+
     public function ThisUser($orderId)
     {
         $id = Task::where('orderNumber', $orderId)->value('user_id');
-        $user = User::where('orderNumber',$id)->first();
+        $user = User::where('orderNumber', $id)->first();
         return $user;
     }
+
     public function admin()
     {
-        return User::where('role','admin')->value('id');
+        return User::where('role', 'admin')->value('id');
     }
+
     public function addPrice(Request $request, $orderId)
     {
         $request->validate([
@@ -170,8 +176,8 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -188,7 +194,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function agreedPrice(Request $request)
@@ -206,9 +212,9 @@ class TaskController extends Controller
         $data = array(
             'name' => Task::where('orderNumber', $request->orderId)->value('name'),
             'title' => Task::where('orderNumber', $request->orderId)->value('title'),
-            'subject'=>Task::where('orderNumber', $request->orderId)->value('subject_name'),
-            'orderNo' =>  $request->orderId,
-            'amount'=>$request->price
+            'subject' => Task::where('orderNumber', $request->orderId)->value('subject_name'),
+            'orderNo' => $request->orderId,
+            'amount' => $request->price
         );
         Mail::to($email)->send(new OrderPayment($data));
     }
