@@ -40,6 +40,9 @@ Route::get('/faq', function () {
     return view('faq');
 });
 
+Route::get('/privacy_policy', function () {
+    return view('privacy_policy');
+});
 
 Route::get('/blogcontent/{blogId}', function () {
     return view('blogcontent');
