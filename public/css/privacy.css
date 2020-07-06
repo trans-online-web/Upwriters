@@ -1,0 +1,23 @@
+.privacy{
+    font-size: 16px;
+    color: #292929;
+    line-height: 1.7em;
+    font-weight: 400;
+    background: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-family: "Open Sans", sans-serif;
+    border: 5px;
+    padding: 20px;
+
+
+  }
+
+.bolt{
+    margin: auto;
+    width: 80%;
+
+}
+.bolt h3{
+
+}

@@ -18,7 +18,11 @@
         "lodash": "^4.17.5",
         "popper.js": "^1.16.1",
         "resolve-url-loader": "^2.3.1",
+<<<<<<< HEAD
         "sass": "^1.26.5",
+=======
+        "sass": "^1.26.8",
+>>>>>>> 32a15460db9e9118d53197c90628a2ab2dc84880
         "sass-loader": "^7.3.1",
         "vue": "^2.6.11",
         "vue-plugin-load-script": "^1.2.0",
@@ -35,14 +39,25 @@
         "sweetalert2": "^8.19.0",
         "vform": "^1.0.1",
         "vue-datetime": "^1.0.0-beta.13",
+<<<<<<< HEAD
+=======
+        "vue-good-table": "^2.19.3",
+>>>>>>> 32a15460db9e9118d53197c90628a2ab2dc84880
         "vue-numeric-input": "^1.0.6",
         "vue-paypal-checkout": "^3.2.0",
         "vue-popperjs": "^2.3.0",
         "vue-progressbar": "^0.7.5",
         "vue-read-more": "^1.1.1",
+<<<<<<< HEAD
         "vue-router": "^3.3.1",
         "vue2-editor": "^2.10.2",
         "vue2-timepicker": "^0.2.2",
+=======
+        "vue-router": "^3.3.4",
+        "vue2-editor": "^2.10.2",
+        "vue2-timepicker": "^0.2.2",
+        "vuex": "^3.4.0",
+>>>>>>> 32a15460db9e9118d53197c90628a2ab2dc84880
         "weekstart": "^1.0.1"
     }
 }

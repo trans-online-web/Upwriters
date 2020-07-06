@@ -1,6 +1,6 @@
 <template>
     <div class="container" v-if="$gate.isAdmin()">
-        <div class="row pt-3" >
+        <div class="row pt-3">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
@@ -12,37 +12,38 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>N.o</th>
-                                <th>Subject Name</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-for="subjects in subject.data" :key="subject.id">
-                                <td>{{subjects.id}}</td>
-                                <td>{{subjects.name}}</td>
-                                <td>
-                                    <a href="#" @click="deleteSubject(subjects.id)">
+                        <vue-good-table
+                            :line-numbers="true"
+                            :columns="columns"
+                            :rows="$store.state.subjects"
+                            :pagination-options="{
+                               enabled: true,
+                               mode: 'pages',
+                               perPage: 10
+                             }"
+                            :search-options="{
+                                enabled: true,
+                                placeholder: 'Search this table',
+                              }">
+                            <template slot="table-row" slot-scope="props">
+                                <span v-if="props.column.field == 'action'">
+                                    <a href="#" @click="deleteSubject(props.row.id)">
                                         <i class="fa fa-trash p-1 text-danger"></i>
                                     </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <pagination :data="subject" @pagination-change-page="getResults"></pagination>
+                                </span>
+                                <span v-else>
+                                        {{props.formattedRow[props.column.field]}}
+                                    </span>
+                            </template>
+                        </vue-good-table>
                     </div>
                 </div>
                 <!-- /.card -->
             </div>
         </div>
         <!-- //Modal -->
-        <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="addnewLabel" aria-hidden="true">
+        <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="addnewLabel"
+             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -75,29 +76,33 @@
 </template>
 <script>
     export default {
-        data(){
-            return{
-                editMode:false,
-                subject:{},
+        data() {
+            return {
+                columns: [
+                    {
+                        label: 'Name',
+                        field: 'name',
+                    },
+                    {
+                        label: 'Action',
+                        field: 'action'
+                    }
+                ],
+                editMode: false,
+                subject: {},
                 form: new Form({
-                    id:'',
+                    id: '',
                     name: '',
                 })
             }
         },
 
         methods: {
-            getResults(page = 1) {
-                axios.get('api/subject?page=' + page)
-                    .then(response => {
-                        this.subject = response.data;
-                    });
-            },
-            addSubject(){
+            addSubject() {
                 this.$Progress.start();
                 this.form.post('api/subject')
-                    .then(()=>{
-                        Fire.$emit('entry');
+                    .then(() => {
+                        this.$store.dispatch('getSubjects');
                         $('#addnew').modal('hide');
                         toast.fire({
                             type: 'success',
@@ -105,15 +110,12 @@
                         });
                         this.$Progress.finish();
                     })
-                    .catch(()=>{
+                    .catch(() => {
                         this.$Progress.fail();
                     });
             },
-            loadSubject(){
-                    axios.get("api/subject").then(({data}) => (this.subject = data));
-            },
-            deleteSubject(id){
-                Swal.fire({
+            deleteSubject(id) {
+                swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
                     //type: 'warning',
@@ -122,26 +124,27 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
-                    if(result.value){
-                        this.form.delete("api/subject/"+id).then(()=>{
+                    if (result.value) {
+                        this.form.delete("api/subject/" + id).then(() => {
+                            this.$store.dispatch('getSubjects');
                             swal(
                                 'Delete!',
                                 'Your file has been deleted.',
                                 'success'
                             )
                             Fire.$emit('entry');
-                        }).catch(()=>{
-                            swal('Failed!','There was something wrong')
+                        }).catch(() => {
+                            swal('Failed!', 'There was something wrong')
                         });
                     }
                 })
             },
-            newModal(){
+            newModal() {
                 this.editMode = false;
                 this.form.reset();
                 $('#addnew').modal('show');
             },
-            editModal(counties){
+            editModal(counties) {
                 this.editMode = true;
                 this.form.reset();
                 $('#addnew').modal('show');
@@ -149,21 +152,7 @@
             }
         },
         created() {
-            Fire.$on('searching', ()=>{
-                let query = this.$parent.search;
-                axios.get('api/findSubject?q=' + query)
-                    .then((data)=>{
-                        this.subject = data.data;
-                    })
-                    .catch(()=>{
-
-                    })
-            })
-            this.loadSubject();
-            Fire.$on('entry', () =>{
-                this.loadSubject();
-            })
-            //setInterval(() => this.loadUsers(), 3000);
+            this.$store.dispatch('getSubjects');
         }
     }
 </script>

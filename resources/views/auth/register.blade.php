@@ -52,6 +52,16 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label>Captcha</label>
+                        <p>{{getCaptchaQuestion()}}</p>
+                        <input placeholder="Enter result" class="form-control @error('_answer') is-invalid @enderror" name="_answer" type="number">
+                        @error('_answer')
+                        <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
                     </div>
                     <p class="small text-center">By clicking the Sign Up button, you agree to our <br><a href="/terms">Terms &amp; Conditions</a>, and <a href="/terms">Privacy Policy</a>.</p>

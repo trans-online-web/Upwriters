@@ -5,62 +5,68 @@
                 <div class="card mt-4">
                     <div class="card-header">
                         <h3 class="card-title">My Orders</h3>
-                        <div class="card-tools">
-                            <button class="btn btn-sm btn-danger" @click="studentSort(4)">Cancelled
-                            </button>
-                            <button class="btn btn-sm btn-primary" @click="studentSort(1)">Working
-                            </button>
-                            <button class="btn btn-sm btn-danger" @click="studentSort(5)">Revision
-                            </button>
-                            <button class="btn btn-sm btn-dark" @click="studentSort(3)">Completed
-                            </button>
-                            <button class="btn btn-sm btn-info" @click="studentSort(2)">Uploaded
-                            </button>
-                            <button class="btn btn-sm btn-warning" @click="studentSort(0)">Pending
-                            </button>
-                        </div>
+                        <<div class="card-tools">
+                        <button class="btn btn-sm btn-info" @click="reset">reset</button>
+                        <button class="btn btn-sm btn-primary" @click="sort">
+                            <i class="fa fa-sort"></i>
+                            sort
+                        </button>
+                    </div>
                     </div>
 
                     <div class="card-body">
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Order#</th>
-                                    <th>Topic</th>
-                                    <th>Subject</th>
-                                    <th>Status</th>
-                                    <th>Deadline</th>
-                                    <th>More</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr v-for="order in orders.data" :key="order.id">
-                                    <td>#{{order.orderNumber}}</td>
-                                    <td>{{order.title}}</td>
-                                    <td>{{order.subject_name}}</td>
-                                    <td>
-                                        <span class="badge badge-pill badge-warning" v-if="order.status == 0">Pending..</span>
-                                        <span class="badge badge-pill badge-dark" v-if="order.status == 1">Working</span>
-                                        <span class="badge badge-pill badge-success" v-if="order.status == 3">Completed</span>
-                                        <span class="badge badge-pill badge-danger" v-if="order.status == 5">Revision</span>
-                                        <span class="badge badge-pill badge-info" v-if="order.status == 2">Uploaded</span>
-                                        <span class="badge badge-pill badge-danger" v-if="order.status == 4">Cancelled</span>
-                                    </td>
-                                    <td>{{order.deadline_datetime | myDatetime}}</td>
-                                    <td>
-                                        <a :href="'/myorderdetails/'+ order.orderNumber" type="button" class="btn btn-primary btn-sm">More</a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <vue-good-table
+                                :line-numbers="true"
+                                :columns="columns"
+                                :rows="allOrders"
+                                :pagination-options="{
+                               enabled: true,
+                               mode: 'pages',
+                               perPage: 10
+                             }"
+                                :search-options="{
+                                enabled: true,
+                                placeholder: 'Search this table',
+                              }">
+                                <template slot="table-row" slot-scope="props">
+                                    <span v-if="props.column.field == 'deadline'">
+                                        <small class="text-primary">{{props.row.deadline_datetime | myDatetime}}</small>
+                                    </span>
+                                    <span v-if="props.column.field == 'statu'">
+                                        <span v-if="props.row.status == 0" class="badge badge-warning">pending</span>
+                                        <span v-if="props.row.status == 1" class="badge badge-primary">working</span>
+                                        <span v-if="props.row.status == 2" class="badge badge-info">uploaded</span>
+                                        <span v-if="props.row.status == 3" class="badge badge-success">completed</span>
+                                        <span v-if="props.row.status == 4" class="badge badge-danger">cancelled</span>
+                                        <span v-if="props.row.status == 5" class="badge badge-danger">revision</span>
+                                    </span>
+                                    <span v-else-if="props.column.field == 'action'">
+                                    <a class="btn btn-info btn-sm" href="#" @click="editModal(props.row, props.row.id)">
+                                            <i class="fa fa-pen"></i>
+                                        </a>
+                                </span>
+                                    <span v-else-if="props.column.field == 'more'">
+                                    <a :href="'/myorderdetails/'+ props.row.orderNumber">
+                                    <button type="button" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-eye"></i>
+                                        More
+                                </button>
+                                    </a>
+                                </span>
+                                    <span v-else>
+                                        {{props.formattedRow[props.column.field]}}
+                                    </span>
+                                </template>
+                            </vue-good-table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="addnewLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="addnewLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addnewLabel">Status</h5>
@@ -70,22 +76,21 @@
                     </div>
                     <form @submit.prevent="updateStatus()">
                         <div class="modal-body">
-
                             <div class="form-group">
-                                <label>Select Role</label>
-                                <select name="status" v-model="form.status" class="form-control" :class="{'is-invalid': form.errors.has('status')}">
+                                <label>Select Status</label>
+                                <select name="status" v-model="form.status" class="form-control">
                                     <option value="">--Select Status--</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Paid">Paid</option>
-                                    <option value="Working">Working</option>
-                                    <option value="Completed">Completed</option>
+                                    <option value="0">Pending</option>
+                                    <option value="1">Working</option>
+                                    <option value="2">Uploaded</option>
+                                    <option value="3">Completed</option>
+                                    <option value="4">Cancelled</option>
+                                    <option value="5">Revision</option>
                                 </select>
-                                <has-error :form="form" field="status"></has-error>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Go</button>
                         </div>
                     </form>
                 </div>
@@ -98,24 +103,61 @@
     export default {
         data(){
             return{
+                columns: [
+                    {
+                        label: 'Order Number',
+                        field: 'orderNumber',
+                    },
+                    {
+                        label: 'Title',
+                        field: 'title',
+                    },
+                    {
+                        label: 'Subject',
+                        field: 'subject_name',
+                    },
+                    {
+                        label: 'Deadline',
+                        field: 'deadline',
+                    },
+                    {
+                        label: 'Status',
+                        field: 'statu',
+                    },
+                    {
+                        label: 'More',
+                        field: 'more'
+                    }
+                ],
                 orders: {},
                 form: new Form({
-
+                   status: ''
                 })
             }
         },
+        computed: {
+            allOrders() {
+                if (!this.form.status) {
+                    return this.$store.state.orders;
+                }
+
+                if (this.form.status) {
+                    return this.$store.state.orders.filter(m => m.status == this.form.status);
+                }
+            }
+        },
         methods:{
-            studentSort(sort){
-                if (this.$gate.isStudent()){
-                    axios.get("/api/studentsort/" + sort).then(({data}) => ([this.orders = data]));
+            reset() {
+                this.form = {
+                    status: ''
                 }
             },
-            getOrders(){
-                axios.get("api/student-task").then(({ data }) => ([this.orders = data]));
-            },
+            sort() {
+                $('#addnew').modal('show')
+            }
         },
         created() {
-            this.getOrders();
+            this.$store.dispatch('getOrdersStudent');
         }
     }
 </script>

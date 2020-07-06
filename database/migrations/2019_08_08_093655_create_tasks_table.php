@@ -15,7 +15,7 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->integer('payment')->unsigned();
             $table->string('name');
             $table->string('email');
@@ -23,15 +23,19 @@ class CreateTasksTable extends Migration
             $table->string('documentType_name');
             $table->dateTime('deadline_datetime');
             $table->string('level');
-            $table->decimal('suggested_price', 8, 2);
-            $table->decimal('budget', 8, 2);
+            $table->decimal('suggested_price', 20, 2);
+            $table->decimal('budget', 20, 2);
             $table->string('title');
             $table->unsignedInteger('status')->default(0);
             $table->longText('task');
+            $table->string('format');
             $table->integer('pages');
             $table->string('spacing');
-            $table->foreign('payment')->references('id')->on('payments');
             $table->timestamps();
+
+            $table->foreign('payment')->references('id')->on('payments');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 
