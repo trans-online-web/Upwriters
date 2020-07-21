@@ -28,8 +28,8 @@
                                         <small class="text-primary">{{props.row.created_at | myDatetime}}</small>
                                     </span>
                                     <span v-else-if="props.column.field == 'modify'">
-                                    <a class="btn btn-info btn-sm" href="#" @click="editModal(props.row, props.row.id)">
-                                            <i class="fa fa-pen"></i>
+                                    <a  href="#" @click="deleteUser(props.row.id)">
+                                            <i class="fas fa-trash-alt red"></i>
                                         </a>
                                 </span>
                                     <span v-else-if="props.column.field == 'view'">
