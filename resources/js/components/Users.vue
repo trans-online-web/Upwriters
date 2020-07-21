@@ -3,90 +3,51 @@
         <div class="row mt-5">
 
             <div class="col-md-12">
-                <div class="card">
+                <div class="card mt-4">
                     <div class="card-header">
-                        <h3 class="card-title">User Table</h3>
-                        <div class="card-tools">
+                        <h3 class="card-title">Users</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="card-body table-responsive p-0">
+                            <vue-good-table
+                                :line-numbers="true"
+                                :columns="columns"
+                                :rows="users"
+                                :pagination-options="{
+                               enabled: true,
+                               mode: 'pages',
+                               perPage: 10
+                             }"
+                                :search-options="{
+                                enabled: true,
+                                placeholder: 'Search this table',
+                              }">
+                                <template slot="table-row" slot-scope="props">
+                                    <span v-if="props.column.field == 'registered'">
+                                        <small class="text-primary">{{props.row.created_at | myDatetime}}</small>
+                                    </span>
+                                    <span v-else-if="props.column.field == 'modify'">
+                                    <a class="btn btn-info btn-sm" href="#" @click="editModal(props.row, props.row.id)">
+                                            <i class="fa fa-pen"></i>
+                                        </a>
+                                </span>
+                                    <span v-else-if="props.column.field == 'view'">
+                                    <router-link :to="{path:'/userDetails/'+ props.row.id}">
+                                    <button type="button" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-eye"></i>
+                                        More
+                                </button>
+                                    </router-link>
+                                </span>
+                                    <span v-else>
+                                        {{props.formattedRow[props.column.field]}}
+                                    </span>
+                                </template>
+                            </vue-good-table>
                         </div>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                            <tbody><tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Reffered by</th>
-                                <!--<th>Type</th>-->
-                                <th>Registered At</th>
-                                <th>Modify</th>
-                            </tr>
-                            <tr v-for="user in users.data" :key="user.id">
-                                <td>{{user.id}}</td>
-                                <td>{{user.name}}</td>
-                                <td><a :href="'/userDetails/'+ user" data-toggle="modal" data-target="#exampleModalCenter"  type="button" @click.prevent="sendEmailId(user)" class="btn btn-primary btn-sm">{{user.email}}</a></td>
-
-                                <td>{{user.refereeName }}</td>
-                               <!-- <td>{{user.role | upText}}</td>-->
-                                <td>{{user.created_at | myDate}}</td>
-                                <td>
-                                    <a href="#" @click="deleteUser(user.id)">
-                                        <i class="fa fa-trash red"></i>
-                                    </a>
-                                </td>
-                            </tr>
-
-
-
-                            </tbody></table>
-                    </div>
-                    <!-- /.box-body -->
-                    <div class="card-footer">
-                        <pagination :data="users" @pagination-change-page="getResults"></pagination>
-                    </div>
                 </div>
-
-
-
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Reffered by:<b>{{ userInfo.referredBy  }}</b></h5> <!--{{userInfo}}&nbsp; -->
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-     <table class="table table-dark">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">ORDER</th>
-      <th scope="col">PAYMENT ID</th>
-      <th scope="col">DOCUMENT TYPE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>{{ userInfo.orderNumber}}</td>
-      <td>{{ userInfo.payment}}</td>
-      <td>{{ userInfo.documentType_name}}</td>
-    </tr>
-   
-  </tbody>
-</table>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-                <!-- /.box -->
             </div>
         </div>
     </div>
@@ -96,6 +57,32 @@
     export default {
         data(){
             return{
+                columns: [
+                    {
+                        label: 'Name',
+                        field: 'name',
+                    },
+                    {
+                        label: 'Email',
+                        field: 'email',
+                    },
+                    {
+                        label: 'Role',
+                        field: 'role',
+                    },
+                    {
+                        label: 'Registered',
+                        field: 'registered',
+                    },
+                    {
+                        label: 'View',
+                        field: 'view',
+                    },
+                    {
+                        label: 'Modify',
+                        field: 'modify',
+                    },
+                ],
                 editMode: false,
                 users :{},
                 userInfo:{},

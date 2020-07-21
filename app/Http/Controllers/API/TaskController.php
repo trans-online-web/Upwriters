@@ -36,6 +36,23 @@ class TaskController extends Controller
         return Task::where('user_id', $user)->latest()->get();
     }
 
+    public function userPending($id)
+    {
+        return Task::where('user_id',$id)->where('status', 0)->latest()->get();
+    }
+    public function userProgress($id)
+    {
+        return Task::where('user_id',$id)->where('status', 1)->latest()->get();
+    }
+    public function userCompleted($id)
+    {
+        return Task::where('user_id',$id)->where('status', 3)->latest()->get();
+    }
+    public function userRevision($id)
+    {
+        return Task::where('user_id',$id)->where('status', 5)->latest()->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
