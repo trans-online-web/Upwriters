@@ -84,6 +84,7 @@ let routes = [
     {path: '/documents', component: require('./components/Documents.vue').default},
     {path: '/levels', component: require('./components/Levels.vue').default},
     {path: '/orders', component: require('./components/TaskOrders.vue').default},
+    {path: '/logs', component: require('./components/SystemLog.vue').default},
     {path: '/orderdetails/:orderId', component: require('./components/OrderDetails.vue').default},
     {path: '/MyOrderDetails/:orderId', component: require('./components/MyOrderDetails.vue').default},
     {path: '/userDetails/:userId', component: require('./components/userDetails').default},

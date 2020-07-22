@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::apiResources(['user' => 'API\UserController']);
 Route::apiResources(['subject' => 'API\SubjectController']);
+Route::apiResources(['logs' => 'API\LogsController']);
 Route::post('/checkuser', 'API\UserController@checkUser');
 
 Route::get('userDetails/{id}', 'API\UserController@details');

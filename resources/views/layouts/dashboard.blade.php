@@ -198,8 +198,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </ul>
                     </li>
                     <li class="nav-item">
+                        <router-link to="/logs" class="nav-link text-dark">
+                            <i class=" nav-icon fas fa-clipboard-check yellow"></i>
+                            <p>
+                                System Logs
+                            </p>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
                         <router-link to="/user" class="nav-link text-dark">
-                            <i class=" nav-icon fas fa-users-cog yellow"></i>
+                            <i class=" nav-icon fas fa-users-cog  text-teal"></i>
                             <p>
                                User Management
                             </p>

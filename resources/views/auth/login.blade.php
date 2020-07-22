@@ -66,10 +66,10 @@
                         </div>
                     </form>
                 </div> --}}
-                
+
 {{--            </div>--}}
             <div class="signup-form p-5" style="width: 590px;">
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('log') }}">
                     @csrf
                     <h2 class="m-2">Login</h2>
                     <div class="form-group">
@@ -104,7 +104,7 @@
                                 </label>
                             </div>
                         </div>
-                    </div>       
+                    </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
                     </div>

@@ -15,6 +15,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/log', 'Auth\LoginController@authenticate')->name('log');
 Route::get('/howitworks', function () {
     return view('howitworks');
 });
