@@ -38,6 +38,8 @@ Route::get('getFiles/{orderId}', 'API\TaskController@getFiles');
 Route::post('addFiles/{orderId}', 'API\TaskController@addFiles');
 Route::post('price/{orderId}', 'API\TaskController@addPrice');
 Route::get('getUser/{orderId}', 'API\TaskController@user');
+Route::get('subjects', 'API\TaskController@subjects');
+Route::get('types', 'API\TaskController@types');
 Route::get('userPending/{userId}', 'API\TaskController@userPending');
 Route::get('userProgress/{userId}', 'API\TaskController@userProgress');
 Route::get('userCompleted/{userId}', 'API\TaskController@userCompleted');
@@ -68,3 +70,5 @@ Route::apiResources(['blog' => 'API\BlogController']);
 
 Route::apiResources(['revision' => 'API\RevisionController']);
 Route::get('studentsort/{sort}', 'API\RevisionController@studentSort');
+
+Route::apiResources(['sample' => 'API\SampleController']);

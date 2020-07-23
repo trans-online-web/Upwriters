@@ -5,7 +5,7 @@
                 <div class="card mt-4">
                     <div class="card-header">
                         <h3 class="card-title">My Orders</h3>
-                        <<div class="card-tools">
+                        <div class="card-tools">
                         <button class="btn btn-sm btn-info" @click="reset">reset</button>
                         <button class="btn btn-sm btn-primary" @click="sort">
                             <i class="fa fa-sort"></i>

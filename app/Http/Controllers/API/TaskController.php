@@ -52,7 +52,12 @@ class TaskController extends Controller
     {
         return Task::where('user_id',$id)->where('status', 5)->latest()->get();
     }
-
+    public function subjects(){
+      return Subject::latest()->get();
+    }
+    public function types(){
+        return Document::latest()->get();
+    }
     /**
      * Store a newly created resource in storage.
      *

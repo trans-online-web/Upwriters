@@ -52,10 +52,11 @@ class LoginController extends Controller
             $log->ip_address = $request->ip();
             $log->save();
             if (Auth::check() && Auth::user()->role == 'admin') {
-                return ('/dashboard');
+                return redirect()->intended('dashboard');
             } elseif (Auth::check() && Auth::user()->role == 'student') {
-                return ('/');
+                return redirect()->intended('/');
             }
+
         }
     }
     /**
