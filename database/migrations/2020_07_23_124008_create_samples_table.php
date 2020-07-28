@@ -18,6 +18,7 @@ class CreateSamplesTable extends Migration
             $table->string('title');
             $table->string('subject');
             $table->string('type');
+            $table->string('format');
             $table->longText('content');
             $table->timestamps();
         });

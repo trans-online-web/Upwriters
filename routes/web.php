@@ -50,6 +50,9 @@ Route::get('/privacy_policy', function () {
 Route::get('/blogcontent/{blogId}', function () {
     return view('blogcontent');
 });
+Route::get('/samplecontent/{sampleId}', function () {
+    return view('sampleContent');
+});
 Route::get('/terms', function () {
     return view('terms');
 });

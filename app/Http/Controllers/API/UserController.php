@@ -54,6 +54,10 @@ class UserController extends Controller
 
     }
 
+    public function payments($id){
+        return Payment::where('user_id', $id)->latest()->get();
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -90,7 +94,9 @@ class UserController extends Controller
         }
         return $users;
     }
-
+    public function referes($id){
+        return User::where('referred_by', $id)->latest()->get();
+    }
 /**
 *get user details
 *@param id

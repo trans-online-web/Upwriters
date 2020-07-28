@@ -11,26 +11,39 @@
                         </div>
                     </div>
 
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-4" v-for="blog in blogs.data" :key="blog.id">
-                                <div class="card">
-                                    <img class="card-img-top" :src="blog.image" alt="Card image cap"
-                                         style="height: 250px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title" style="color: black">{{blog.title}}</h5>
-                                        <small>{{blog['date']|myDate}}</small>
-                                        <p>
-                                            <router-link :to="{path:'/readmore/'+ blog.id}"
-                                                         class="btn btn-primary btn-sm">Read More
-                                            </router-link>
-                                            <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class=" table-responsive no-padding">
+                            <vue-good-table
+                                :line-numbers="true"
+                                :columns="columns"
+                                :rows="samples"
+                                :pagination-options="{
+                               enabled: true,
+                               mode: 'pages',
+                               perPage: 10
+                             }"
+                                :search-options="{
+                                enabled: true,
+                                placeholder: 'Search this table',
+                              }">
+                                <template slot="table-row" slot-scope="props">
+                                <span v-if="props.column.field == 'update'">
+                                   <small>{{moment(props.row.created_at).format('MMMM Do YYYY, h:mm:ss a')}}</small>
+                                </span>
+                                <span v-if="props.column.field == 'read'">
+                                   <small>{{props.row.content | truncate(50)}}</small>
+                                </span>
+                                    <span v-else-if="props.column.field == 'delete'">
+                                       <button type="button" class="m-1 btn btn-danger btn-sm btn-circle"
+                                               @click="deleteSample(props.row.id)"> Delete
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                </span>
+                                    <span v-else>
+                                        {{props.formattedRow[props.column.field]}}
+                                    </span>
+                                </template>
+                            </vue-good-table>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -62,7 +75,7 @@
                                         <label for="status">Subject</label>
                                         <select v-model="form.subject"  class="form-control" name="status" id="subject"
                                                 :class="{ 'is-invalid': form.errors.has('subject') }">
-                                            <option selected value="">--Select Status--</option>
+                                            <option selected value="">--Select Sbujects--</option>
                                             <option   v-for="subject in subjects" :key="subject.id">{{subject.name}}</option>
                                         </select>
                                         <has-error :form="form" field="subject"></has-error>
@@ -75,7 +88,7 @@
                                         <label for="status">Type of paper</label>
                                         <select v-model="form.type" class="form-control" name="type" id="type"
                                                 :class="{ 'is-invalid': form.errors.has('type') }">
-                                            <option selected value="">--Select Status--</option>
+                                            <option selected value="">--Select Paper type--</option>
                                             <option v-for="type in types" :key="type.id">{{type.name}}</option>
                                         </select>
                                         <has-error :form="form" field="type"></has-error>
@@ -110,6 +123,7 @@
 </template>
 
 <script>
+var moment = require('moment');
     import {VueEditor} from "vue2-editor";
 
     export default {
@@ -119,10 +133,40 @@
         },
         data() {
             return {
-                categories: '',
-                blogs: {},
+                moment,
+                columns: [
+
+                    {
+                        label: 'Title',
+                        field: 'title',
+                    },
+                    {
+                        label: 'Subject',
+                        field: 'subject',
+                    },
+                    {
+                        label: 'Type of paper',
+                        field: 'type',
+                    },
+                    {
+                        label: 'Content',
+                        field: 'read',
+                    },
+                    {
+                        label: 'Format',
+                        field: 'format',
+                    },
+                    {
+                        label: 'Date Uploaded',
+                        field: 'update',
+                    },
+                    {
+                        label: 'Action',
+                        field: 'delete'
+                    }
+                ],
+                samples: [],
                 path: '',
-                images: {},
                 subjects:{},
                 types:{},
                 attachments: [],
@@ -137,6 +181,30 @@
             }
         },
         methods: {
+            deleteSample(id) {
+                swal.fire({
+                    title: 'Delete this Sample?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!',
+                }).then((result) => {
+                    // send the request to the controller
+                    if (result.value) {
+                      axios.delete("/api/sample/" + id).then(() => {
+                            swal.fire(
+                                'Success!',
+                                'Sample deleted successfully',
+                                'success'
+                            )
+                           Fire.$emit('entry');
+                        });
+                    }
+                }).catch(() => {
+                    $swal("Failed!", "There was something wrong.", "warning");
+                })
+            },
             getImage(e) {
                 let file = e.target.files[0];
                 var reader = new FileReader();
@@ -164,8 +232,14 @@
                     })
                 }
             },
-            getBlog() {
-                axios.get("/api/blog").then(({data}) => ([this.blogs = data]));
+            getSamples() {
+                axios.get("/api/sample").then(({data}) => ([this.samples = data]));
+            },
+             getSubject() {
+                axios.get("/api/subjects").then(({data}) => ([this.subjects = data]));
+            },
+             getTypes() {
+                axios.get("/api/types").then(({data}) => ([this.types = data]));
             },
             submit() {
                 this.form.post('/api/sample').then(() => {
@@ -194,27 +268,17 @@
                     this.attachments.push(selectedFiles[i]);
                 }
             },
-            getCategories() {
-                axios.get("/api/category").then(({data}) => ([this.categories = data]));
-            },
-            getSubjects(){
-                axios.get("/api/subjects").then(({data}) => ([this.subjects = data]));
-            },
-            getTypes(){
-                axios.get("/api/types").then(({data}) => ([this.types = data]));
-            },
             newModal() {
                 this.form.reset();
                 $('#addnew').modal('show');
             },
         },
         created() {
-            this.getCategories();
-            this.getSubjects();
+            this.getSamples();
+            this.getSubject();
             this.getTypes();
-            this.getBlog();
-            Fire.$on('entry', () => {
-                this.getBlog();
+             Fire.$on('entry', () => {
+                this.getSamples();
             })
         }
     }

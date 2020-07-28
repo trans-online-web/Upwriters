@@ -83,7 +83,7 @@ let routes = [
     {path: '/subject', component: require('./components/Subjects.vue').default},
     {path: '/documents', component: require('./components/Documents.vue').default},
     {path: '/levels', component: require('./components/Levels.vue').default},
-    {path: '/sample', component: require('./components/Samples.vue').default},
+    {path: '/AdminSample', component: require('./components/Samples.vue').default},
     {path: '/orders', component: require('./components/TaskOrders.vue').default},
     {path: '/logs', component: require('./components/SystemLog.vue').default},
     {path: '/orderdetails/:orderId', component: require('./components/OrderDetails.vue').default},
@@ -95,7 +95,7 @@ let routes = [
     {path: '/blog-categories', component: require('./components/BlogCategories.vue').default},
     {path: '/readmore/:blogId', component: require('./components/Readmore.vue').default},
     {path: '/blogcontent/:blogId', component: require('./components/Blog/BlogContent').default},
-
+    {path: '/samplecontent/:sampleId', component: require('./components/SampleContent.vue').default},
 ]
 const router = new VueRouter({
     mode: 'history',
@@ -112,6 +112,9 @@ Vue.filter('myDate', function (created) {
 
 Vue.filter('myDatetime',function(created){
     return moment(created).format('MMMM Do YYYY, h:mm a');
+});
+Vue.filter('truncate',function(string, value) {
+    return string.substring(20, value) + '...';
 });
 
 /**
@@ -133,7 +136,9 @@ Vue.component('my-order', require('./components/Myoders.vue').default);
 Vue.component('myorderdetails', require('./components/MyOrderDetails.vue').default);
 Vue.component('blog-user', require('./components/Blog/BlogUser.vue').default);
 Vue.component('blog-content', require('./components/Blog/BlogContent.vue').default);
+Vue.component('sample-client', require('./components/SampleClient.vue').default);
 Vue.component('profile', require('./components/profile.vue').default);
+Vue.component('sample-content', require('./components/SampleContent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

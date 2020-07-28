@@ -301,10 +301,101 @@
                             </div>
                         </v-tab>
                         <v-tab title="Payments" icon="fas fa-wallet teal">
-                            Third tab content
+                           <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                    <div class="card mt-4">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Payment History</h3>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="card-body table-responsive p-0">
+                                                <vue-good-table
+                                                    :line-numbers="true"
+                                                    :columns="columns2"
+                                                    :rows="payment"
+                                                    :pagination-options="{
+                                                     enabled: true,
+                                                     mode: 'pages',
+                                                     perPage: 10
+                                                                         }"
+                                                    :search-options="{
+                                                     enabled: true,
+                                                     placeholder: 'Search this table',
+                                                                     }">
+                                                    <template slot="table-row" slot-scope="props">
+                                    <span v-if="props.column.field == 'deadline'">
+                                        <small class="text-primary">{{props.row.deadline_datetime | myDatetime}}</small>
+                                    </span>
+                                                        <span v-if="props.column.field == 'statu'">
+                                        <span v-if="props.row.status == 0" class="badge badge-warning">pending</span>
+                                        <span v-if="props.row.status == 1" class="badge badge-primary">working</span>
+                                        <span v-if="props.row.status == 2" class="badge badge-info">uploaded</span>
+                                        <span v-if="props.row.status == 3" class="badge badge-success">completed</span>
+                                        <span v-if="props.row.status == 4" class="badge badge-danger">cancelled</span>
+                                        <span v-if="props.row.status == 5" class="badge badge-danger">revision</span>
+                                    </span>
+                                                        <span v-else-if="props.column.field == 'action'">
+                                    <a class="btn btn-info btn-sm" href="#" @click="editModal(props.row, props.row.id)">
+                                            <i class="fa fa-pen"></i>
+                                        </a>
+                                </span>
+                                                        <span v-else-if="props.column.field == 'more'">
+                                    <router-link :to="{path:'/orderdetails/'+ props.row.orderNumber}">
+                                    <button type="button" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-eye"></i>
+                                        More
+                                </button>
+                                    </router-link>
+                                </span>
+                                                        <span v-else>
+                                        {{props.formattedRow[props.column.field]}}
+                                    </span>
+                                                    </template>
+                                                </vue-good-table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </v-tab>
                         <v-tab title="Referrals" icon="fas fa-people-arrows orange">
-                            Third tab content
+                            <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                    <div class="card mt-4">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Referees</h3>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="card-body table-responsive p-0">
+                                                <vue-good-table
+                                                    :line-numbers="true"
+                                                    :columns="columns3"
+                                                    :rows="referes"
+                                                    :pagination-options="{
+                                                     enabled: true,
+                                                     mode: 'pages',
+                                                     perPage: 10
+                                                                         }"
+                                                    :search-options="{
+                                                     enabled: true,
+                                                     placeholder: 'Search this table',
+                                                                     }">
+                                                    <template slot="table-row" slot-scope="props">
+                                    <span v-if="props.column.field == 'created'">
+                                        <small class="text-primary">{{props.row.created_at | myDatetime}}</small>
+                                    </span>
+                                       <span v-else>
+                                        {{props.formattedRow[props.column.field]}}
+                                    </span>
+                                                    </template>
+                                                </vue-good-table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </v-tab>
                     </vue-tabs>
                     <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="addnewLabel"
@@ -397,10 +488,44 @@
                     field: 'more'
                 }
             ],
+             columns2: [
+                {
+                    label: 'Order Number',
+                    field: 'orderNumber',
+                },
+                {
+                    label: 'Order Title',
+                    field: 'name',
+                },
+                {
+                    label: 'Amount',
+                    field: 'title',
+                },
+                {
+                    label: 'Date Paid',
+                    field: 'level',
+                }
+            ],
+             columns3: [
+                {
+                    label: 'Name',
+                    field: 'name',
+                },
+                {
+                    label: 'Email',
+                    field: 'email',
+                },
+                {
+                    label: 'Date Regestered',
+                    field: 'created',
+                }
+            ],
     		pending:{},
             progress:{},
             completed:{},
             revision:{},
+            payment:{},
+            referes:{},
             dashboard:{},
             userId : this.$route.params.userId,
             form: new Form({
@@ -454,6 +579,12 @@
           getDashboard(){
               axios.get("/api/usersDash/" + this.userId).then(({ data }) =>([this.dashboard = data ['data']]));
           },
+        getPayments(){
+              axios.get("/api/payment/" + this.userId).then(({ data }) =>(this.payment = data));
+          },
+        getReferes(){
+              axios.get("/api/referes/" + this.userId).then(({ data }) =>(this.referes = data));
+          },
         getUid()
         {
             EventBus.$on('uid',data=>{
@@ -467,6 +598,8 @@
            this.getMyProgress();
            this.getMyRevision();
            this.getDashboard();
+           this.getPayments();
+           this.getReferes();
         }
     }
 </script>

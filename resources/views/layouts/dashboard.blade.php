@@ -198,7 +198,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/sample" class="nav-link text-dark">
+                        <router-link to="/AdminSample" class="nav-link text-dark">
                             <i class=" nav-icon fas fa-file-word orange"></i>
                             <p>
                                 Paper Samples

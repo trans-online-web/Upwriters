@@ -15,7 +15,7 @@ class SampleController extends Controller
      */
     public function index()
     {
-        //
+        return Sample::latest()->get();
     }
 
     /**
@@ -38,6 +38,7 @@ class SampleController extends Controller
         $sample -> subject  = $request->subject;
         $sample -> type  = $request->type;
         $sample -> content = $request->scontent;
+        $sample -> format = $request->format;
         $sample->save();
         return response(['status' => 'success'], 200);
     }
@@ -50,9 +51,11 @@ class SampleController extends Controller
      */
     public function show($id)
     {
-        //
+        $details = Sample::where('id', $id)->first();
+        return ['details' => $details];
     }
 
+    
     /**
      * Update the specified resource in storage.
      *
@@ -73,6 +76,8 @@ class SampleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sample = Sample::findOrFail($id);
+        $sample->delete();
+        return ['message'=> 'sample deleted'];
     }
 }

@@ -42,10 +42,6 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-
-    </div>
 </template>
 <script>
     var moment = require('moment');
@@ -88,7 +84,7 @@
 
         methods: {
             deleteLogs(id) {
-                $swal.fire({
+                Swal.fire({
                     title: 'Delete this log?',
                     icon: 'warning',
                     showCancelButton: true,
@@ -99,7 +95,7 @@
                     // send the request to the controller
                     if (result.value) {
                       axios.delete("/api/logs/" + id).then(() => {
-                            this.$swal.fire(
+                            this.Swal.fire(
                                 'Success!',
                                 'Log deletedsuccessfully',
                                 'success'

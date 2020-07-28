@@ -32,6 +32,8 @@ Route::post('/post-task', 'API\TaskController@store');
 Route::get('/student-task', 'API\TaskController@student');
 Route::apiResources(['dashboard' => 'API\DashboardController']);
 Route::get('usersDash/{userId}', 'API\DashboardController@usersDash');
+Route::get('payment/{userId}', 'API\UserController@payments');
+Route::get('referes/{userId}', 'API\UserController@referes');
 Route::apiResources(['level' => 'API\LevelController']);
 Route::get('ifFiles/{orderId}', 'API\TaskController@ifFiles');
 Route::get('getFiles/{orderId}', 'API\TaskController@getFiles');
