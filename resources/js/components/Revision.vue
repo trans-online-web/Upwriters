@@ -40,12 +40,12 @@
                                         </a>
                                 </span>
                                     <span v-else-if="props.column.field == 'more'">
-                                    <router-link :to="{path:'/orderdetails/'+ props.row.orderNumber}">
+                                     <a :href="'/myorderdetails/'+ props.row.orderNumber">
                                     <button type="button" class="btn btn-sm btn-primary">
                                     <i class="fas fa-eye"></i>
                                         More
                                 </button>
-                                    </router-link>
+                                    </a>
                                 </span>
                                     <span v-else>
                                         {{props.formattedRow[props.column.field]}}
