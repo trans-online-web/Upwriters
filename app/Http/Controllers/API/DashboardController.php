@@ -60,4 +60,21 @@ class DashboardController extends Controller
         );
         return['data'=>$data];
     }
+    public function userdashboard()
+    {
+        $id = auth()->user()->id;
+        $total_orders = Task::where('user_id',$id)->count();
+        $total_pending_orders = Task::where('user_id',$id)->where('status', 0)->count();
+        $total_orders_revision = Task::where('user_id',$id)->where('status', 5)->count();
+        $total_completed_orders = Task::where('user_id',$id)->where('status', 3)->count();
+        $total_approved_orders = Task::where('user_id',$id)->where('status', 1)->count();
+        $data = array(
+            'total_orders'=> $total_orders,
+            'total_pending'=>$total_pending_orders,
+            'total_approved'=>$total_approved_orders,
+            'total_completed'=> $total_completed_orders,
+            'total_revision'=>  $total_orders_revision,
+        );
+        return['data'=>$data];
+    }
 }

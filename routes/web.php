@@ -46,7 +46,9 @@ Route::get('/faq', function () {
 Route::get('/privacy_policy', function () {
     return view('privacy_policy');
 });
-
+Route::get('/dashboard', function () {
+    return view('Dashboard');
+});
 Route::get('/blogcontent/{blogId}', function () {
     return view('blogcontent');
 });

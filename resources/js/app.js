@@ -96,6 +96,7 @@ let routes = [
     {path: '/readmore/:blogId', component: require('./components/Readmore.vue').default},
     {path: '/blogcontent/:blogId', component: require('./components/Blog/BlogContent').default},
     {path: '/samplecontent/:sampleId', component: require('./components/SampleContent.vue').default},
+    
 ]
 const router = new VueRouter({
     mode: 'history',
@@ -139,7 +140,7 @@ Vue.component('blog-content', require('./components/Blog/BlogContent.vue').defau
 Vue.component('sample-client', require('./components/SampleClient.vue').default);
 Vue.component('profile', require('./components/profile.vue').default);
 Vue.component('sample-content', require('./components/SampleContent.vue').default);
-
+Vue.component('my-dashboard', require('./components/MyDashboard.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

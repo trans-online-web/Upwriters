@@ -67,6 +67,7 @@ Route::get('send', 'API\MessangerController@send');
 Route::get('getMessage/{orderId}', 'API\MessangerController@getMessagesFor');
 
 Route::get('mydashboard','API\DashboardController@mydashboard');
+Route::get('userdashboard','API\DashboardController@userdashboard');
 Route::apiResources(['category' => 'API\CategoryController']);
 Route::apiResources(['blog' => 'API\BlogController']);
 
