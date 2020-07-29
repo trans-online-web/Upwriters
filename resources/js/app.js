@@ -141,6 +141,13 @@ Vue.component('sample-client', require('./components/SampleClient.vue').default)
 Vue.component('profile', require('./components/profile.vue').default);
 Vue.component('sample-content', require('./components/SampleContent.vue').default);
 Vue.component('my-dashboard', require('./components/MyDashboard.vue').default);
+Vue.component('unpaid', require('./components/Pending.vue').default);
+Vue.component('completed', require('./components/Completed.vue').default);
+Vue.component('disputed', require('./components/Disputed.vue').default);
+Vue.component('revision', require('./components/Revision.vue').default);
+Vue.component('refaral', require('./components/Refaral.vue').default);
+Vue.component('payment', require('./components/Payment.vue').default);
+Vue.component('on-progress', require('./components/Onprogress.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -52,6 +52,26 @@ class TaskController extends Controller
     {
         return Task::where('user_id',$id)->where('status', 5)->latest()->get();
     }
+    public function myRevision()
+    {
+        $id = auth()->user()->id;
+        return Task::where('user_id',$id)->where('status', 5)->latest()->get();
+    }
+    public function myCompleted()
+    {
+        $id = auth()->user()->id;
+        return Task::where('user_id',$id)->where('status', 3)->latest()->get();
+    }
+    public function myPending()
+    {
+        $id = auth()->user()->id;
+        return Task::where('user_id',$id)->where('status', 0)->latest()->get();
+    }
+    public function myProgress()
+    {
+        $id = auth()->user()->id;
+        return Task::where('user_id',$id)->where('status', 1)->latest()->get();
+    }
     public function subjects(){
       return Subject::latest()->get();
     }

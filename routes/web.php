@@ -49,6 +49,27 @@ Route::get('/privacy_policy', function () {
 Route::get('/dashboard', function () {
     return view('Dashboard');
 });
+Route::get('/refaral', function () {
+    return view('refaral');
+});
+Route::get('/revision', function () {
+    return view('revision');
+});
+Route::get('/unpaid', function () {
+    return view('UnPaid');
+});
+Route::get('/payment', function () {
+    return view('payment');
+});
+Route::get('/onprogress', function () {
+    return view('onprogress');
+});
+Route::get('/disputed', function () {
+    return view('disputed');
+});
+Route::get('/completed', function () {
+    return view('Completed');
+});
 Route::get('/blogcontent/{blogId}', function () {
     return view('blogcontent');
 });

@@ -33,77 +33,70 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/subject" class="nav-link text-dark">
+                        <a href="/subject" class="nav-link text-dark">
                             <i class="nav-icon fas fas fa-user-alt green"></i>
                             <p>
                                 Profile
                             </p>
-                        </router-link>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/documents" class="nav-link text-dark">
+                        <a href="/unpaid" class="nav-link text-dark">
                             <i class="nav-icon fas fa-file-invoice-dollar pink"></i>
                             <p>
                                 Unpaid Orders
                             </p>
-                        </router-link>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/levels" class="nav-link text-dark">
+                        <a href="/onprogress" class="nav-link text-dark">
                             <i class="nav-icon fas fa-pen cyan"></i>
                             <p>
-                                Working Progress
+                                Assigned work
                             </p>
-                        </router-link>
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <router-link to="/orders" class="nav-link text-dark">
-                            <i class="nav-icon fas fa-pen-square teal"></i>
-                            <p>
-                               Assigned work
-                            </p>
-                        </router-link>
-                    </li>
+                    
                    
                     <li class="nav-item">
-                        <router-link to="/AdminSample" class="nav-link text-dark">
+                        <a href="/revision" class="nav-link text-dark">
                             <i class=" nav-icon fas fa-redo orange"></i>
                             <p>
                                 Revision
                             </p>
-                        </router-link>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/logs" class="nav-link text-dark">
+                        <a href="/completed" class="nav-link text-dark">
                             <i class=" nav-icon fas fa-file-word yellow"></i>
                             <p>
                                 Completed
                             </p>
-                        </router-link>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/user" class="nav-link text-dark">
+                        <a href="/disputed" class="nav-link text-dark">
                             <i class=" nav-icon fas fa-exclamation-triangle text-red"></i>
                             <p>
                                Disputed
                             </p>
-                        </router-link>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/user" class="nav-link text-dark">
+                        <a href="/payment" class="nav-link text-dark">
                             <i class=" nav-icon fas fa-money-check-alt  text-teal"></i>
                             <p>
                                Payments
                             </p>
-                        </router-link>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/user" class="nav-link text-dark">
+                        <a href="/refaral" class="nav-link text-dark">
                             <i class=" nav-icon fas fa-people-arrows text-purple"></i>
                             <p>
                                Refer A friend
                             </p>
-                        </router-link>
+                        </a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link text-dark" href="{{ route('logout') }}"
