@@ -72,6 +72,11 @@ class TaskController extends Controller
         $id = auth()->user()->id;
         return Task::where('user_id',$id)->where('status', 1)->latest()->get();
     }
+    public function myDisputed()
+    {
+        $id = auth()->user()->id;
+        return Task::where('user_id',$id)->where('status', 6)->latest()->get();
+    }
     public function subjects(){
       return Subject::latest()->get();
     }

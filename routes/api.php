@@ -50,6 +50,7 @@ Route::get('myRevision', 'API\TaskController@myRevision');
 Route::get('myCompleted', 'API\TaskController@myCompleted');
 Route::get('myPending', 'API\TaskController@myPending');
 Route::get('myProgress', 'API\TaskController@myProgress');
+Route::get('myDisputed', 'API\TaskController@myDisputed');
 Route::get('getAdmin', 'API\TaskController@admin');
 Route::get('getThisUser/{orderId}', 'API\TaskController@ThisUser');
 Route::get('download/{id}', 'API\TaskController@downloadFile');
