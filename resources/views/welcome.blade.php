@@ -20,11 +20,7 @@
                                 <div class="hero-sub">
 
                                     <div class="table-cell">
-                                          @auth
-                                            <div class="alert alert-primary">
-                                         Your Referral link is  <span> {{ url('/') . '/?ref=' . Auth::user()->id }} </span>
-                                            </div>
-                                            @endauth
+                                        
                                         <div class="hero-left">
                                             <!-- <h4>Creative</h4> -->
                                             <br>
