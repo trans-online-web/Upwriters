@@ -27,8 +27,9 @@
                                 <ul>
                                     <li><a href="/privacy_policy">Privacy Policy</a></li>
                                     <li><a href="blog">recent blog post</a></li>
-                                    <li><a href="login">login</a></li>
+                                    <li><a href="log">login</a></li>
                                     <li><a href="terms">terms of service</a></li>
+                                    <li><a href="/faq">Faqs</a></li>
                                 </ul>
                             </div>
                         </div>

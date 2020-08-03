@@ -11,8 +11,6 @@
 						<h5><b>Referral Link</b>&nbsp;<small>Use this Referral link to earn some cash</small></h5> 
                         <p>Earn $10 for every order made with your referral link.Refer as many people as possible</p>
 						<p>This is how this referral link works.Refer Someone into our website and get $10 every time your link is used to make the first order.If someone click on your link multiple times, our system will record only the first insatance and the other instances will be ignored</P>
-						<h5><b>Referral Link</b></h5>
-						<p>refaral link</p>
 						<h5>What's referral link and how does it work?</h5>
 						<p>Referral link is a module in Upwrites.net that rewards people for referring clients into our website.A bonus of $10 is  credit on your account for every  succefull refarral that has made order into our system</p>
 						<p>As soon as one enters into our website through your link, a cookie is created and saved in database.Even if the referred clears the cookies,you will still get your bonus, since that refaral is still recorded in the database.</p>

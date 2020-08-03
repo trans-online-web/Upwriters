@@ -148,6 +148,7 @@ Vue.component('revision', require('./components/Revision.vue').default);
 Vue.component('refaral', require('./components/Refaral.vue').default);
 Vue.component('payment', require('./components/Payment.vue').default);
 Vue.component('on-progress', require('./components/Onprogress.vue').default);
+Vue.component('profile', require('./components/MyProfile.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

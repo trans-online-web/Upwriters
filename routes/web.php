@@ -46,11 +46,14 @@ Route::get('/faq', function () {
 Route::get('/privacy_policy', function () {
     return view('privacy_policy');
 });
-Route::get('/dashboard', function () {
+Route::get('/mydashboard', function () {
     return view('Dashboard');
 });
 Route::get('/refaral', function () {
     return view('refaral');
+});
+Route::get('/myProfile', function () {
+    return view('profile');
 });
 Route::get('/revision', function () {
     return view('revision');

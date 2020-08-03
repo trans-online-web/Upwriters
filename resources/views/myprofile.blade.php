@@ -25,21 +25,14 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="/dashboard" class="nav-link text-dark">
+                        <a href="/mydashboard" class="nav-link text-dark">
                             <i class="nav-icon fas fa-tachometer-alt blue"></i>
                             <p>
                                 Dashboard
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="/subject" class="nav-link text-dark">
-                            <i class="nav-icon fas fas fa-user-alt green"></i>
-                            <p>
-                                Profile
-                            </p>
-                        </a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a href="/unpaid" class="nav-link text-dark">
                             <i class="nav-icon fas fa-file-invoice-dollar pink"></i>
@@ -95,6 +88,14 @@
                             <i class=" nav-icon fas fa-people-arrows text-purple"></i>
                             <p>
                                Refer A friend
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/myProfile" class="nav-link text-dark">
+                            <i class="nav-icon fas fas fa-user-alt green"></i>
+                            <p>
+                                Profile
                             </p>
                         </a>
                     </li>

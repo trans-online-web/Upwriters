@@ -56,7 +56,7 @@
                     </div>
                     <p class="small text-center">By clicking the Sign Up button, you agree to our <br><a href="/terms">Terms &amp; Conditions</a>, and <a href="/terms">Privacy Policy</a>.</p>
                 </form>
-                <div class="text-center">Already have an account? <a href="/login">Login here</a>.</div>
+                <div class="text-center">Already have an account? <a href="/log">Login here</a>.</div>
             </div>
         </div>
     </div>
