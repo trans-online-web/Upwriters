@@ -3,6 +3,7 @@
     profile
 @stop
 @section('content')
+
         <!-- Main content -->
         <section class="content mt-5">
             <div class="container-fluid">
@@ -25,7 +26,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="/mydashboard" class="nav-link text-dark">
+                        <a href="{{ url('mydashboard') }}" class="nav-link text-dark {{ Request::path() ==  'mydashboard' ? 'active' : ''  }}">
                             <i class="nav-icon fas fa-tachometer-alt blue"></i>
                             <p>
                                 Dashboard
@@ -33,16 +34,16 @@
                         </a>
                     </li>
                     
-                    <li class="nav-item">
-                        <a href="/unpaid" class="nav-link text-dark">
+                    <li class="nav-item " >
+                        <a href="{{ url('unpaid') }}" class="nav-link text-dark {{ Request::path() ==  'unpaid' ? 'active' : ''  }}">
                             <i class="nav-icon fas fa-file-invoice-dollar pink"></i>
                             <p>
-                                Unpaid Orders
+                                Unpaid Orders 
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="/onprogress" class="nav-link text-dark">
+                    <li class="nav-item ">
+                        <a href="{{ url('onprogress') }}" class="nav-link text-dark {{ Request::path() ==  'onprogress' ? 'active' : ''  }}">
                             <i class="nav-icon fas fa-pen cyan"></i>
                             <p>
                                 Assigned work
@@ -51,48 +52,48 @@
                     </li>
                     
                    
-                    <li class="nav-item">
-                        <a href="/revision" class="nav-link text-dark">
+                    <li class="nav-item ">
+                        <a href="{{ url('revision') }}" class="nav-link text-dark {{ Request::path() ==  'revision' ? 'active' : ''  }}">
                             <i class=" nav-icon fas fa-redo orange"></i>
                             <p>
                                 Revision
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="/completed" class="nav-link text-dark">
+                    <li class="nav-item ">
+                        <a href="{{ url('completed') }}" class="nav-link text-dark {{ Request::path() ==  'completed' ? 'active' : ''  }}">
                             <i class=" nav-icon fas fa-file-word yellow"></i>
                             <p>
                                 Completed
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="/disputed" class="nav-link text-dark">
+                    <li class="nav-item ">
+                        <a href="{{ url('disputed') }}" class="nav-link text-dark {{ Request::path() ==  'disputed' ? 'active' : ''  }}">
                             <i class=" nav-icon fas fa-exclamation-triangle text-red"></i>
                             <p>
                                Disputed
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="/payment" class="nav-link text-dark">
+                    <li class="nav-item ">
+                        <a href="{{ url('payment') }}" class="nav-link text-dark {{ Request::path() ==  'payment' ? 'active' : ''  }}">
                             <i class=" nav-icon fas fa-money-check-alt  text-teal"></i>
                             <p>
                                Payments
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="/refaral" class="nav-link text-dark">
+                    <li class="nav-item ">
+                        <a href="{{ url('refaral') }}" class="nav-link text-dark {{ Request::path() ==  'refaral' ? 'active' : ''  }}">
                             <i class=" nav-icon fas fa-people-arrows text-purple"></i>
                             <p>
                                Refer A friend
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="/myProfile" class="nav-link text-dark">
+                    <li class="nav-item ">
+                        <a href="{{ url('myProfile') }}" class="nav-link text-dark {{ Request::path() ==  'myProfile' ? 'active' : ''  }}">
                             <i class="nav-icon fas fas fa-user-alt green"></i>
                             <p>
                                 Profile

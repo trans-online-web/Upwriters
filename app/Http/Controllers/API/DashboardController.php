@@ -15,10 +15,10 @@ class DashboardController extends Controller
     }
     public function index()
     {
-        $total_pending_orders = Task::where('status','pending')->count();
-        $total_approved_orders = Task::where('status','paid')->count();
-        $total_completed_orders = Task::where('status','completed')->count();
-        $total_orders_revision = Task::where('status','revision')->count();
+        $total_pending_orders = Task::where('status', 0)->count();
+        $total_approved_orders = Task::where('status',1)->count();
+        $total_completed_orders = Task::where('status',3)->count();
+        $total_orders_revision = Task::where('status',5)->count();
         $data = array(
             'total_pending'=>$total_pending_orders,
             'total_approved'=>$total_approved_orders,

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Mail\OrderPayment;
 use App\Mail\ReceivedOrder;
+use App\Mail\NewOrder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -116,6 +117,7 @@ class TaskController extends Controller
         $task->pages = $request->pages;
         $task->spacing = $request->spacing;
         $task->format = $request->w_format;
+        $task->status = 0;
         $task->save();
         $task_id = $task->id;
 
@@ -139,6 +141,16 @@ class TaskController extends Controller
             'orderNo' => $orderNo,
         );
         Mail::to($email)->send(new ReceivedOrder($data));
+
+        $email = User::where('role', 'admin')->get();
+        $data = array(
+            'name' => auth()->user()->name,
+            'title' => $request->title,
+            'subject' => $request->subject,
+            'orderNo' => $orderNo,
+            'admin'=> $email,
+        );
+        Mail::to($email)->send(new NewOrder($data));
         return response(['status' => 'success'], 200);
     }
 
