@@ -27,7 +27,7 @@ Our Services
                 <div class="col-xl-6 centered wow fadeInUp" data-wow-delay="0.3s">
                     <div class="section-title">
                         <h4>Our Services</h4>
-                        <h2>We Will Provide Lot of Services</h2>
+                        <h2>We provide a wide range of services</h2>
                     </div>
                 </div>
             </div>
