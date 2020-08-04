@@ -139,6 +139,16 @@ class TaskController extends Controller
             'orderNo' => $orderNo,
         );
         Mail::to($email)->send(new ReceivedOrder($data));
+
+        $email = User::where('role', admin)->get();
+        $data = array(
+            'name' => auth()->user()->name,
+            'title' => $request->title,
+            'subject' => $request->subject,
+            'orderNo' => $orderNo,
+            'admin'=> $email,
+        );
+        Mail::to($email)->send(new NewOrder($data));
         return response(['status' => 'success'], 200);
     }
 
