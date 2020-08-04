@@ -190,7 +190,7 @@
                                         <tr>
                                             <td align="center">
                                                 <div>
-                                                    <h5>Dear <i>{{ $data['admin'] }}</i></h5>,
+                                                    <h5>Dear <i>Admin</i></h5>,
                                                     <p>A new order by the title  <b>'{{ $data['title'] }}'</b> order number <b>{{ $data['orderNo'] }}</b>  on  <b>{{ $data['subject'] }}</b> has been posted by <b>{{ $data['name'] }}</b>.</p>
                                                    
                                                     <br/>
