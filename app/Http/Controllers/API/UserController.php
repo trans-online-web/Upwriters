@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Order;
 use App\Task;
@@ -13,6 +15,10 @@ use App\Payment;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -69,7 +75,26 @@ class UserController extends Controller
     {
         //
     }
-
+    public function profile()
+    {
+        return Auth::user();
+    }
+    
+    public function updateProfile(Request $request)
+    {
+        $user =  auth()->user();
+        $this->validate($request,[
+            'name' => 'required|string|max:191',
+            'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
+            'password' => 'sometimes|required|min:6'
+        ]);
+       
+        if(!empty($request->password)){
+            $request->merge(['password' => Hash::make($request['password'])]);
+        }
+        $user->update($request->all());
+        return ['message' => "Success"];
+    }
     /**
      * Remove the specified resource from storage.
      *

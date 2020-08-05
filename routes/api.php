@@ -80,3 +80,5 @@ Route::apiResources(['revision' => 'API\RevisionController']);
 Route::get('studentsort/{sort}', 'API\RevisionController@studentSort');
 
 Route::apiResources(['sample' => 'API\SampleController']);
+Route::get('profile','API\UserController@profile');
+Route::put('profile','API\UserController@updateProfile');
