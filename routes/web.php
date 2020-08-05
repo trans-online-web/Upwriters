@@ -85,6 +85,7 @@ Route::get('/terms', function () {
 Route::get('/profile', function () {
     return view('myprofile');
 });
+Route::get('/myprofile','HomeController@unpaid');
 // Route::get('/task', function () {
 //     return view('order');
 // });

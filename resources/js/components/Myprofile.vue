@@ -35,19 +35,12 @@
                                                 <has-error :form="form" field="email"></has-error>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="inputPhone" class="col-sm-2 control-label">Phone</label>
-
-                                            <div class="col-sm-10">
-                                                <input type="tel" v-model="form.phone_number" class="form-control" id="inputPhone" placeholder="Phone"  :class="{ 'is-invalid': form.errors.has('phone') }">
-                                                <has-error :form="form" field="phone"></has-error>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <label for="inputSkills" class="col-sm-6 control-label">Password (leave empty if not changing)</label>
 
                                             <div class="col-sm-10">
-                                                <input type="password" v-model="form.password"class="form-control" id="inputSkills" placeholder="password"  :class="{ 'is-invalid': form.errors.has('password') }">
+                                                <input type="password" v-model="form.password" class="form-control" id="inputSkills" placeholder="password"  :class="{ 'is-invalid': form.errors.has('password') }">
                                                 <has-error :form="form" field="password"></has-error>
                                             </div>
                                         </div>

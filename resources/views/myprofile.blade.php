@@ -38,7 +38,7 @@
                         <a href="{{ url('unpaid') }}" class="nav-link text-dark {{ Request::path() ==  'unpaid' ? 'active' : ''  }}">
                             <i class="nav-icon fas fa-file-invoice-dollar pink"></i>
                             <p>
-                                Unpaid Orders 
+                                Unpaid Orders
                             </p>
                         </a>
                     </li>

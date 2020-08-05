@@ -6,6 +6,7 @@ use App\Application;
 use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 
 class DashboardController extends Controller
 {
@@ -77,4 +78,5 @@ class DashboardController extends Controller
         );
         return['data'=>$data];
     }
+   
 }

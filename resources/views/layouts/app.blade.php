@@ -79,6 +79,7 @@
 <script src="js/jquery.counterup.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/scrollUp.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 <script src="js/script.js"></script>
 <!--Start of Tawk.to Script-->

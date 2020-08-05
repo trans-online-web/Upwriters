@@ -33,6 +33,17 @@
                     </div>
                     <div class="form-group">
                         <div class="input-group">
+                            <span class="input-group-addon p-2"><i class="fas fa-phone"></i></span>
+                            <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="Phone Number">
+                            @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
                             <span class="input-group-addon p-2"><i class="fa fa-lock"></i></span>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
                             @error('password')
@@ -52,13 +63,30 @@
                         </div>
                     </div>
                     <div class="form-group">
+                    {!! app('captcha')->display() !!}
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
                     </div>
                     <p class="small text-center">By clicking the Sign Up button, you agree to our <br><a href="/terms">Terms &amp; Conditions</a>, and <a href="/terms">Privacy Policy</a>.</p>
                 </form>
                 <div class="text-center">Already have an account? <a href="/log">Login here</a>.</div>
+
+                <div class="row pt-5 justify-content-center">
+                
+                </div>
+                
             </div>
         </div>
     </div>
+
 </div>
+<script>
+    var reset = document.querySelector('#reset');
+    if (reset) {
+        reset.addEventListener('click', () => {
+            grecaptcha.reset()
+        });
+    }
+</script>
 @endsection
