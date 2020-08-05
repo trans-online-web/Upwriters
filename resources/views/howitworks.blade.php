@@ -39,7 +39,7 @@ How it works
 	                    <div class="growth-content">
 	                        <h3>Register - Create an account</h3>
 	                        <p>You can create an account with us by clicking on the Register button. This will open a simple form that you will fill a few required details and click on Sign Up button. </p>
-	                        <p>The account created will assist you in submiting and managing your orders. You can always sign in and check the progress of your order or submit a new one.</p>
+	                        <p>The account created will assist you in submitting and managing your orders. You can always sign in and check the progress of your order or submit a new one.</p>
 	                        <p>After creating an account you now sign in to submit or check your order.</p>
 	                    </div>
 	                </div>
