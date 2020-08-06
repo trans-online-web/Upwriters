@@ -100,5 +100,5 @@ Route::get('/myorder', 'HomeController@myorder')->name('myorder');
 Route::get('/myorderdetails/{id}', 'HomeController@myorderdetails');
 Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-/_.]+)?' );
 
-
+Route::get('/','HomeController@countries')->name('countries');
 

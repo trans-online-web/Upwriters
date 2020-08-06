@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5784f199ddf1f90b05de09b690318425",
+    "content-hash": "5813c2444536b7f3b88cbc827d3ed566",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -57,6 +57,59 @@
                 "stack"
             ],
             "time": "2020-05-31T07:17:05+00:00"
+        },
+        {
+            "name": "bhuvidya/laravel-countries",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bhuvidya/laravel-countries.git",
+                "reference": "adb1652e2ee5a6e8c948628e46000320bdee61a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bhuvidya/laravel-countries/zipball/adb1652e2ee5a6e8c948628e46000320bdee61a1",
+                "reference": "adb1652e2ee5a6e8c948628e46000320bdee61a1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.5|^6.0|^7.0",
+                "illuminate/support": "^5.5|^6.0|^7.0",
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bhuvidya\\Countries\\CountriesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bhuvidya\\Countries\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "bhu Boue vidya",
+                    "email": "bhuvidya@gmail.com",
+                    "role": "developer"
+                }
+            ],
+            "description": "Laravel Countries is a bundle for Laravel, providing Almost ISO 3166_2, 3166_3, currency, Capital and more for all countries. Bug kudos to Christoph Kempen, on whose work this package is heavily based (webpatser/laravel-countries).",
+            "homepage": "https://github.com/bhuvidya/laravel-countries",
+            "keywords": [
+                "countries",
+                "iso_3166_2",
+                "iso_3166_3",
+                "laravel"
+            ],
+            "time": "2020-03-10T13:01:51+00:00"
         },
         {
             "name": "buzz/laravel-google-captcha",

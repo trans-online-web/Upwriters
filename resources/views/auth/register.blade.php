@@ -31,17 +31,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon p-2"><i class="fas fa-phone"></i></span>
-                            <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="Phone Number">
-                            @error('phone')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
+                
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon p-2"><i class="fa fa-lock"></i></span>

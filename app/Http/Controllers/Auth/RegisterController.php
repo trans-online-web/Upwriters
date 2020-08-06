@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Countries;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'g-recaptcha-response' => 'required|captcha'
         ]);
     }
 
@@ -80,5 +82,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'referred_by' => $ref_by,
         ]);
+    }
+
+    public function countries(){
+        $countries = DB::table('countries')->orderBy('id', 'DESC')->get();;
+        return view('auth.register', ['countries' => $countries]);
     }
 }
